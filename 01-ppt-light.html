@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>《黄帝内经》共读会 | 讲义重构 (亮色版)</title>
+    <title>《黄帝内经》共读会 | 讲义重构 (最终响应式优化版)</title>
     
     <script src="https://cdn.tailwindcss.com/3.4.3"></script>
     
@@ -12,20 +12,24 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
     <style>
-        /* --- 全新亮色主题与配色 --- */
+        /* --- 亮色主题与配色 --- */
         :root {
-            --bg-main: #FDFBF8;      /* 主背景色 (温暖的纸张感) */
-            --bg-slide: #FFFFFF;     /* 幻灯片背景色 (纯白) */
-            --text-primary: #3f3f46; /* 主要文字颜色 (Tailwind zinc-700) */
-            --text-secondary: #71717a;/* 次要文字颜色 (Tailwind zinc-500) */
-            --highlight: #d97706;    /* 高亮色 (Tailwind amber-600, 稍深更稳重) */
-            --border-color: rgba(217, 119, 6, 0.2); /* 边框颜色 */
+            --bg-main: #FDFBF8;
+            --bg-slide: #FFFFFF;
+            --text-primary: #3f3f46;
+            --text-secondary: #71717a;
+            --highlight: #d97706;
+            --border-color: rgba(217, 119, 6, 0.2);
         }
 
+        html, body {
+            overscroll-behavior: none;
+        }
+        
         body {
             background-color: var(--bg-main);
             color: var(--text-primary);
-            overflow: hidden; /* 防止滚动 */
+            overflow: hidden;
         }
         
         /* --- 幻灯片容器与动画 --- */
@@ -35,7 +39,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            padding: 3rem 2rem;
+            padding: 1rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,12 +49,19 @@
             transform: scale(0.98);
         }
 
+        @media (min-width: 768px) {
+            .slide {
+                padding: 2rem;
+            }
+        }
+
         .slide.active {
             opacity: 1;
             visibility: visible;
             transform: scale(1);
         }
-
+        
+        /* --- 核心响应式修复：内容区可滚动 --- */
         .slide-content {
             width: 100%;
             height: 100%;
@@ -59,47 +70,37 @@
             background-color: var(--bg-slide);
             border: 1px solid var(--border-color);
             border-radius: 0.75rem;
-            padding: 2.5rem 3.5rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             position: relative;
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.05), 0 10px 10px -5px rgba(0,0,0,0.04);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.05);
+            overflow-y: auto;
         }
 
-        @media (max-width: 768px) {
-            .slide {
-                padding: 1rem;
-            }
+        @media (min-width: 768px) {
             .slide-content {
-                padding: 2rem 1.5rem;
+                padding: 2.5rem 3.5rem;
             }
         }
         
-        /* --- 高亮与装饰元素 --- */
-        .highlight-text {
-            color: var(--highlight);
-        }
-
-        .highlight-gradient-bg {
-            background-image: linear-gradient(to top, rgba(217, 119, 6, 0.05), transparent);
-        }
-
-        .divider {
-            height: 1px;
-            width: 100px;
-            background-color: var(--border-color);
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        /* --- 超大字体/数字 --- */
+        /* --- 其他样式 --- */
+        .highlight-text { color: var(--highlight); }
+        .highlight-gradient-bg { background-image: linear-gradient(to top, rgba(217, 119, 6, 0.05), transparent); }
+        .divider { height: 1px; width: 100px; background-color: var(--border-color); margin-top: 1rem; margin-bottom: 1.5rem; }
         .super-text {
-            font-size: 10rem;
+            font-size: 6rem;
             font-weight: 800;
             line-height: 1;
-            color: rgba(217, 119, 6, 0.05); /* 高亮色的幽灵版本 */
+            color: rgba(217, 119, 6, 0.05);
             position: absolute;
             z-index: 0;
+            user-select: none;
+        }
+        @media (min-width: 768px) {
+            .super-text {
+                font-size: 10rem;
+            }
         }
 
     </style>
@@ -110,38 +111,38 @@
 
         <div id="slide-1" class="slide active">
             <div class="slide-content justify-center items-center text-center">
-                <div class="absolute top-8 left-8 text-xs font-mono highlight-text">第一期</div>
+                <div class="absolute top-4 left-4 md:top-8 md:left-8 text-xs font-mono highlight-text">第一期</div>
                 <div class="relative w-full">
-                     <h2 class="text-2xl md:text-3xl font-light text-zinc-500 tracking-widest">讲义重构</h2>
-                    <h1 class="text-5xl md:text-7xl font-bold my-4 highlight-text">《黄帝内经》共读会</h1>
-                    <div class="divider mx-auto my-8"></div>
-                    <p class="text-xl md:text-2xl font-light text-zinc-600">开启改变命运的智慧之旅</p>
+                     <h2 class="text-xl md:text-3xl font-light text-zinc-500 tracking-widest">讲义重构</h2>
+                    <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold my-4 highlight-text">《黄帝内经》共读会</h1>
+                    <div class="divider mx-auto my-6 md:my-8"></div>
+                    <p class="text-lg md:text-2xl font-light text-zinc-600">开启改变命运的智慧之旅</p>
                 </div>
-                <div class="absolute bottom-8 right-8 text-lg font-light text-zinc-400">主讲人：马艺甄</div>
+                <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 text-base font-light text-zinc-400">主讲人：[讲师姓名]</div>
             </div>
         </div>
 
         <div id="slide-2" class="slide">
             <div class="slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">读书会的愿景</h2>
-                <p class="text-lg text-zinc-500">一个长期的智慧陪伴</p>
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">读书会的愿景</h2>
+                <p class="text-base md:text-lg text-zinc-500">一个长期的智慧陪伴</p>
                 <div class="divider"></div>
-                <div class="flex-grow grid md:grid-cols-2 gap-8 items-center mt-4">
-                    <div class="space-y-6 text-base md:text-lg">
+                <div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-4">
+                    <div class="space-y-4 md:space-y-6 text-base">
                         <div class="flex items-start">
-                            <i class="fas fa-book-open highlight-text mr-4 mt-1"></i>
+                            <i class="fas fa-book-open highlight-text mr-4 mt-1 w-5 text-center"></i>
                             <div><strong class="text-zinc-800">核心主轴：</strong>以《黄帝内经》为根本，深入浅出地讲解。</div>
                         </div>
                         <div class="flex items-start">
-                            <i class="fas fa-yin-yang highlight-text mr-4 mt-1"></i>
+                            <i class="fas fa-yin-yang highlight-text mr-4 mt-1 w-5 text-center"></i>
                             <div><strong class="text-zinc-800">融合智慧：</strong>穿插讲解《易经》、《道德经》等东方经典。</div>
                         </div>
                         <div class="flex items-start">
-                           <i class="fas fa-infinity highlight-text mr-4 mt-1"></i>
+                           <i class="fas fa-infinity highlight-text mr-4 mt-1 w-5 text-center"></i>
                             <div><strong class="text-zinc-800">长期陪伴：</strong>非短期课程，付费学员可永久参与，共同成长。</div>
                         </div>
                          <div class="flex items-start">
-                           <i class="fas fa-users highlight-text mr-4 mt-1"></i>
+                           <i class="fas fa-users highlight-text mr-4 mt-1 w-5 text-center"></i>
                             <div><strong class="text-zinc-800">社群价值：</strong>小班深度互动，支持学员建立线下读书会。</div>
                         </div>
                     </div>
@@ -158,28 +159,28 @@
         </div>
 
         <div id="slide-3" class="slide">
-            <div class="slide-content justify-center">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">为什么读经典？</h2>
-                <p class="text-lg text-zinc-500">经典的“魔咒”与力量</p>
+            <div class="slide-content">
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">为什么读经典？</h2>
+                <p class="text-base md:text-lg text-zinc-500">经典的“魔咒”与力量</p>
                 <div class="divider"></div>
-                <div class="grid md:grid-cols-2 gap-12 flex-grow items-center">
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-semibold text-zinc-800">书中自有黄金屋</h3>
-                        <p class="text-zinc-500 leading-relaxed">人生总有能量低谷、迷茫无力之时。有时，书中不经意的一句话，便能成为度过难关的“救命稻草”，这就是经典的力量。</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 flex-grow items-center mt-4">
+                    <div class="space-y-4 md:space-y-6">
+                        <h3 class="text-xl md:text-2xl font-semibold text-zinc-800">书中自有黄金屋</h3>
+                        <p class="text-zinc-500 leading-relaxed">人生总有能量低谷、迷茫无力之时。有时，书中不经意的一句话，便能成为度过难关的“救命稻草”。</p>
                         <p class="text-zinc-600 leading-relaxed border-l-2 border-amber-500 pl-4">能被冠以“经”为名的书籍，都自带一种魔力。它埋藏着关于生命、世界、宇宙的密码，会在关键时刻“点醒”你。</p>
                     </div>
-                    <div class="space-y-8 relative">
-                         <div class="flex items-center p-4 rounded-lg bg-stone-50">
-                            <div class="text-2xl highlight-text font-bold mr-6 w-20 text-center">初读</div>
-                            <div class="text-zinc-500">晦涩难懂，枯燥乏味，仿佛隔着一层纱。</div>
+                    <div class="space-y-4 md:space-y-6 relative">
+                         <div class="flex items-center p-3 md:p-4 rounded-lg bg-stone-50">
+                            <div class="text-xl md:text-2xl highlight-text font-bold mr-4 md:mr-6 w-16 md:w-20 text-center">初读</div>
+                            <div class="text-zinc-500 text-sm md:text-base">晦涩难懂，枯燥乏味，仿佛隔着一层纱。</div>
                         </div>
-                        <div class="flex items-center p-4 rounded-lg bg-stone-50">
-                            <div class="text-2xl highlight-text font-bold mr-6 w-20 text-center">渐入</div>
-                            <div class="text-zinc-500">与人生境遇相呼应，字句开始有了温度。</div>
+                        <div class="flex items-center p-3 md:p-4 rounded-lg bg-stone-50">
+                            <div class="text-xl md:text-2xl highlight-text font-bold mr-4 md:mr-6 w-16 md:w-20 text-center">渐入</div>
+                            <div class="text-zinc-500 text-sm md:text-base">与人生境遇相呼应，字句开始有了温度。</div>
                         </div>
-                        <div class="flex items-center p-4 rounded-lg bg-amber-500/10">
-                            <div class="text-2xl highlight-text font-bold mr-6 w-20 text-center">顿悟</div>
-                            <div class="text-zinc-700">恍然大悟，一句话点亮整个世界。</div>
+                        <div class="flex items-center p-3 md:p-4 rounded-lg bg-amber-500/10">
+                            <div class="text-xl md:text-2xl highlight-text font-bold mr-4 md:mr-6 w-16 md:w-20 text-center">顿悟</div>
+                            <div class="text-zinc-700 text-sm md:text-base">恍然大悟，一句话点亮整个世界。</div>
                         </div>
                     </div>
                 </div>
@@ -188,34 +189,34 @@
         
         <div id="slide-4" class="slide">
             <div class="slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">亲历：一句“咒语”的力量</h2>
-                <p class="text-lg text-zinc-500">从产后抑郁到身心调和的转折点</p>
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">亲历：一句“咒语”的力量</h2>
+                <p class="text-base md:text-lg text-zinc-500">从产后抑郁到身心调和的转折点</p>
                 <div class="divider"></div>
                 <div class="flex-grow flex flex-col md:flex-row items-center gap-8 mt-4">
-                    <div class="w-full md:w-1/2 space-y-4">
-                        <div class="p-4 bg-stone-50 rounded-lg">
+                    <div class="w-full md:w-1/2 space-y-3">
+                        <div class="p-3 bg-stone-50 rounded-lg">
                             <h3 class="font-semibold text-zinc-600"><i class="fas fa-seedling highlight-text mr-2"></i>缘起</h3>
                             <p class="text-zinc-500 text-sm mt-1">曾因身体极差而抑郁，四处寻访调理身体的师傅。</p>
                         </div>
-                        <div class="p-4 bg-stone-50 rounded-lg">
+                        <div class="p-3 bg-stone-50 rounded-lg">
                             <h3 class="font-semibold text-zinc-600"><i class="fas fa-comment-dots highlight-text mr-2"></i>遇见</h3>
                             <p class="text-zinc-500 text-sm mt-1">一位道长在调理时，反复叮嘱一句话。</p>
                         </div>
-                        <div class="p-4 bg-stone-50 rounded-lg">
+                        <div class="p-3 bg-stone-50 rounded-lg">
                             <h3 class="font-semibold text-zinc-600"><i class="fas fa-question-circle highlight-text mr-2"></i>初闻</h3>
                             <p class="text-zinc-500 text-sm mt-1">当时只知是名句，并未深解，毫无感觉。</p>
                         </div>
-                         <div class="p-4 bg-amber-500/10 rounded-lg">
+                         <div class="p-3 bg-amber-500/10 rounded-lg">
                             <h3 class="font-semibold text-zinc-800"><i class="fas fa-lightbulb highlight-text mr-2"></i>顿悟</h3>
                             <p class="text-zinc-600 text-sm mt-1">多年后某个能量低谷，这16个字突然浮现，猛然醒悟自己的问题在于“内耗”，从此开始向内观照。</p>
                         </div>
                     </div>
-                    <div class="w-full md:w-1/2 flex justify-center items-center h-full p-8 highlight-gradient-bg rounded-lg mt-8 md:mt-0">
+                    <div class="w-full md:w-1/2 flex justify-center items-center h-full min-h-[250px] md:min-h-full p-4 highlight-gradient-bg rounded-lg mt-4 md:mt-0">
                         <div class="flex flex-row gap-4 md:gap-6">
-                            <p class="text-3xl md:text-5xl font-serif highlight-text" style="writing-mode: vertical-rl; text-orientation: mixed;">恬淡虚无</p>
-                            <p class="text-3xl md:text-5xl font-serif highlight-text" style="writing-mode: vertical-rl; text-orientation: mixed;">真气从之</p>
-                            <p class="text-3xl md:text-5xl font-serif highlight-text" style="writing-mode: vertical-rl; text-orientation: mixed;">精神内守</p>
-                            <p class="text-3xl md:text-5xl font-serif highlight-text" style="writing-mode: vertical-rl; text-orientation: mixed;">病安从来</p>
+                            <p class="text-3xl sm:text-4xl lg:text-5xl font-serif highlight-text" style="writing-mode: vertical-rl; text-orientation: mixed;">恬淡虚无</p>
+                            <p class="text-3xl sm:text-4xl lg:text-5xl font-serif highlight-text" style="writing-mode: vertical-rl; text-orientation: mixed;">真气从之</p>
+                            <p class="text-3xl sm:text-4xl lg:text-5xl font-serif highlight-text" style="writing-mode: vertical-rl; text-orientation: mixed;">精神内守</p>
+                            <p class="text-3xl sm:text-4xl lg:text-5xl font-serif highlight-text" style="writing-mode: vertical-rl; text-orientation: mixed;">病安从来</p>
                         </div>
                     </div>
                 </div>
@@ -223,88 +224,88 @@
         </div>
 
         <div id="slide-5" class="slide">
-            <div class="slide-content justify-center items-center">
-                 <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2 text-center">东方经典的人生智慧</h2>
+            <div class="slide-content justify-center">
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2 text-center">东方经典的人生智慧</h2>
                 <div class="divider mx-auto"></div>
-                <div class="w-full flex-grow grid md:grid-cols-3 gap-8 text-center mt-8">
-                    <div class="p-8 border border-stone-200 rounded-lg flex flex-col items-center justify-center bg-stone-50/50 hover:bg-white transition-all hover:shadow-lg">
-                         <div class="text-6xl highlight-text mb-4"><i class="fas fa-balance-scale"></i></div>
-                        <h3 class="text-2xl font-bold text-zinc-800">《易经》</h3>
+                <div class="w-full flex-grow grid grid-cols-1 md:grid-cols-3 gap-6 text-center mt-6 content-center">
+                    <div class="p-6 border border-stone-200 rounded-lg flex flex-col items-center justify-center bg-stone-50/50">
+                        <div class="text-4xl md:text-5xl highlight-text mb-4"><i class="fas fa-balance-scale"></i></div>
+                        <h3 class="text-xl font-bold text-zinc-800">《易经》</h3>
                         <p class="text-zinc-500 mt-2">核心价值</p>
-                        <p class="text-3xl font-bold highlight-text mt-4">趋吉避凶</p>
+                        <p class="text-2xl font-bold highlight-text mt-3">趋吉避凶</p>
                     </div>
-                     <div class="p-8 border-2 border-amber-500/50 rounded-lg flex flex-col items-center justify-center bg-amber-500/10 hover:bg-amber-500/20 transition-all shadow-lg shadow-amber-500/10">
-                        <div class="text-6xl highlight-text mb-4"><i class="fas fa-heartbeat"></i></div>
-                        <h3 class="text-2xl font-bold text-zinc-800">《黄帝内经》</h3>
+                    <div class="p-6 border-2 border-amber-500/50 rounded-lg flex flex-col items-center justify-center bg-amber-500/10 shadow-lg shadow-amber-500/10">
+                        <div class="text-4xl md:text-5xl highlight-text mb-4"><i class="fas fa-heartbeat"></i></div>
+                        <h3 class="text-xl font-bold text-zinc-800">《黄帝内经》</h3>
                         <p class="text-zinc-600 mt-2">核心价值</p>
-                        <p class="text-3xl font-bold highlight-text mt-4">尽终其天年</p>
+                        <p class="text-2xl font-bold highlight-text mt-3">尽终其天年</p>
                     </div>
-                    <div class="p-8 border border-stone-200 rounded-lg flex flex-col items-center justify-center bg-stone-50/50 hover:bg-white transition-all hover:shadow-lg">
-                        <div class="text-6xl highlight-text mb-4"><i class="fas fa-feather-alt"></i></div>
-                        <h3 class="text-2xl font-bold text-zinc-800">《道德经》</h3>
+                    <div class="p-6 border border-stone-200 rounded-lg flex flex-col items-center justify-center bg-stone-50/50">
+                        <div class="text-4xl md:text-5xl highlight-text mb-4"><i class="fas fa-feather-alt"></i></div>
+                        <h3 class="text-xl font-bold text-zinc-800">《道德经》</h3>
                         <p class="text-zinc-500 mt-2">核心价值</p>
-                        <p class="text-3xl font-bold highlight-text mt-4">无为而无不为</p>
+                        <p class="text-2xl font-bold highlight-text mt-3">无为而无不为</p>
                     </div>
                 </div>
-                 <p class="text-center mt-12 text-zinc-400">这些经典，早已道破了人生与宇宙的运行规律。</p>
+                <p class="text-center mt-8 text-zinc-400 text-sm md:text-base">这些经典，早已道破了人生与宇宙的运行规律。</p>
             </div>
         </div>
         
         <div id="slide-6" class="slide">
             <div class="slide-content">
-                <p class="text-lg text-zinc-500">为什么首选《黄帝内经》？</p>
+                <p class="text-base md:text-lg text-zinc-500">为什么首选《黄帝内经》？</p>
                 <h2 class="text-3xl md:text-5xl font-bold highlight-text mt-1">独特的地位与宏大的格局</h2>
                 <div class="divider"></div>
-                <div class="flex-grow grid md:grid-cols-3 gap-8 mt-6">
-                    <div class="p-6 rounded-lg bg-stone-50">
-                        <div class="text-4xl highlight-text mb-4"><i class="fas fa-crown"></i></div>
-                        <h3 class="text-xl font-bold text-zinc-800">圣王命名</h3>
-                        <p class="mt-2 text-zinc-500">唯一以“圣王”命名的经典，象征“生命之学”的帝王之业，具大功德大慈悲。</p>
+                <div class="flex-grow grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+                    <div class="p-4 md:p-6 rounded-lg bg-stone-50">
+                        <div class="text-3xl md:text-4xl highlight-text mb-4"><i class="fas fa-crown"></i></div>
+                        <h3 class="text-lg md:text-xl font-bold text-zinc-800">圣王命名</h3>
+                        <p class="mt-2 text-zinc-500 text-sm md:text-base">唯一以“圣王”命名的经典，象征“生命之学”的帝王之业，具大功德大慈悲。</p>
                     </div>
-                    <div class="p-6 rounded-lg bg-stone-50">
-                         <div class="text-4xl highlight-text mb-4"><i class="fas fa-monument"></i></div>
-                        <h3 class="text-xl font-bold text-zinc-800">文化基石</h3>
-                        <p class="mt-2 text-zinc-500">不只是一本医书，更是融合人文、地理、伦理的文化源头，是众多医学著作的基础。</p>
+                    <div class="p-4 md:p-6 rounded-lg bg-stone-50">
+                        <div class="text-3xl md:text-4xl highlight-text mb-4"><i class="fas fa-monument"></i></div>
+                        <h3 class="text-lg md:text-xl font-bold text-zinc-800">文化基石</h3>
+                        <p class="mt-2 text-zinc-500 text-sm md:text-base">不只是一本医书，更是融合人文、地理、伦理的文化源头，是众多医学著作的基础。</p>
                     </div>
-                    <div class="p-6 rounded-lg bg-stone-50">
-                         <div class="text-4xl highlight-text mb-4"><i class="fas fa-globe-asia"></i></div>
-                        <h3 class="text-xl font-bold text-zinc-800">宏观格局</h3>
-                        <p class="mt-2 text-zinc-500">将人置于宇宙、社会的大环境中研究，智慧可用于养生，更可用于治国、管理。</p>
+                    <div class="p-4 md:p-6 rounded-lg bg-stone-50">
+                        <div class="text-3xl md:text-4xl highlight-text mb-4"><i class="fas fa-globe-asia"></i></div>
+                        <h3 class="text-lg md:text-xl font-bold text-zinc-800">宏观格局</h3>
+                        <p class="mt-2 text-zinc-500 text-sm md:text-base">将人置于宇宙、社会的大环境中研究，智慧可用于养生，更可用于治国、管理。</p>
                     </div>
                 </div>
-                <div class="mt-8 p-6 text-center border-t border-dashed border-stone-200">
-                    <p class="text-xl text-zinc-600">学习《黄帝内经》，是学习中医、养生、乃至传统文化的第一本书。</p>
+                <div class="mt-6 md:mt-8 p-4 md:p-6 text-center border-t border-dashed border-stone-200">
+                    <p class="text-base md:text-xl text-zinc-600">学习《黄帝内经》，是学习中医、养生、乃至传统文化的第一本书。</p>
                 </div>
             </div>
         </div>
 
         <div id="slide-7" class="slide">
             <div class="slide-content">
-                 <p class="text-lg text-zinc-500">为什么需要“共读”？</p>
+                <p class="text-base md:text-lg text-zinc-500">为什么需要“共读”？</p>
                 <h2 class="text-3xl md:text-5xl font-bold highlight-text mt-1">挑战与机遇并存</h2>
                 <div class="divider"></div>
-                <div class="grid md:grid-cols-2 gap-x-12 gap-y-8 flex-grow">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 flex-grow mt-4">
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-zinc-800"><i class="fas fa-font highlight-text mr-3"></i>文字的博大精深</h3>
-                        <p class="text-zinc-500 mb-4">全书仅用2000多汉字，但一字多义，语境复杂。</p>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-4 text-zinc-800"><i class="fas fa-font highlight-text mr-3"></i>文字的博大精深</h3>
+                        <p class="text-zinc-500 mb-4 text-sm md:text-base">全书仅用2000多汉字，但一字多义，语境复杂。</p>
                         <div class="p-4 border border-stone-200 rounded-lg">
-                            <p class="font-mono text-lg text-amber-600">案例：「道」</p>
+                            <p class="font-mono text-base md:text-lg text-amber-600">案例：「道」</p>
                             <p class="mt-2 text-sm text-zinc-600"><strong class="text-amber-700">其知道者...</strong> -> 指 <strong class="highlight-text">规律、法则</strong></p>
                             <p class="mt-1 text-sm text-zinc-600"><strong class="text-amber-700">夫道者...</strong> -> 指 <strong class="highlight-text">具体方法、技术</strong></p>
                         </div>
                     </div>
-                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-zinc-800"><i class="fas fa-glasses highlight-text mr-3"></i>理解的常见误区</h3>
-                        <p class="text-zinc-500 mb-4">若无引导，极易望文生义，产生误解。</p>
-                         <div class="p-4 border border-stone-200 rounded-lg">
-                            <p class="font-mono text-lg text-amber-600">案例：「醉以入房」</p>
+                    <div>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-4 text-zinc-800"><i class="fas fa-glasses highlight-text mr-3"></i>理解的常见误区</h3>
+                        <p class="text-zinc-500 mb-4 text-sm md:text-base">若无引导，极易望文生义，产生误解。</p>
+                        <div class="p-4 border border-stone-200 rounded-lg">
+                            <p class="font-mono text-base md:text-lg text-amber-600">案例：「醉以入房」</p>
                             <p class="mt-2 text-sm text-zinc-600"><strong class="text-red-600">常见解释：</strong>喝醉了去行房事</p>
                             <p class="mt-1 text-sm text-zinc-600"><strong class="text-green-600">正解：</strong>频繁沉迷于房事，耗尽精气</p>
                         </div>
                     </div>
                 </div>
-                <div class="mt-8 text-center p-4 bg-amber-50 rounded-lg">
-                    <p class="text-xl text-amber-800">共读的意义：在引导和讨论中，规避误区，深入理解，获得真知。</p>
+                <div class="mt-6 md:mt-8 text-center p-4 bg-amber-50 rounded-lg">
+                    <p class="text-base md:text-xl text-amber-800">共读的意义：在引导和讨论中，规避误区，深入理解，获得真知。</p>
                 </div>
             </div>
         </div>
@@ -312,33 +313,33 @@
         <div id="slide-8" class="slide">
             <div class="slide-content justify-center items-center text-center">
                 <div class="super-text top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50">醫</div>
-                <p class="text-lg text-zinc-500">终极目标</p>
-                <h2 class="text-4xl md:text-6xl font-bold highlight-text my-4">不读内经，无法成大医</h2>
-                <p class="text-xl text-zinc-600 mt-2">“大医”不仅指医生，更是一种利人利己的能力。</p>
-                <div class="divider mx-auto my-8"></div>
-                <div class="max-w-3xl space-y-4">
-                    <p class="text-lg leading-relaxed"><span class="highlight-text">每个家庭，都需要一个懂健康的人。</span>错误的饮食和生活习惯，可能让你的“爱”变成“害”。懂健康，是家庭幸福的重要基石。</p>
-                    <p class="text-lg leading-relaxed">《黄帝内经》是每个家庭必备的“人生指引书”，它讲的不仅是医学，更是人生。</p>
+                <p class="text-base md:text-lg text-zinc-500">终极目标</p>
+                <h2 class="text-3xl md:text-6xl font-bold highlight-text my-4">不读内经，无法成大医</h2>
+                <p class="text-lg md:text-xl text-zinc-600 mt-2">“大医”不仅指医生，更是一种利人利己的能力。</p>
+                <div class="divider mx-auto my-6 md:my-8"></div>
+                <div class="max-w-3xl space-y-4 text-sm md:text-lg">
+                    <p class="leading-relaxed"><span class="highlight-text">每个家庭，都需要一个懂健康的人。</span>错误的饮食和生活习惯，可能让你的“爱”变成“害”。懂健康，是家庭幸福的重要基石。</p>
+                    <p class="leading-relaxed">《黄帝内经》是每个家庭必备的“人生指引书”，它讲的不仅是医学，更是人生。</p>
                 </div>
             </div>
         </div>
         
         <div id="slide-9" class="slide">
              <div class="slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">共读规划与推荐书目</h2>
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">共读规划与推荐书目</h2>
                 <div class="divider"></div>
-                <div class="grid md:grid-cols-2 gap-12 flex-grow mt-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 flex-grow mt-4">
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-zinc-800"><i class="fas fa-sitemap highlight-text mr-3"></i>我们的共读方式</h3>
-                        <ul class="space-y-3 list-disc list-inside text-zinc-500">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-4 text-zinc-800"><i class="fas fa-sitemap highlight-text mr-3"></i>我们的共读方式</h3>
+                        <ul class="space-y-3 list-disc list-inside text-zinc-500 text-sm md:text-base">
                             <li><strong class="text-zinc-700">主线：</strong>以《黄帝内经》为合集，系统讲解。</li>
                             <li><strong class="text-zinc-700">穿插：</strong>结合《西游记》、《天道》等作品，丰富理解。</li>
                              <li><strong class="text-zinc-700">心法：</strong>学习要学会“扎根”，找到自己的方向。</li>
                         </ul>
                     </div>
                     <div>
-                        <h3 class="text-2xl font-semibold mb-4 text-zinc-800"><i class="fas fa-book-reader highlight-text mr-3"></i>初学者推荐书目</h3>
-                        <ul class="space-y-3 list-disc list-inside text-zinc-500">
+                        <h3 class="text-xl md:text-2xl font-semibold mb-4 text-zinc-800"><i class="fas fa-book-reader highlight-text mr-3"></i>初学者推荐书目</h3>
+                        <ul class="space-y-3 list-disc list-inside text-zinc-500 text-sm md:text-base">
                              <li><strong class="text-zinc-700">教材级：</strong>黄皮版《黄帝内经》</li>
                              <li><strong class="text-zinc-700">趣味入门：</strong>徐文兵、梁冬《对话黄帝内经》</li>
                              <li><strong class="text-zinc-700">通俗易懂：</strong>曲黎敏《黄帝内经》</li>
@@ -346,36 +347,36 @@
                         </ul>
                     </div>
                 </div>
-                <div class="mt-8 text-center p-4 bg-stone-100 rounded-lg">
-                    <p class="text-lg text-zinc-600"><i class="fas fa-lightbulb highlight-text mr-2"></i>建议：先在“微信读书”试读，确认能看下去再购买纸质书。</p>
+                <div class="mt-6 md:mt-8 text-center p-4 bg-stone-100 rounded-lg">
+                    <p class="text-sm md:text-lg text-zinc-600"><i class="fas fa-lightbulb highlight-text mr-2"></i>建议：先在“微信读书”试读，确认能看下去再购买纸质书。</p>
                 </div>
             </div>
         </div>
         
         <div id="slide-10" class="slide">
              <div class="slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">如何让学习效果最大化？</h2>
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">如何让学习效果最大化？</h2>
                 <div class="divider"></div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 flex-grow mt-4">
-                    <div class="p-6 bg-stone-50 rounded-lg flex flex-col">
-                        <div class="text-4xl font-bold highlight-text mb-4">01</div>
-                        <h3 class="text-xl font-bold text-zinc-800">深度聆听</h3>
-                        <p class="mt-2 text-zinc-500 flex-grow">拒绝倍速，知识的价值在于思考，而非速度。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-grow mt-4 content-center">
+                    <div class="p-4 bg-stone-50 rounded-lg flex flex-col">
+                        <div class="text-3xl font-bold highlight-text mb-3">01</div>
+                        <h3 class="text-lg font-bold text-zinc-800">深度聆听</h3>
+                        <p class="mt-2 text-zinc-500 text-sm flex-grow">拒绝倍速，知识的价值在于思考，而非速度。</p>
                     </div>
-                    <div class="p-6 bg-stone-50 rounded-lg flex flex-col">
-                        <div class="text-4xl font-bold highlight-text mb-4">02</div>
-                        <h3 class="text-xl font-bold text-zinc-800">学而思</h3>
-                        <p class="mt-2 text-zinc-500 flex-grow">内化为自己的智慧。知识 = 信息 + 内化 + 实践。</p>
+                    <div class="p-4 bg-stone-50 rounded-lg flex flex-col">
+                        <div class="text-3xl font-bold highlight-text mb-3">02</div>
+                        <h3 class="text-lg font-bold text-zinc-800">学而思</h3>
+                        <p class="mt-2 text-zinc-500 text-sm flex-grow">内化为自己的智慧。知识 = 信息 + 内化 + 实践。</p>
                     </div>
-                    <div class="p-6 bg-stone-50 rounded-lg flex flex-col">
-                        <div class="text-4xl font-bold highlight-text mb-4">03</div>
-                        <h3 class="text-xl font-bold text-zinc-800">思而行</h3>
-                        <p class="mt-2 text-zinc-500 flex-grow">学以致用，哪怕只是一两句，也要融入生活。</p>
+                    <div class="p-4 bg-stone-50 rounded-lg flex flex-col">
+                        <div class="text-3xl font-bold highlight-text mb-3">03</div>
+                        <h3 class="text-lg font-bold text-zinc-800">思而行</h3>
+                        <p class="mt-2 text-zinc-500 text-sm flex-grow">学以致用，哪怕只是一两句，也要融入生活。</p>
                     </div>
-                    <div class="p-6 bg-amber-500/10 rounded-lg flex flex-col ring-1 ring-amber-500/50">
-                        <div class="text-4xl font-bold highlight-text mb-4">04</div>
-                        <h3 class="text-xl font-bold text-amber-800">行而享</h3>
-                        <p class="mt-2 text-amber-700 flex-grow">费曼学习法：分享是最高效的学习闭环。</p>
+                    <div class="p-4 bg-amber-500/10 rounded-lg flex flex-col ring-1 ring-amber-500/50">
+                        <div class="text-3xl font-bold highlight-text mb-3">04</div>
+                        <h3 class="text-lg font-bold text-amber-800">行而享</h3>
+                        <p class="mt-2 text-amber-700 text-sm flex-grow">费曼学习法：分享是最高效的学习闭环。</p>
                     </div>
                 </div>
             </div>
@@ -383,47 +384,47 @@
 
         <div id="slide-11" class="slide">
             <div class="slide-content justify-center items-center text-center">
-                 <h2 class="text-4xl md:text-6xl font-bold highlight-text my-4">《黄帝内经》可以改变命运</h2>
-                <p class="text-xl text-zinc-600 mt-2 max-w-3xl">这不是一句空话，而是有底层逻辑的。改变的不仅是身体，更是事业、家庭关系和为人处世。</p>
-                <div class="divider mx-auto my-8"></div>
-                <div class="p-8 border-2 border-dashed border-amber-500/50 rounded-lg bg-amber-50">
-                     <h3 class="text-2xl font-light text-zinc-600">核心依据</h3>
-                    <p class="text-3xl font-bold highlight-text mt-2">人体的脏腑与功能，既是命运。</p>
+                 <h2 class="text-3xl md:text-6xl font-bold highlight-text my-4">《黄帝内经》可以改变命运</h2>
+                <p class="text-base md:text-xl text-zinc-600 mt-2 max-w-3xl">这不是一句空话，而是有底层逻辑的。改变的不仅是身体，更是事业、家庭关系和为人处世。</p>
+                <div class="divider mx-auto my-6 md:my-8"></div>
+                <div class="p-6 md:p-8 border-2 border-dashed border-amber-500/50 rounded-lg bg-amber-50">
+                     <h3 class="text-lg md:text-2xl font-light text-zinc-600">核心依据</h3>
+                    <p class="text-2xl md:text-3xl font-bold highlight-text mt-2">人体的脏腑与功能，既是命运。</p>
                 </div>
-                 <p class="mt-6 text-zinc-400">你所谓的“天赋”，其物质基础就源于我们身体的脏腑功能。</p>
+                 <p class="mt-6 text-sm md:text-base text-zinc-400">你所谓的“天赋”，其物质基础就源于我们身体的脏腑功能。</p>
             </div>
         </div>
         
         <div id="slide-12" class="slide">
              <div class="slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">命运的密码：脏腑功能</h2>
-                <p class="text-lg text-zinc-500">天赋的物质基础，后天可以调补</p>
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">命运的密码：脏腑功能</h2>
+                <p class="text-base md:text-lg text-zinc-500">天赋的物质基础，后天可以调补</p>
                 <div class="divider"></div>
-                <div class="flex-grow grid md:grid-cols-2 gap-8 items-center mt-4">
+                <div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-4">
                     <div class="space-y-6">
                         <div class="flex items-center">
-                            <div class="w-1/3 text-2xl font-bold text-zinc-700">聪明</div>
-                            <div class="w-2/3 flex items-center text-zinc-500">
+                            <div class="w-1/3 text-lg md:text-2xl font-bold text-zinc-700">聪明</div>
+                            <div class="w-2/3 flex items-center text-zinc-500 text-sm md:text-base">
                                 <span>耳聪 (肾)</span>
-                                <span class="mx-4 highlight-text">+</span>
+                                <span class="mx-2 md:mx-4 highlight-text">+</span>
                                 <span>目明 (肝)</span>
                             </div>
                         </div>
                         <div class="flex items-center">
-                            <div class="w-1/3 text-2xl font-bold text-zinc-700">魄力</div>
-                            <div class="w-2/3 flex items-center text-zinc-500">
+                            <div class="w-1/3 text-lg md:text-2xl font-bold text-zinc-700">魄力</div>
+                            <div class="w-2/3 flex items-center text-zinc-500 text-sm md:text-base">
                                 <span>决断 (胆)</span>
-                                <span class="mx-4 highlight-text">+</span>
+                                <span class="mx-2 md:mx-4 highlight-text">+</span>
                                 <span>执行 (肺)</span>
                             </div>
                         </div>
-                        <p class="mt-8 text-lg text-amber-800 bg-amber-50 p-4 rounded-lg">
+                        <p class="mt-8 text-base md:text-lg text-amber-800 bg-amber-50 p-4 rounded-lg">
                             想变得更<strong class="highlight-text">聪明</strong>，就要调好<strong class="highlight-text">肝肾</strong>。<br>
                             想变得更<strong class="highlight-text">有魄力</strong>，就要调好<strong class="highlight-text">肝胆肺</strong>。
                         </p>
                     </div>
-                    <div class="w-full h-full">
-                        <div id="chart-destiny"></div>
+                    <div class="w-full h-[250px] md:h-full">
+                        <div id="chart-destiny" class="w-full h-full"></div>
                     </div>
                 </div>
             </div>
@@ -431,27 +432,27 @@
         
         <div id="slide-13" class="slide">
             <div class="slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">真正的力量：向内求</h2>
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">真正的力量：向内求</h2>
                 <div class="divider"></div>
-                <div class="grid md:grid-cols-2 gap-8 flex-grow mt-4">
-                    <div class="p-6 border border-stone-200 rounded-lg">
-                        <h3 class="text-2xl font-bold text-zinc-500 mb-4 text-center">向外求 <i class="fas fa-arrow-circle-right ml-2"></i></h3>
-                        <ul class="space-y-3 text-zinc-500">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 flex-grow mt-4">
+                    <div class="p-4 md:p-6 border border-stone-200 rounded-lg">
+                        <h3 class="text-xl md:text-2xl font-bold text-zinc-500 mb-4 text-center">向外求 <i class="fas fa-arrow-circle-right ml-2"></i></h3>
+                        <ul class="space-y-3 text-zinc-500 text-sm md:text-base">
                             <li><strong class="text-zinc-700">表现：</strong>遇到问题，归因于外部环境和他人。</li>
                             <li><strong class="text-zinc-700">例子：</strong>“我赚不到钱，是社会太卷了。”</li>
                             <li class="font-semibold text-red-600"><strong class="text-red-500">结果：</strong>焦虑、内耗、抱怨、停滞不前。</li>
                         </ul>
                     </div>
-                    <div class="p-6 border-2 border-amber-500/50 rounded-lg bg-amber-50">
-                        <h3 class="text-2xl font-bold highlight-text mb-4 text-center"><i class="fas fa-arrow-circle-left mr-2"></i> 向内求</h3>
-                        <ul class="space-y-3 text-zinc-600">
+                    <div class="p-4 md:p-6 border-2 border-amber-500/50 rounded-lg bg-amber-50">
+                        <h3 class="text-xl md:text-2xl font-bold highlight-text mb-4 text-center"><i class="fas fa-arrow-circle-left mr-2"></i> 向内求</h3>
+                        <ul class="space-y-3 text-zinc-600 text-sm md:text-base">
                             <li><strong class="text-zinc-800">表现：</strong>遇到问题，反观自身，寻找内在原因。</li>
                             <li><strong class="text-zinc-800">例子：</strong>“我该如何提升，才能赚到钱？”</li>
                             <li class="font-semibold text-green-600"><strong class="text-green-500">结果：</strong>清晰、笃定、成长、解决问题。</li>
                         </ul>
                     </div>
                 </div>
-                <p class="mt-8 text-center text-lg text-zinc-500">
+                <p class="mt-8 text-center text-sm md:text-lg text-zinc-500">
                 <i class="fas fa-key highlight-text mr-2"></i>如何向内看？用“道”（规律）的视角，从搞懂我们自身开始。
                 </p>
             </div>
@@ -459,35 +460,35 @@
         
         <div id="slide-14" class="slide">
             <div class="slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">专题分享：黄精的体质化用法</h2>
-                 <p class="text-lg text-zinc-500">“仙人余粮”，你吃对了吗？</p>
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">专题分享：黄精的体质化用法</h2>
+                 <p class="text-base md:text-lg text-zinc-500">“仙人余粮”，你吃对了吗？</p>
                 <div class="divider"></div>
-                <p class="text-center my-4 text-zinc-500">前提：选择九蒸九晒的优质黄精，以去其燥性。核心：并非人人都适合，需根据体质搭配。</p>
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 flex-grow mt-4">
+                <p class="text-center my-4 text-zinc-500 text-sm md:text-base">前提：选择九蒸九晒的优质黄精，以去其燥性。核心：并非人人都适合，需根据体质搭配。</p>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 flex-grow mt-4 content-center">
                     <div class="p-4 rounded-lg bg-stone-50 text-center flex flex-col justify-center">
-                        <h3 class="text-xl font-bold text-green-600">肝弱</h3>
-                        <p class="text-2xl my-2 highlight-text">+</p>
-                        <p class="text-lg text-zinc-600">枸杞</p>
+                        <h3 class="text-lg font-bold text-green-600">肝弱</h3>
+                        <p class="text-xl my-2 highlight-text">+</p>
+                        <p class="text-base text-zinc-600">枸杞</p>
                     </div>
                     <div class="p-4 rounded-lg bg-stone-50 text-center flex flex-col justify-center">
-                        <h3 class="text-xl font-bold text-red-600">心弱</h3>
-                        <p class="text-2xl my-2 highlight-text">+</p>
-                        <p class="text-lg text-zinc-600">红参</p>
+                        <h3 class="text-lg font-bold text-red-600">心弱</h3>
+                        <p class="text-xl my-2 highlight-text">+</p>
+                        <p class="text-base text-zinc-600">红参</p>
                     </div>
                     <div class="p-4 rounded-lg bg-stone-50 text-center flex flex-col justify-center">
-                        <h3 class="text-xl font-bold text-yellow-500">脾弱</h3>
-                         <p class="text-2xl my-2 highlight-text">+</p>
-                        <p class="text-lg text-zinc-600">淮山</p>
+                        <h3 class="text-lg font-bold text-yellow-500">脾弱</h3>
+                         <p class="text-xl my-2 highlight-text">+</p>
+                        <p class="text-base text-zinc-600">淮山</p>
                     </div>
                     <div class="p-4 rounded-lg bg-stone-50 text-center flex flex-col justify-center">
-                        <h3 class="text-xl font-bold text-blue-500">肺弱</h3>
-                         <p class="text-2xl my-2 highlight-text">+</p>
-                        <p class="text-lg text-zinc-600">北芪</p>
+                        <h3 class="text-lg font-bold text-blue-500">肺弱</h3>
+                         <p class="text-xl my-2 highlight-text">+</p>
+                        <p class="text-base text-zinc-600">北芪</p>
                     </div>
                     <div class="p-4 rounded-lg bg-stone-50 text-center flex flex-col justify-center">
-                        <h3 class="text-xl font-bold text-blue-600">肾弱</h3>
-                         <p class="text-2xl my-2 highlight-text">+</p>
-                        <p class="text-lg text-zinc-600">肉桂</p>
+                        <h3 class="text-lg font-bold text-blue-600">肾弱</h3>
+                         <p class="text-xl my-2 highlight-text">+</p>
+                        <p class="text-base text-zinc-600">肉桂</p>
                     </div>
                 </div>
             </div>
@@ -495,32 +496,24 @@
         
         <div id="slide-15" class="slide">
              <div class="slide-content">
-                <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2">进阶心法：调理的层级与关键</h2>
+                <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2">进阶心法：调理的层级与关键</h2>
                 <div class="divider"></div>
-                <div class="grid md:grid-cols-2 gap-8 flex-grow mt-4">
-                    <div class="space-y-6">
-                        <div class="bg-stone-50 p-4 rounded-lg h-full">
-                            <h3 class="text-xl font-semibold text-zinc-800">1. 饮食是<strong class="highlight-text">基础</strong>，但不是全部</h3>
-                            <p class="text-zinc-500 mt-2">对于已有“实证”的人，仅靠改变饮食难以逆转，但仍是必须遵守的底线。</p>
-                        </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 flex-grow mt-4 content-center">
+                    <div class="bg-stone-50 p-4 rounded-lg h-full">
+                        <h3 class="text-lg font-semibold text-zinc-800">1. 饮食是<strong class="highlight-text">基础</strong>，但不是全部</h3>
+                        <p class="text-zinc-500 mt-2 text-sm">对于已有“实证”的人，仅靠改变饮食难以逆转，但仍是必须遵守的底线。</p>
                     </div>
-                     <div class="space-y-6">
-                        <div class="bg-stone-50 p-4 rounded-lg">
-                             <h3 class="text-xl font-semibold text-zinc-800">2. 有了实证，要上<strong class="highlight-text">“猛药”</strong></h3>
-                            <p class="text-zinc-500 mt-2">需要使用浓度更高、针对性更强的方剂调理，且药材品质至关重要。</p>
-                        </div>
+                    <div class="bg-stone-50 p-4 rounded-lg h-full">
+                         <h3 class="text-lg font-semibold text-zinc-800">2. 有了实证，要上<strong class="highlight-text">“猛药”</strong></h3>
+                        <p class="text-zinc-500 mt-2 text-sm">需要使用浓度更高、针对性更强的方剂调理，且药材品质至关重要。</p>
                     </div>
-                     <div class="space-y-6">
-                        <div class="bg-stone-50 p-4 rounded-lg">
-                            <h3 class="text-xl font-semibold text-zinc-800">3. 调理密码：<strong class="highlight-text">“有妈生的”</strong></h3>
-                            <p class="text-zinc-500 mt-2">一个脏腑若其“母亲”脏腑功能尚可（如肾水生肝木），则调理相对容易。</p>
-                        </div>
+                    <div class="bg-stone-50 p-4 rounded-lg h-full">
+                        <h3 class="text-lg font-semibold text-zinc-800">3. 调理密码：<strong class="highlight-text">“有妈生的”</strong></h3>
+                        <p class="text-zinc-500 mt-2 text-sm">一个脏腑若其“母亲”脏腑功能尚可（如肾水生肝木），则调理相对容易。</p>
                     </div>
-                     <div class="space-y-6">
-                         <div class="bg-stone-50 p-4 rounded-lg h-full">
-                             <h3 class="text-xl font-semibold text-zinc-800">4. 养生是<strong class="highlight-text">一辈子</strong>的工程</h3>
-                            <p class="text-zinc-500 mt-2">先天体质是伴随一生的底色，调理是持续的修行和维护，不可一蹴而就。</p>
-                        </div>
+                     <div class="bg-stone-50 p-4 rounded-lg h-full">
+                         <h3 class="text-lg font-semibold text-zinc-800">4. 养生是<strong class="highlight-text">一辈子</strong>的工程</h3>
+                        <p class="text-zinc-500 mt-2 text-sm">先天体质是伴随一生的底色，调理是持续的修行和维护，不可一蹴而就。</p>
                     </div>
                 </div>
             </div>
@@ -528,30 +521,29 @@
 
         <div id="slide-16" class="slide">
             <div class="slide-content justify-center">
-                 <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-2 text-center">课程预告与安排</h2>
+                 <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2 text-center">课程预告与安排</h2>
                 <div class="divider mx-auto"></div>
-                <div class="grid md:grid-cols-2 gap-8 w-full max-w-4xl mt-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mt-8">
                     <div class="p-6 bg-stone-50 rounded-lg">
-                        <h3 class="text-2xl font-semibold mb-3 text-zinc-800"><i class="fas fa-bullhorn highlight-text mr-3"></i>新课宣讲</h3>
-                        <p class="text-zinc-500"><strong class="text-zinc-700">时间：</strong>5号-10号，连续7天，每晚7:30</p>
-                        <p class="text-zinc-500"><strong class="text-zinc-700">内容：</strong>系统介绍课程，欢迎新老学员。</p>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 text-zinc-800"><i class="fas fa-bullhorn highlight-text mr-3"></i>新课宣讲</h3>
+                        <p class="text-zinc-500 text-sm md:text-base"><strong class="text-zinc-700">时间：</strong>5号-10号，连续7天，每晚7:30</p>
+                        <p class="text-zinc-500 text-sm md:text-base"><strong class="text-zinc-700">内容：</strong>系统介绍课程，欢迎新老学员。</p>
                     </div>
                      <div class="p-6 bg-stone-50 rounded-lg">
-                        <h3 class="text-2xl font-semibold mb-3 text-zinc-800"><i class="fas fa-calendar-alt highlight-text mr-3"></i>下期读书会</h3>
-                        <p class="text-zinc-500"><strong class="text-zinc-700">频率：</strong>争取每周一期，暂定周二晚。</p>
-                        <p class="text-zinc-500"><strong class="text-zinc-700">内容：</strong>精讲《上古天真论》，探讨男女生命周期。</p>
+                        <h3 class="text-xl md:text-2xl font-semibold mb-3 text-zinc-800"><i class="fas fa-calendar-alt highlight-text mr-3"></i>下期读书会</h3>
+                        <p class="text-zinc-500 text-sm md:text-base"><strong class="text-zinc-700">频率：</strong>争取每周一期，暂定周二晚。</p>
+                        <p class="text-zinc-500 text-sm md:text-base"><strong class="text-zinc-700">内容：</strong>精讲《上古天真论》，探讨男女生命周期。</p>
                     </div>
                 </div>
-                <p class="mt-12 text-center text-2xl font-serif text-zinc-600">感谢聆听，<span class="highlight-text">夜梦吉祥</span></p>
+                <p class="mt-12 text-center text-xl md:text-2xl font-serif text-zinc-600">感谢聆听，<span class="highlight-text">夜梦吉祥</span></p>
             </div>
         </div>
-
     </main>
 
-    <button id="prev-btn" class="fixed top-1/2 left-4 md:left-8 transform -translate-y-1/2 text-2xl md:text-4xl text-zinc-400 hover:text-amber-600 transition-colors z-50">
+    <button id="prev-btn" class="fixed top-1/2 left-2 md:left-8 transform -translate-y-1/2 text-xl md:text-3xl text-zinc-400 hover:text-amber-600 transition-colors z-50">
         <i class="fas fa-chevron-left"></i>
     </button>
-    <button id="next-btn" class="fixed top-1/2 right-4 md:right-8 transform -translate-y-1/2 text-2xl md:text-4xl text-zinc-400 hover:text-amber-600 transition-colors z-50">
+    <button id="next-btn" class="fixed top-1/2 right-2 md:right-8 transform -translate-y-1/2 text-xl md:text-3xl text-zinc-400 hover:text-amber-600 transition-colors z-50">
         <i class="fas fa-chevron-right"></i>
     </button>
     
@@ -573,6 +565,8 @@
             const pageIndicator = document.getElementById('page-indicator');
             let currentSlide = 0;
             const totalSlides = slides.length;
+
+            if (totalSlides === 0) return;
 
             function showSlide(index) {
                 slides.forEach((slide, i) => {
@@ -598,9 +592,11 @@
             nextBtn.addEventListener('click', nextSlide);
 
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'ArrowRight') {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
                     nextSlide();
                 } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
                     prevSlide();
                 }
             });
@@ -621,7 +617,7 @@
                         text: '天赋与脏腑关联',
                         align: 'center',
                         style: {
-                            color: '#3f3f46', // zinc-700
+                            color: '#3f3f46',
                             fontFamily: 'inherit'
                         }
                     },
@@ -629,43 +625,38 @@
                         categories: ['聪慧 (肝肾)', '魄力 (胆肺)', '决断 (胆)', '执行 (肺)', '记忆 (心脾)'],
                         labels: {
                             style: {
-                                colors: ['#71717a', '#71717a', '#71717a', '#71717a', '#71717a'], // zinc-500
-                                fontSize: '14px',
+                                colors: ['#71717a', '#71717a', '#71717a', '#71717a', '#71717a'],
+                                fontSize: '12px', // smaller font for mobile
                                 fontFamily: 'inherit',
                             }
                         }
                     },
-                    yaxis: {
-                        show: false
-                    },
-                    stroke: {
-                        width: 2,
-                        colors: ['#d97706'] // amber-600
-                    },
-                    fill: {
-                        opacity: 0.1,
-                        colors: ['#d97706'] // amber-600
-                    },
+                    yaxis: { show: false },
+                    stroke: { width: 2, colors: ['#d97706'] },
+                    fill: { opacity: 0.1, colors: ['#d97706'] },
                     markers: {
                         size: 4,
                         colors: ['#fff'],
-                        strokeColor: '#d97706', // amber-600
+                        strokeColor: '#d97706',
                         strokeWidth: 2,
                     },
-                    tooltip: {
-                        theme: 'light'
-                    },
-                    grid: {
-                        borderColor: '#e7e5e450' // stone-200 with opacity
-                    },
+                    tooltip: { theme: 'light' },
+                    grid: { borderColor: '#e7e5e450' },
                     plotOptions: {
                         radar: {
                             polygons: {
-                                strokeColors: '#e7e5e4', // stone-200
-                                connectorColors: '#e7e5e4' // stone-200
+                                strokeColors: '#e7e5e4',
+                                connectorColors: '#e7e5e4'
                             }
                         }
-                    }
+                    },
+                    responsive: [{
+                        breakpoint: 768,
+                        options: {
+                            title: { style: { fontSize: '14px' } },
+                            xaxis: { labels: { style: { fontSize: '10px' } } }
+                        }
+                    }]
                 };
 
                 const chart = new ApexCharts(document.querySelector("#chart-destiny"), options);

@@ -49,12 +49,6 @@
             transform: scale(0.98);
         }
 
-        @media (min-width: 768px) {
-            .slide {
-                padding: 2rem;
-            }
-        }
-
         .slide.active {
             opacity: 1;
             visibility: visible;
@@ -79,6 +73,9 @@
         }
 
         @media (min-width: 768px) {
+            .slide {
+                padding: 3rem 2rem;
+            }
             .slide-content {
                 padding: 2.5rem 3.5rem;
             }
@@ -118,7 +115,7 @@
                     <div class="divider mx-auto my-6 md:my-8"></div>
                     <p class="text-lg md:text-2xl font-light text-zinc-600">开启改变命运的智慧之旅</p>
                 </div>
-                <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 text-base font-light text-zinc-400">主讲人：[讲师姓名]</div>
+                <!-- <div class="absolute bottom-4 right-4 md:bottom-8 md:right-8 text-base font-light text-zinc-400">主讲人：[讲师姓名]</div> -->
             </div>
         </div>
 
@@ -128,7 +125,7 @@
                 <p class="text-base md:text-lg text-zinc-500">一个长期的智慧陪伴</p>
                 <div class="divider"></div>
                 <div class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-4">
-                    <div class="space-y-4 md:space-y-6 text-base">
+                    <div class="space-y-4 md:space-y-6 text-base md:text-lg">
                         <div class="flex items-start">
                             <i class="fas fa-book-open highlight-text mr-4 mt-1 w-5 text-center"></i>
                             <div><strong class="text-zinc-800">核心主轴：</strong>以《黄帝内经》为根本，深入浅出地讲解。</div>
@@ -523,7 +520,7 @@
             <div class="slide-content justify-center">
                  <h2 class="text-2xl md:text-4xl font-bold highlight-text mb-2 text-center">课程预告与安排</h2>
                 <div class="divider mx-auto"></div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mt-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl mt-8 mx-auto">
                     <div class="p-6 bg-stone-50 rounded-lg">
                         <h3 class="text-xl md:text-2xl font-semibold mb-3 text-zinc-800"><i class="fas fa-bullhorn highlight-text mr-3"></i>新课宣讲</h3>
                         <p class="text-zinc-500 text-sm md:text-base"><strong class="text-zinc-700">时间：</strong>5号-10号，连续7天，每晚7:30</p>
@@ -540,10 +537,10 @@
         </div>
     </main>
 
-    <button id="prev-btn" class="fixed top-1/2 left-2 md:left-8 transform -translate-y-1/2 text-xl md:text-3xl text-zinc-400 hover:text-amber-600 transition-colors z-50">
+    <button id="prev-btn" class="fixed top-1/2 left-2 md:left-8 transform -translate-y-1/2 text-2xl md:text-4xl text-zinc-400 hover:text-amber-600 transition-colors z-50">
         <i class="fas fa-chevron-left"></i>
     </button>
-    <button id="next-btn" class="fixed top-1/2 right-2 md:right-8 transform -translate-y-1/2 text-xl md:text-3xl text-zinc-400 hover:text-amber-600 transition-colors z-50">
+    <button id="next-btn" class="fixed top-1/2 right-2 md:right-8 transform -translate-y-1/2 text-2xl md:text-4xl text-zinc-400 hover:text-amber-600 transition-colors z-50">
         <i class="fas fa-chevron-right"></i>
     </button>
     
@@ -551,14 +548,18 @@
         1 / 16
     </div>
 
-    <div id="page-indicator" class="fixed bottom-4 left-4 md:left-8 text-sm text-zinc-400 font-mono z-50">
-        幸福闲者读书会 · 马艺甄老师
+    <div id="author" class="fixed bottom-4 left-4 md:left-24 text-sm text-zinc-400 font-mono z-50">
+        幸福闲者读书会
     </div>
-    
-    <div class="text-sm text-gray-500/80"></div>
 
-    <script>
+    <div id="author" class="fixed bottom-4 right-4 md:right-24 text-sm text-zinc-400 font-mono z-50">
+        马艺甄老师
+    </div>
+
+<script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- 现有元素获取 ---
+            const container = document.getElementById('presentation-container');
             const slides = document.querySelectorAll('.slide');
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
@@ -568,12 +569,14 @@
 
             if (totalSlides === 0) return;
 
+            // --- 核心幻灯片切换函数 ---
             function showSlide(index) {
                 slides.forEach((slide, i) => {
                     slide.classList.toggle('active', i === index);
                 });
                 pageIndicator.textContent = `${index + 1} / ${totalSlides}`;
                 currentSlide = index;
+                // 触发图表渲染
                 if (slides[index].id === 'slide-12' && !slides[index].dataset.chartRendered) {
                     renderDestinyChart();
                     slides[index].dataset.chartRendered = 'true';
@@ -588,6 +591,7 @@
                 showSlide((currentSlide - 1 + totalSlides) % totalSlides);
             }
 
+            // --- 键盘和按钮点击事件监听 (无改动) ---
             prevBtn.addEventListener('click', prevSlide);
             nextBtn.addEventListener('click', nextSlide);
 
@@ -601,6 +605,46 @@
                 }
             });
 
+            // ==========================================================
+            // --- 新增：移动端滑动切换功能 ---
+            // ==========================================================
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchEndX = 0;
+            let touchEndY = 0;
+            
+            // 添加 passive: true 提升滚动性能
+            container.addEventListener('touchstart', function(event) {
+                touchStartX = event.changedTouches[0].screenX;
+                touchStartY = event.changedTouches[0].screenY;
+            }, { passive: true });
+
+            container.addEventListener('touchend', function(event) {
+                touchEndX = event.changedTouches[0].screenX;
+                touchEndY = event.changedTouches[0].screenY;
+                handleSwipeGesture();
+            }); 
+
+            function handleSwipeGesture() {
+                const dx = touchEndX - touchStartX;
+                const dy = touchEndY - touchStartY;
+                const minSwipeDistance = 50; // 定义最小滑动距离，防止误触
+
+                // 核心判断：必须是横向滑动，且横向距离大于纵向距离
+                if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > minSwipeDistance) {
+                    if (dx > 0) {
+                        // 从左向右滑动 -> 上一页
+                        prevSlide();
+                    } else {
+                        // 从右向左滑动 -> 下一页
+                        nextSlide();
+                    }
+                }
+            }
+            // --- 滑动功能代码结束 ---
+
+
+            // --- 图表渲染函数 (无改动) ---
             function renderDestinyChart() {
                 const options = {
                     series: [{
@@ -626,7 +670,7 @@
                         labels: {
                             style: {
                                 colors: ['#71717a', '#71717a', '#71717a', '#71717a', '#71717a'],
-                                fontSize: '12px', // smaller font for mobile
+                                fontSize: '12px',
                                 fontFamily: 'inherit',
                             }
                         }
@@ -663,6 +707,7 @@
                 chart.render();
             }
 
+            // --- 初始加载 ---
             showSlide(0);
         });
     </script>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>女七男八：揭秘《黄帝内经》中的生命节律</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        /* 自定义全局样式 */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 幻灯片容器，确保内容不溢出 */
+        #slider-container {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* 幻灯片轨道，使用flex布局横向排列所有幻灯片 */
+        #slider {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* 平滑的翻页动效 */
+        }
+
+        /* 单个幻灯片样式 */
+        .slide {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            /* 防止幻灯片被压缩 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5vw;
+            /* 使用vw单位保证在手机上边距也合适 */
+            position: relative;
+            overflow-y: auto;
+            /* 当内容超多时允许内部滚动 */
+        }
+
+        @media (min-width: 768px) {
+            .slide {
+                padding: 3rem 4rem;
+            }
+        }
+
+        /* 导航箭头样式 */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 9999px;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #44403c;
+            /* stone-700 */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+
+        .nav-arrow:hover {
+            background-color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* 隐藏滚动条 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="bg-amber-50 flex justify-center items-center h-screen p-4 md:p-8">
+
+    <div id="slider-container" class="relative w-full max-w-6xl h-full max-h-[800px] shadow-2xl rounded-2xl">
+
+        <div id="slider">
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="text-center">
+                    <h2 class="text-2xl md:text-3xl text-stone-500 font-light mb-4">第5节 女性养生周期</h2>
+                    <h1 class="text-4xl md:text-6xl text-red-600 font-bold leading-tight">揭秘《黄帝内经》生命节律</h1>
+                    <div class="w-24 h-1 bg-red-500 mx-auto mt-8 rounded-full"></div>
+                    <p class="text-2xl md:text-3xl font-light text-stone-500 tracking-wider mt-8">女七男八 · 女性篇（女七）</p>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex flex-col justify-center items-center text-left max-w-3xl">
+                    <h2 class="text-3xl md:text-4xl text-red-600 font-bold self-start mb-6">核心总纲：阴阳与七八</h2>
+                    <ul class="space-y-4 text-lg">
+                        <li class="p-4 bg-amber-50 rounded-lg">
+                            <h3 class="font-bold text-stone-800"><i
+                                    class="fa-solid fa-book-open text-red-500 w-6"></i>基本规律</h3>
+                            <p class="text-stone-600 pl-8">女性属阴，生命周期以 <span class="font-bold text-red-600">七</span>
+                                为基本单位。男性属阳，生命周期以 <span class="font-bold text-red-600">八</span> 为基本单位。</p>
+                        </li>
+                        <li class="p-4 bg-amber-50 rounded-lg">
+                            <h3 class="font-bold text-stone-800"><i
+                                    class="fa-solid fa-arrows-up-down text-red-500 w-6"></i>“七上八下”的解读</h3>
+                            <p class="text-stone-600 pl-8"><span
+                                    class="font-bold">七上：</span>女性属阴，但内在拥有一种向上的、哺育的能量。<br><span
+                                    class="font-bold">八下：</span>男性属阳，但同时带有一种向下的、让事物趋于平衡的能量。</p>
+                        </li>
+                        <li class="p-4 bg-amber-50 rounded-lg">
+                            <h3 class="font-bold text-stone-800"><i
+                                    class="fa-regular fa-moon text-red-500 w-6"></i>女性与月亮</h3>
+                            <p class="text-stone-600 pl-8">女性的身体节律与月亮的潮汐相应，如“四七二十八天”的月经周期。</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex items-center justify-center">
+                    <div
+                        class="absolute text-[28rem] font-bold text-amber-100/80 -translate-x-1/3 opacity-50 select-none z-0">
+                        七</div>
+                    <div class="relative z-10 w-full max-w-xl bg-white/70 backdrop-blur-sm p-8 rounded-lg">
+                        <h2 class="text-3xl md:text-4xl text-red-600 font-bold mb-2">第一阶段：一七（7岁）</h2>
+                        <p class="text-lg text-stone-500 font-light mb-4">“女子七岁，肾气盛，齿更发长。”</p>
+                        <ul class="space-y-3 text-stone-700 text-lg">
+                            <li><i class="fa-solid fa-child-reaching text-red-500 w-6"></i><span
+                                    class="font-bold">生理特征：</span>肾气开始充实，头发生长得茂盛、漂亮。</li>
+                            <li><i class="fa-solid fa-tooth text-red-500 w-6"></i><span
+                                    class="font-bold">生长顺序：</span><span
+                                    class="font-bold text-red-700">先换牙，后长发</span>。牙齿归肾，属阴主内，故先内后外。</li>
+                            <li><i class="fa-solid fa-feather-pointed text-red-500 w-6"></i><span
+                                    class="font-bold">标志：</span>从“黄毛丫头”转变为“小女孩”的标志性阶段。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex items-center justify-center">
+                    <div
+                        class="absolute text-[26rem] font-bold text-amber-100/80 translate-x-1/3 opacity-50 select-none z-0">
+                        14</div>
+                    <div class="relative z-10 w-full max-w-xl bg-white/70 backdrop-blur-sm p-8 rounded-lg">
+                        <h2 class="text-3xl md:text-4xl text-red-600 font-bold mb-2">第二阶段：二七（14岁）</h2>
+                        <p class="text-lg text-stone-500 font-light mb-4">“二七而天癸至，任脉通，太冲脉盛，月事以时下，故有子。”</p>
+                        <ul class="space-y-3 text-stone-700 text-lg">
+                            <li><i class="fa-solid fa-droplet text-red-500 w-6"></i><span
+                                    class="font-bold">核心变化：天癸至。</span>月经初潮，拥有了生育能力，这是一个不可逆转的生命进程。</li>
+                            <li><i class="fa-solid fa-heart-pulse text-red-500 w-6"></i><span
+                                    class="font-bold">经脉状态：</span>任脉通（阴脉之海）、太冲脉盛（推动肾气）。</li>
+                            <li><i class="fa-regular fa-clock text-red-500 w-6"></i><span
+                                    class="font-bold">实际年龄：</span>12岁至16岁之间来月经均属正常，存在个体差异。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex flex-col justify-center items-center text-center">
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-red-500 from-10% to-red-500/0 rounded-tr-lg rounded-bl-full z-0">
+                    </div>
+                    <div class="relative z-10 max-w-4xl">
+                        <h2 class="text-3xl md:text-4xl text-red-700 font-bold mb-2"><i
+                                class="fa-solid fa-triangle-exclamation mr-2"></i>关键警示：防止早熟（8-11岁）</h2>
+                        <p class="text-2xl text-stone-800 font-bold mb-6">核心理念：<span
+                                class="bg-red-200 px-2 py-1 rounded">早熟，必早衰！</span></p>
+                        <p class="text-stone-600 mb-6 text-lg">过早启动月经，如同机器运转无法回头，会提前消耗卵子，导致更年期提前。</p>
+                        <div class="grid md:grid-cols-3 gap-4 text-left">
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <h3 class="font-bold text-stone-700 mb-1"><i
+                                        class="fa-solid fa-burger text-red-500 mr-2"></i>饮食问题</h3>
+                                <p class="text-sm text-stone-600">避免激素（如某些鸡肉）、高热量快餐、含糖饮料。</p>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <h3 class="font-bold text-stone-700 mb-1"><i
+                                        class="fa-solid fa-lightbulb text-red-500 mr-2"></i>光污染</h3>
+                                <p class="text-sm text-stone-600">开灯睡觉会刺激身体，如同养鸡场用灯光促进排卵。</p>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-lg">
+                                <h3 class="font-bold text-stone-700 mb-1"><i
+                                        class="fa-solid fa-tv text-red-500 mr-2"></i>信息污染</h3>
+                                <p class="text-sm text-stone-600">避免过早接触不适龄的视频、影视内容。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex flex-col justify-center items-center max-w-5xl">
+                    <h2 class="text-3xl md:text-4xl text-red-600 font-bold mb-6">第三、四阶段：黄金巅峰期 (21-28岁)</h2>
+                    <div class="grid md:grid-cols-2 gap-6 text-left">
+                        <div class="bg-amber-50 p-6 rounded-lg">
+                            <h3 class="text-2xl font-bold text-stone-700 mb-2">三七 (21岁)：生命绽放期</h3>
+                            <p class="text-sm text-stone-500 mb-2">“三七，肾气平均，故真牙生而长极。”</p>
+                            <p class="text-stone-600">身体发育至顶点，是最美的年华。此阶段应避免过早发生性关系，让能量用于“长满长壮”，否则会拉低生命顶点的高度。</p>
+                        </div>
+                        <div class="bg-amber-50 p-6 rounded-lg">
+                            <h3 class="text-2xl font-bold text-stone-700 mb-2">四七 (28岁)：身体盛壮期</h3>
+                            <p class="text-sm text-stone-500 mb-2">“四七，筋骨坚，发长极，身体盛壮。”</p>
+                            <p class="text-stone-600">肌肉、骨骼等达到最强壮的状态，是最佳生育期，体力足、恢复快。</p>
+                        </div>
+                    </div>
+                    <div class="w-full mt-6 text-center text-lg text-red-700 bg-red-100/50 px-4 py-3 rounded-lg">
+                        <i class="fa-solid fa-gem mr-2"></i><span class="font-bold">21-28岁黄金期核心：</span>是最佳婚育年龄，<span
+                            class="underline decoration-2">千万不要胡乱减肥</span>，否则本末倒置！
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex items-center justify-center">
+                    <div
+                        class="absolute text-[28rem] font-bold text-amber-100/80 -translate-x-1/3 opacity-50 select-none z-0">
+                        35</div>
+                    <div class="relative z-10 w-full max-w-xl bg-white/70 backdrop-blur-sm p-8 rounded-lg">
+                        <h2 class="text-3xl md:text-4xl text-red-600 font-bold mb-2">第五阶段：五七（35岁）</h2>
+                        <p class="text-lg text-stone-500 font-light mb-4">“五七，阳明脉衰，面始焦，发始堕。”</p>
+                        <ul class="space-y-3 text-stone-700 text-lg">
+                            <li><i class="fa-solid fa-arrow-trend-down text-red-500 w-6"></i><span
+                                    class="font-bold">衰老迹象：</span>阳明脉（大肠、胃经）衰弱，面色趋向“黄脸婆”，头发干枯。</li>
+                            <li><i class="fa-solid fa-bowl-food text-red-500 w-6"></i><span
+                                    class="font-bold">养护核心：</span>养肠胃，<span class="font-bold text-red-700">忌寒凉</span>。
+                            </li>
+                            <li><i class="fa-solid fa-face-angry text-red-500 w-6"></i><span
+                                    class="font-bold">情绪管理：</span>“生气不吃饭，吃饭不生气”。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex items-center justify-center">
+                    <div
+                        class="absolute text-[26rem] font-bold text-amber-100/80 translate-x-1/3 opacity-50 select-none z-0">
+                        42</div>
+                    <div class="relative z-10 w-full max-w-xl bg-white/70 backdrop-blur-sm p-8 rounded-lg">
+                        <h2 class="text-3xl md:text-4xl text-red-600 font-bold mb-2">第六阶段：六七（42岁）</h2>
+                        <p class="text-lg text-stone-500 font-light mb-4">“六七，三阳脉衰于上，面皆焦，发始白。”</p>
+                        <ul class="space-y-3 text-stone-700 text-lg">
+                            <li><i class="fa-solid fa-arrow-trend-down text-red-500 w-6"></i><span
+                                    class="font-bold">衰老加速：</span>三阳脉（所有阳经）全面衰弱，面部大量出现皱纹、焦黄。</li>
+                            <li><i class="fa-solid fa-wind text-red-500 w-6"></i><span
+                                    class="font-bold">养护核心：</span>养护阳经，<span class="font-bold text-red-700">避寒避风</span>。
+                            </li>
+                            <li><i class="fa-solid fa-sun text-red-500 w-6"></i><span
+                                    class="font-bold">关键动作：</span>背部保暖，可多晒太阳以助阳气。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex items-center justify-center">
+                    <div
+                        class="absolute text-[26rem] font-bold text-amber-100/80 -translate-x-1/3 opacity-50 select-none z-0">
+                        49</div>
+                    <div class="relative z-10 w-full max-w-xl bg-white/70 backdrop-blur-sm p-8 rounded-lg">
+                        <h2 class="text-3xl md:text-4xl text-red-600 font-bold mb-2">第七阶段：七七（49岁）</h2>
+                        <p class="text-lg text-stone-500 font-light mb-4">“七七，天癸竭，地道不通，故形坏而无子也。”</p>
+                        <ul class="space-y-3 text-stone-700 text-lg">
+                            <li><i class="fa-solid fa-stop-circle text-red-500 w-6"></i><span
+                                    class="font-bold">核心状态：</span>更年期/绝经，天癸枯竭，失去生育能力。</li>
+                            <li><i class="fa-solid fa-yin-yang text-red-500 w-6"></i><span
+                                    class="font-bold">重要转折：</span>由“极阴”转向“极阳”的过程，养护得当可迎来“第二春”。</li>
+                            <li><i class="fa-solid fa-ban text-red-500 w-6"></i><span
+                                    class="font-bold text-red-700">绝对禁忌：</span>不要用激素强行恢复月经！此时排出的是宝贵血液，非月经，会极大耗损身体。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex flex-col justify-center items-center text-center">
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-br from-red-400 to-amber-300 rounded-full opacity-15 blur-3xl">
+                    </div>
+                    <div class="relative z-10 max-w-3xl">
+                        <h2 class="text-3xl md:text-4xl text-red-600 font-bold mb-4">迎接“第二春”：安度更年期实操</h2>
+                        <p class="text-xl text-stone-600 mb-6">核心目标：在绝经前，通过艾灸彻底排出子宫淤血，平稳过渡。</p>
+                        <div class="bg-red-50 border border-red-200 p-6 rounded-lg text-left grid md:grid-cols-2 gap-4">
+                            <div>
+                                <h3 class="font-bold text-red-700"><i class="fa-solid fa-calendar-days mr-2"></i>时机</h3>
+                                <p class="text-stone-700">三伏天（一年中阳气最盛时）。</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-red-700"><i class="fa-solid fa-fire-flame-curved mr-2"></i>工具
+                                </h3>
+                                <p class="text-stone-700">优质艾条。</p>
+                            </div>
+                            <div class="col-span-2">
+                                <h3 class="font-bold text-red-700"><i class="fa-solid fa-location-dot mr-2"></i>部位</h3>
+                                <p class="text-stone-700">1. 腹部：肚脐以下到妇科区域。<br>2. 背部：八髎穴（尾椎骨两侧）。</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-red-700"><i class="fa-regular fa-clock mr-2"></i>时长</h3>
+                                <p class="text-stone-700">每次10-15分钟起，适应后可加长。</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-red-700"><i class="fa-solid fa-check-circle mr-2"></i>效果</h3>
+                                <p class="text-stone-700">帮助排淤，避免更年期综合征。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="w-full h-full flex flex-col justify-center items-center">
+                    <h2 class="text-3xl md:text-4xl text-red-600 font-bold mb-6">附录：女性通用保养穴位宝典</h2>
+                    <div class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-left">
+                        <div class="bg-amber-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-stone-800 mb-1"><i
+                                    class="fa-regular fa-face-smile text-red-500 mr-2"></i>面部美容</h4>
+                            <p class="text-stone-600">常揉四白穴、阳白穴，舒展印堂，按压人中。</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-stone-800 mb-1"><i
+                                    class="fa-solid fa-lungs text-red-500 mr-2"></i>胸部保养</h4>
+                            <p class="text-stone-600">拍通膻中穴（主情志），揉按乳根穴（提升胸部）。</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-stone-800 mb-1"><i
+                                    class="fa-solid fa-person-running text-red-500 mr-2"></i>臀部塑形</h4>
+                            <p class="text-stone-600">疏通环跳穴与承扶穴，可提臀、改善久坐循环。</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-stone-800 mb-1"><i
+                                    class="fa-solid fa-seedling text-red-500 mr-2"></i>肝胆疏通</h4>
+                            <p class="text-stone-600">拍散腋下极泉穴，按揉脚背太冲穴（消气穴）。</p>
+                        </div>
+                        <div class="bg-amber-50 p-4 rounded-lg col-span-1 md:col-span-2">
+                            <h4 class="font-bold text-stone-800 mb-1"><i
+                                    class="fa-solid fa-spa text-red-500 mr-2"></i>妇科总穴（不老穴）</h4>
+                            <p class="text-stone-600">三阴交：肝、脾、肾三条阴经交汇于此，是女性保养的根本大穴。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide bg-white border-2 border-stone-200 rounded-2xl">
+                <div class="text-center">
+                    <h2 class="text-3xl md:text-4xl text-stone-500 font-light mb-4">顺时而为，自在新生</h2>
+                    <h1 class="text-4xl md:text-5xl text-red-600 font-bold leading-tight">愿我们都能读懂身体的语言</h1>
+                    <div class="w-24 h-1 bg-red-500 mx-auto mt-8 rounded-full"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="pagination"
+            class="absolute bottom-4 left-1/2 text-stone-500 bg-white/70 backdrop-blur-sm px-3 py-1 rounded-full text-sm z-20">
+        </div>
+
+        <div id="author" class="absolute bottom-4 left-4 md:left-4 text-sm text-zinc-400 font-mono z-50">
+            幸福闲者读书会
+        </div>
+
+        <div id="author" class="absolute bottom-4 right-4 md:right-4 text-sm text-zinc-400 font-mono z-50">
+            马艺甄老师
+        </div>
+
+    </div>
+
+    <button id="prev" class="nav-arrow left-4 md:left-6"><i class="fas fa-chevron-left"></i></button>
+    <button id="next" class="nav-arrow right-4 md:right-6"><i class="fas fa-chevron-right"></i></button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slider = document.getElementById('slider');
+            let slides = document.querySelectorAll('.slide'); // 使用let，因为我们会重新获取
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+            const pagination = document.getElementById('pagination');
+            
+            let currentIndex = 1; // 1. 重要：初始索引从1开始，因为0是克隆的最后一页
+            let isTransitioning = false;
+            const totalRealSlides = slides.length;
+
+            // --- 步骤1: 克隆节点 ---
+            const firstClone = slides[0].cloneNode(true);
+            const lastClone = slides[totalRealSlides - 1].cloneNode(true);
+
+            firstClone.id = 'first-clone';
+            lastClone.id = 'last-clone';
+
+            slider.appendChild(firstClone);
+            slider.prepend(lastClone);
+            
+            // 重新获取包含克隆节点的所有幻灯片
+            const allSlides = document.querySelectorAll('.slide');
+
+            // --- 步骤2: 设置初始位置（无动画）---
+            slider.style.transition = 'none'; // 先禁用动画
+            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            // --- 更新幻灯片状态的函数 ---
+            function updateSlider(withAnimation = true) {
+                if (withAnimation) {
+                    slider.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                } else {
+                    slider.style.transition = 'none';
+                }
+                slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                // 更新页码（基于真实的幻灯片）
+                let realIndex = currentIndex - 1;
+                if (realIndex < 0) realIndex = totalRealSlides - 1;
+                if (realIndex >= totalRealSlides) realIndex = 0;
+                pagination.textContent = `${realIndex + 1} / ${totalRealSlides}`;
+            }
+
+            // --- 步骤3: "魔术"重置逻辑 ---
+            slider.addEventListener('transitionend', () => {
+                isTransitioning = false;
+                // 当滑动到克隆的最后一页时
+                if (allSlides[currentIndex].id === 'last-clone') {
+                    currentIndex = totalRealSlides; // 跳转到真实的最后一页
+                    updateSlider(false); // 无动画跳转
+                }
+                // 当滑动到克隆的第一页时
+                if (allSlides[currentIndex].id === 'first-clone') {
+                    currentIndex = 1; // 跳转到真实的第一页
+                    updateSlider(false); // 无动画跳转
+                }
+            });
+
+            // --- 事件监听 ---
+            function moveToNext() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex++;
+                updateSlider();
+            }
+
+            function moveToPrev() {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                currentIndex--;
+                updateSlider();
+            }
+
+            nextButton.addEventListener('click', moveToNext);
+            prevButton.addEventListener('click', moveToPrev);
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') moveToNext();
+                if (e.key === 'ArrowLeft') moveToPrev();
+            });
+
+            // 滑动逻辑保持不变
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const swipeThreshold = 50;
+
+            slider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                if (touchEndX < touchStartX - swipeThreshold) moveToNext();
+                if (touchEndX > touchStartX + swipeThreshold) moveToPrev();
+            }
+
+            // 初始加载时，需要一个微小的延迟再恢复动画，确保初始位置设置生效
+            setTimeout(() => {
+                slider.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
+            }, 50);
+
+            // 初始化页码
+            updateSlider(false);
+        });
+    </script>
+</body>
+
+</html>

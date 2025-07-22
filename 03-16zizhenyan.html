@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>《黄帝内经》的养生智慧</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+    <style>
+        /* Custom Styles for a Polished Look */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Prevent body scroll */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        #presentation-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-color: #F8F7F2;
+            /* slate-50 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Padding adjusted for arrow placement */
+            padding: 0.5rem;
+        }
+
+        @media (min-width: 768px) {
+            #presentation-container {
+                padding: 4.0rem 5.5rem;
+            }
+        }
+
+        #slider-viewport {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            /* rounded-xl */
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            position: relative;
+            /* For arrow positioning context */
+        }
+
+        #slider-wrapper {
+            display: flex;
+            height: 100%;
+            will-change: transform;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            /* Smooth transition */
+        }
+
+        .slide {
+            flex-shrink: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border: 1px solid #e2e8f0;
+            /* slate-200 */
+            padding: 2rem;
+            /* p-8 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+            /* Allow scrolling on content-heavy slides */
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            .slide {
+                padding: 3rem;
+                /* p-12 */
+            }
+        }
+
+        /* Navigation Buttons */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #475569;
+            /* slate-600 */
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: all 0.2s ease-in-out;
+            z-index: 20;
+        }
+
+        .nav-arrow:hover {
+            background-color: white;
+            color: #f59e0b;
+            /* amber-500 */
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow.disabled {
+            opacity: 0.2;
+            cursor: not-allowed;
+            transform: translateY(-50%);
+        }
+
+        /* OPTIMIZED ARROW POSITION */
+        #prevBtn {
+            left: 1rem;
+        }
+
+        #nextBtn {
+            right: 1rem;
+        }
+
+        /* Pagination */
+        #pagination {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.4);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-variant-numeric: tabular-nums;
+            z-index: 20;
+        }
+
+        /* Gradient Textures */
+        .gradient-texture-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 40%;
+            height: 100%;
+            background-image: linear-gradient(to left, rgba(251, 191, 36, 0.1), transparent);
+            pointer-events: none;
+        }
+
+        .gradient-texture-bottom {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 30%;
+            background-image: linear-gradient(to top, rgba(251, 191, 36, 0.08), transparent);
+            pointer-events: none;
+        }
+
+        .gradient-texture-corner {
+            position: absolute;
+            left: -10%;
+            top: -10%;
+            width: 40%;
+            height: 40%;
+            background-image: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* Custom animation for entry */
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50">
+
+    <div id="presentation-container">
+        <div id="slider-viewport">
+            <div id="slider-wrapper">
+
+                <div class="slide">
+                    <div class="gradient-texture-corner"></div>
+                    <div class="text-center w-full max-w-4xl fade-in-up">
+                        <h2 class="text-2xl md:text-3xl font-light text-slate-500 tracking-wider">第3节 16字真言改变命运</h2>
+                        <h1
+                            class="text-5xl md:text-6xl lg:text-6xl font-extrabold text-slate-800 my-4 md:my-8 tracking-tight">
+                            《黄帝内经》的<span class="text-amber-500"> 养生智慧</span></h1>
+                        <div class="w-24 h-px bg-amber-700/50 my-8 mx-auto"></div>
+                        <p class="text-lg md:text-xl text-slate-600">核心纲领：<span class="font-semibold">不治已病治未病</span></p>
+                    </div>
+                    <div class="absolute bottom-8 right-8 text-3xl opacity-20 highlight"><i
+                            class="fa-solid fa-feather-pointed"></i></div>
+                </div>
+
+                <div class="slide">
+                    <div class="text-center w-full max-w-5xl fade-in-up">
+                        <h2 class="text-2xl md:text-4xl font-bold text-slate-800">养生总纲: <span
+                                class="text-amber-500">不生病的十六字心法</span></h2>
+                        <p class="mt-8 text-slate-500">上古之人遵循的四大核心准则</p>
+                        <div class="mt-8 md:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                            <div
+                                class="p-4 md:p-6 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-center">
+                                <p class="text-4xl md:text-4xl font-semibold tracking-widest text-slate-700">恬淡虚无</p>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-center">
+                                <p class="text-4xl md:text-4xl font-semibold tracking-widest text-slate-700">真气从之</p>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-center">
+                                <p class="text-4xl md:text-4xl font-semibold tracking-widest text-slate-700">精神内守</p>
+                            </div>
+                            <div
+                                class="p-4 md:p-6 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-center">
+                                <p class="text-4xl md:text-4xl font-semibold tracking-widest text-slate-700">病安从来</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="w-full max-w-5xl fade-in-up">
+                        <div class="text-center">
+                            <h2 class="text-4xl md:text-5xl font-bold text-slate-800">心法解读 (一): <span
+                                    class="text-amber-500">恬淡虚无</span></h2>
+                        </div>
+                        <div class="mt-6 md:mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+                            <div class="text-center p-6 border border-slate-200 rounded-lg">
+                                <h3 class="text-6xl md:text-8xl font-serif text-amber-500">恬</h3>
+                                <p class="mt-4 text-2xl font-semibold text-slate-700">对内无求</p>
+                                <p class="mt-2 text-slate-500">内心安定，不向内索求情绪价值</p>
+                            </div>
+                            <div class="text-center p-6 border border-slate-200 rounded-lg">
+                                <h3 class="text-6xl md:text-8xl font-serif text-amber-500">淡</h3>
+                                <p class="mt-4 text-2xl font-semibold text-slate-700">对外无求</p>
+                                <p class="mt-2 text-slate-500">对外物、名利、他人无过多执着</p>
+                            </div>
+                        </div>
+                        <div
+                            class="mt-6 md:mt-6 text-center bg-amber-50 border border-amber-200 text-amber-800 p-6 rounded-lg">
+                            <p class="text-xl md:text-2xl font-semibold">核心：现代人最大的问题是“<span
+                                    class="text-3xl md:text-4xl font-bold">内耗</span>”</p>
+                            <p class="mt-2 text-md md:text-lg">因欲望太多、所求不得而暗中消耗了大量气血</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="w-full max-w-5xl fade-in-up">
+                        <div class="text-center">
+                            <h2 class="text-4xl md:text-6xl font-bold text-slate-800">心法解读 (二): <span
+                                    class="text-amber-500">真气从之</span></h2>
+                        </div>
+                        <div
+                            class="mt-10 md:mt-16 flex flex-col md:flex-row items-center justify-center gap-4 text-center w-full">
+                            <div class="p-4">
+                                <p class="text-2xl md:text-3xl font-bold text-slate-700">真气</p>
+                            </div>
+                            <i class="fas fa-arrow-down md:fa-arrow-right text-3xl text-amber-400"></i>
+                            <div class="p-4 bg-amber-50 rounded-lg">
+                                <p class="text-2xl md:text-3xl font-bold text-amber-700">阳气</p>
+                            </div>
+                            <i class="fas fa-arrow-down md:fa-arrow-right text-3xl text-amber-400"></i>
+                            <div class="p-4">
+                                <p class="text-2xl md:text-3xl font-bold text-slate-700">肾精</p>
+                            </div>
+                            <i class="fas fa-arrow-down md:fa-arrow-right text-3xl text-amber-400"></i>
+                            <div class="p-4 bg-amber-50 rounded-lg">
+                                <p class="text-2xl md:text-3xl font-bold text-amber-700">定力</p>
+                            </div>
+                        </div>
+                        <div class="mt-10 md:mt-12 w-full p-6 bg-slate-100 border-l-4 border-amber-500 rounded-r-lg">
+                            <h4 class="text-xl font-bold text-slate-800">现象观察：何为“定力不足”？</h4>
+                            <p class="mt-2 text-slate-600">坐不住、不自觉抖腿、浮躁不安、注意力不集中。其根源在于<strong
+                                    class="text-amber-600">肾精不固，阳气不足</strong>。</p>
+                            <p class="mt-4 font-semibold text-slate-700">推论：给孩子盲目补课，不如养足肾精，定力自然提升。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="gradient-texture-bottom"></div>
+                    <div class="w-full max-w-5xl text-center fade-in-up">
+                        <h2 class="text-4xl md:text-6xl font-bold text-slate-800">心法解读 (三): <span
+                                class="text-amber-500">精神内守</span></h2>
+                        <div class="mt-10 md:mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="p-4">
+                                <p class="text-6xl md:text-8xl font-serif text-slate-700">精</p>
+                                <p class="mt-2 text-xl font-semibold">指“肾精”，人体宝贵的原始物质</p>
+                            </div>
+                            <div class="p-4">
+                                <p class="text-6xl md:text-8xl font-serif text-slate-700">神</p>
+                                <p class="mt-2 text-xl font-semibold">五脏之神，是生命活动的主宰</p>
+                            </div>
+                        </div>
+                        <div class="mt-8 md:mt-10 p-6 border-t-2 border-amber-400">
+                            <h3 class="text-2xl font-bold text-slate-700">守的是什么？</h3>
+                            <p class="mt-4 text-xl text-slate-600">守住身体的根本，让“精”与“神”各安其位，不向外耗散。</p>
+                            <p class="mt-4 text-2xl font-bold text-amber-600 tracking-wider">法于阴阳，合于术数</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="w-full max-w-5xl text-center fade-in-up">
+                        <h2 class="text-3xl md:text-5xl font-bold text-slate-800">避开外因: <span
+                                class="text-amber-500">虚邪贼风，避之有时</span></h2>
+                        <div class="mt-10 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <h3 class="text-xl font-bold text-slate-700">虚邪</h3>
+                                <p class="mt-2 text-slate-500">趁人“正气不足”时，趁虚而入的邪气。根源在内。</p>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <h3 class="text-xl font-bold text-slate-700">贼风</h3>
+                                <p class="mt-2 text-slate-500">偷偷盗走人体精、气、神的风邪，是不易察觉的消耗。</p>
+                            </div>
+                            <div class="p-4 border border-slate-200 rounded-lg">
+                                <h3 class="text-xl font-bold text-slate-700">避之有时</h3>
+                                <p class="mt-2 text-slate-500">古人根据时辰、风向（八风）等，主动规避有害的风。</p>
+                            </div>
+                        </div>
+                        <div class="mt-12 p-6 bg-slate-800 text-white rounded-lg">
+                            <p class="text-3xl md:text-4xl font-bold tracking-wider">正气存内，邪不可干</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="w-full max-w-5xl fade-in-up">
+                        <h2 class="text-4xl md:text-6xl font-bold text-slate-800 text-center">养生先养肾: <span
+                                class="text-amber-500">志闲而少欲</span></h2>
+                        <div class="mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div class="space-y-4">
+                                <p class="text-lg text-slate-600">肾主管“志”与“欲”，过度的欲望与思考会大量消耗肾精。</p>
+                                <div class="p-4 bg-red-50 border border-red-200 rounded-lg">
+                                    <p class="text-red-700 font-semibold">情绪憋屈 → 气机不畅 → 形成<span
+                                            class="font-bold">瘀堵</span>和<span class="font-bold">结节</span></p>
+                                </div>
+                            </div>
+                            <div class="text-center p-4">
+                                <svg class="w-full h-auto max-h-64" viewBox="0 0 100 200"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M50 180 Q60 140 50 100 T50 20" stroke="#e2e8f0" stroke-width="2"
+                                        fill="none" />
+                                    <path d="M50 180 Q60 140 50 100 T50 20" stroke="#f59e0b" stroke-width="2.5"
+                                        fill="none" stroke-dasharray="250" stroke-dashoffset="250"
+                                        style="animation: dash 2s ease-out forwards; animation-delay: 0.5s;">
+                                        <style>
+                                            @keyframes dash {
+                                                to {
+                                                    stroke-dashoffset: 0
+                                                }
+                                            }
+                                        </style>
+                                    </path>
+                                    <g fill="#475569">
+                                        <circle cx="50" cy="20" r="5" /><text x="60" y="25">甲状腺</text>
+                                    </g>
+                                    <g fill="#475569">
+                                        <circle cx="50" cy="100" r="5" /><text x="60" y="105">乳腺</text>
+                                    </g>
+                                    <g fill="#475569">
+                                        <circle cx="50" cy="180" r="5" /><text x="60" y="185">子宫
+                                    </g>
+                                </svg>
+                                <p class="mt-2 text-slate-500 text-sm">中医视角：看似不同部位的结节，实则同在“肝经”一条线</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="gradient-texture-right"></div>
+                    <div class="w-full max-w-6xl fade-in-up">
+                        <h2 class="text-4xl md:text-6xl font-bold text-slate-800 text-center mb-10 md:mb-16">身心状态: <span
+                                class="text-amber-500">心安不惧，行劳不倦</span></h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                            <div
+                                class="p-6 border border-slate-200 rounded-lg text-center flex flex-col justify-center">
+                                <h3 class="text-3xl md:text-4xl font-bold text-slate-700">古代状态</h3>
+                                <p class="text-5xl md:text-7xl my-4">💪</p>
+                                <p class="text-xl text-slate-500">身劳而<strong class="text-2xl text-slate-800">心愉</strong>
+                                </p>
+                            </div>
+                            <div
+                                class="p-6 border border-slate-200 rounded-lg text-center flex flex-col justify-center">
+                                <h3 class="text-3xl md:text-4xl font-bold text-slate-700">现代通病</h3>
+                                <p class="text-5xl md:text-7xl my-4">🛋️</p>
+                                <p class="text-xl text-slate-500">身不劳但<strong
+                                        class="text-2xl text-slate-800">神倦</strong></p>
+                            </div>
+                        </div>
+                        <p class="text-center mt-10 text-4xl md:text-7xl font-extrabold text-red-500 tracking-tighter">心
+                            累</p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="w-full max-w-5xl text-center fade-in-up">
+                        <h2 class="text-4xl md:text-6xl font-bold text-slate-800">和谐之境: <span
+                                class="text-amber-500">各从其欲</span></h2>
+                        <div class="my-8 md:my-10 p-6 bg-slate-50 border border-slate-200 rounded-lg">
+                            <p class="text-xl md:text-2xl font-serif leading-relaxed text-slate-700">
+                                “故美其食，任其服，乐其俗，高下不相慕，其民故曰<strong class="text-amber-600">朴</strong>。”</p>
+                        </div>
+                        <h3 class="text-xl md:text-2xl font-semibold text-slate-600">这不仅是人之道，更是<span
+                                class="text-amber-500">五脏</span>的和谐之道</h3>
+                        <div class="mt-8 flex justify-center gap-4 md:gap-8 text-amber-600 text-3xl md:text-5xl">
+                            <i class="fas fa-heart-pulse" title="心"></i>
+                            <i class="fas fa-lungs" title="肺"></i>
+                            <i class="fas fa-bone" title="肾"></i>
+                            <i class="fas fa-leaf" title="肝"></i>
+                            <i class="fas fa-bread-slice" title="脾"></i>
+                        </div>
+                        <p class="mt-4 text-lg text-slate-500">脏腑各司其职，互不羡慕，互不内卷，则系统和谐健康。</p>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="w-full max-w-5xl fade-in-up">
+                        <h2 class="text-4xl md:text-6xl font-bold text-slate-800 text-center">守护根本: <span
+                                class="text-amber-500">勿劳其目，勿惑其心</span></h2>
+                        <div class="mt-10 md:mt-12 p-8 bg-slate-50 rounded-xl">
+                            <div class="flex flex-col md:flex-row items-center gap-8">
+                                <div class="text-7xl text-amber-500"><i class="fas fa-eye"></i></div>
+                                <div class="flex-1 text-center md:text-left">
+                                    <h3 class="text-2xl md:text-3xl font-bold text-slate-800">是以嗜欲不能劳其目</h3>
+                                    <p class="mt-4 text-xl text-slate-600">过度用眼 (刷手机) <i
+                                            class="fas fa-arrow-right text-sm mx-2"></i> 伤肝血 (肝开窍于目) <i
+                                            class="fas fa-arrow-right text-sm mx-2"></i> 伤及“<strong
+                                            class="text-amber-600">筋</strong>”</p>
+                                    <ul class="mt-4 text-left list-disc list-inside text-slate-500 space-y-2">
+                                        <li><strong>筋：</strong>泛指身体内有弹性的组织。</li>
+                                        <li><strong>女性：</strong>影响子宫、乳房健康。</li>
+                                        <li><strong>男性：</strong>影响宗筋（生殖能力）健康。</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="w-full max-w-5xl fade-in-up">
+                        <h2 class="text-4xl md:text-6xl font-bold text-slate-800 text-center">德全不危: <span
+                                class="text-amber-500">顺应五脏本性的智慧</span></h2>
+                        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                            <div id="chart" class="w-full h-80 md:h-96"></div>
+                            <div class="space-y-3">
+                                <div class="flex items-start gap-3"><span
+                                        class="text-xl font-bold text-amber-600 w-12 text-center">愚</span>
+                                    <p class="text-slate-600 flex-1"><strong class="text-slate-700">憨厚笃定</strong> →
+                                        <strong>肾</strong> (主藏精，深藏不露)
+                                    </p>
+                                </div>
+                                <div class="flex items-start gap-3"><span
+                                        class="text-xl font-bold text-amber-600 w-12 text-center">智</span>
+                                    <p class="text-slate-600 flex-1"><strong class="text-slate-700">聪明有慧</strong> →
+                                        <strong>心</strong> (主神明，灵活应变)
+                                    </p>
+                                </div>
+                                <div class="flex items-start gap-3"><span
+                                        class="text-xl font-bold text-amber-600 w-12 text-center">贤</span>
+                                    <p class="text-slate-600 flex-1"><strong class="text-slate-700">善良奉献</strong> →
+                                        <strong>脾</strong> (老好人，运化万物)
+                                    </p>
+                                </div>
+                                <div class="flex items-start gap-3"><span
+                                        class="text-xl font-bold text-amber-600 w-12 text-center">勇</span>
+                                    <p class="text-slate-600 flex-1"><strong class="text-slate-700">勇猛善战</strong> →
+                                        <strong>肝</strong> (将军之官，各司其职)
+                                    </p>
+                                </div>
+                                <div class="flex items-start gap-3"><span
+                                        class="text-xl font-bold text-amber-600 w-12 text-center">肃</span>
+                                    <p class="text-slate-600 flex-1"><strong class="text-slate-700">清肃收敛</strong> →
+                                        <strong>肺</strong> (主肃降，调节布散)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide">
+                    <div class="w-full max-w-4xl text-center fade-in">
+                        <h2 class="text-4xl md:text-6xl font-bold text-slate-800">下期预告</h2>
+                        <div class="mt-8 md:mt-8 space-y-6">
+                            <div class="p-5 border border-slate-200 rounded-lg">
+                                <h3 class="text-2xl font-semibold text-slate-700">女七男八：生命的节律</h3>
+                                <p class="text-slate-500">解读女子与男子的生命周期密码</p>
+                            </div>
+                            <div class="p-5 border border-slate-200 rounded-lg bg-amber-50">
+                                <h3 class="text-2xl font-semibold text-amber-800">专题分享：望闻问切之“舌诊”</h3>
+                                <p class="text-amber-700">结合体质系统，解锁舌象天机</p>
+                            </div>
+                            <div class="p-5 border border-slate-200 rounded-lg">
+                                <h3 class="text-2xl font-semibold text-slate-700">十二时辰养生法</h3>
+                            </div>
+                        </div>
+                        <p class="mt-4 text-xl text-slate-500">感谢聆听</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <button id="prevBtn" class="nav-arrow"><i class="fas fa-chevron-left"></i></button>
+        <button id="nextBtn" class="nav-arrow"><i class="fas fa-chevron-right"></i></button>
+
+        <div id="pagination">1 / 12</div>
+
+        <div id="author" class="fixed bottom-8 left-4 md:left-24 text-sm text-zinc-400 font-mono z-50">
+            幸福闲者读书会
+        </div>
+
+        <div id="author" class="fixed bottom-8 right-4 md:right-24 text-sm text-zinc-400 font-mono z-50">
+            马艺甄老师
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sliderWrapper = document.getElementById('slider-wrapper');
+            const slides = Array.from(document.querySelectorAll('.slide'));
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const paginationContainer = document.getElementById('pagination');
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            // --- Go To Slide ---
+            function goToSlide(index) {
+                if (index < 0 || index >= totalSlides) return;
+                currentIndex = index;
+                sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+                updateUI();
+            }
+
+            // --- Update UI (Buttons & Pagination) ---
+            function updateUI() {
+                // Update buttons
+                prevBtn.classList.toggle('disabled', currentIndex === 0);
+                nextBtn.classList.toggle('disabled', currentIndex === totalSlides - 1);
+
+                // OPTIMIZED PAGINATION
+                paginationContainer.textContent = `${currentIndex + 1} / ${totalSlides}`;
+
+                // Re-trigger animation on the new slide
+                slides.forEach((slide, index) => {
+                    const animatedElements = slide.querySelectorAll('.fade-in-up, .fade-in');
+                    if (index === currentIndex) {
+                        animatedElements.forEach(el => {
+                            el.style.animation = 'none';
+                            el.offsetHeight; /* trigger reflow */
+                            el.style.animation = null;
+                        });
+                    }
+                });
+
+                // Special logic for chart on slide 11
+                if (currentIndex === 10) { // Slide 11 is at index 10
+                    renderChart();
+                }
+            }
+
+            // --- Event Listeners ---
+            prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+            nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+            // --- Keyboard Navigation ---
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') goToSlide(currentIndex - 1);
+                if (e.key === 'ArrowRight') goToSlide(currentIndex + 1);
+            });
+
+            // --- Swipe Navigation for Mobile ---
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const sliderViewport = document.getElementById('slider-viewport');
+
+            sliderViewport.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            sliderViewport.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeThreshold = 50; // Minimum distance for a swipe
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    goToSlide(currentIndex + 1); // Swiped left
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    goToSlide(currentIndex - 1); // Swiped right
+                }
+            }
+
+            // --- Chart Rendering ---
+            let chartInstance = null;
+            function renderChart() {
+                const chartEl = document.getElementById('chart');
+                if (chartEl && !chartInstance) { // Only render if it exists and hasn't been rendered
+                    var options = {
+                        series: [{
+                            name: '五脏德行',
+                            data: [80, 90, 70, 85, 75], // 愚, 智, 贤, 勇, 肃
+                        }],
+                        chart: {
+                            height: '100%',
+                            type: 'radar',
+                            toolbar: { show: false }
+                        },
+                        colors: ['#f59e0b'], // amber-500
+                        xaxis: {
+                            categories: ['愚 (肾)', '智 (心)', '贤 (脾)', '勇 (肝)', '肃 (肺)'],
+                            labels: {
+                                style: {
+                                    colors: ['#475569', '#475569', '#475569', '#475569', '#475569'],
+                                    fontSize: '14px'
+                                }
+                            }
+                        },
+                        yaxis: { show: false },
+                        stroke: {
+                            width: 2,
+                            colors: ['#f59e0b']
+                        },
+                        fill: {
+                            opacity: 0.1,
+                            colors: ['#f59e0b']
+                        },
+                        markers: {
+                            size: 4,
+                            colors: ['#fff'],
+                            strokeColor: '#f59e0b',
+                            strokeWidth: 2,
+                        },
+                    };
+
+                    chartInstance = new ApexCharts(chartEl, options);
+                    chartInstance.render();
+                }
+            }
+
+
+            // --- Initial Setup ---
+            updateUI();
+        });
+    </script>
+
+</body>
+
+</html>

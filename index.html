@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸福闲者读书会 - 马艺甄老师</title>
+
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #FDFBF8; /* 沿用01号页面的主背景色 */
+            font-family: 'Noto Sans SC', sans-serif;
+            color: #3f3f46; /* 沿用01号页面的主文字色 */
+        }
+
+        .font-serif-sc {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            border: 1px solid rgba(217, 119, 6, 0.2); /* 沿用01号页面的边框色 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        .card-highlight-amber {
+             border-left: 4px solid #d97706; /* 琥珀色高亮 */
+        }
+
+        .card-highlight-cyan {
+             border-left: 4px solid #00bcd4; /* 青色高亮 */
+        }
+
+        .card-highlight-red {
+             border-left: 4px solid #dc2626; /* 红色高亮 */
+        }
+        
+        .card-highlight-dark {
+             border-left: 4px solid #F59E0B; /* 暗色主题高亮 */
+        }
+
+        .card-highlight-green {
+             border-left: 4px solid #16a34a; /* 绿色高亮 */
+        }
+
+        .card-link::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: -1px;
+            right: -1px;
+            font-size: 10px;
+            padding: 4px 12px;
+            border-top-right-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-12 md:py-20">
+
+        <header class="text-center mb-12 md:mb-20">
+            <!-- <div class="w-full h-64 md:h-96 bg-cover bg-center rounded-lg shadow-lg mb-12" style="background-image: url('https://kposshzcdn.ckjr001.com/6mm8o8/resource/imgs/f9bcff66/admin-fe_6mm8o8_uploadBox_wKC67pGDPx7e4nnn54Ph.jpg?x-oss-process=style/w800');"></div> -->
+
+            <h1 class="font-serif-sc text-4xl md:text-6xl font-bold text-amber-800/90">幸福闲者读书会</h1>
+            <p class="mt-4 text-lg md:text-xl text-zinc-500">《黄帝内经》开启改变命运的智慧之旅 · 马艺甄老师</p>
+            <div class="w-24 h-px bg-amber-700/30 mx-auto mt-8"></div>
+        </header>
+
+        <main id="course-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
+
+            <!-- 课程卡片模板 -->
+            <div class="card rounded-lg p-6 flex flex-col card-highlight-amber">
+                <div class="card-badge bg-amber-600">导读</div>
+                <h2 class="font-serif-sc text-2xl font-bold text-zinc-800 mb-3">第一节 健康与财富</h2>
+                <p class="text-zinc-600 flex-grow mb-6">介绍读书会的宏大愿景与学习《黄帝内经》的时代意义，探讨身心健康与人生财富的深刻联系。</p>
+                <a href="01huangdineijing.html" class="card-link font-semibold text-amber-700 self-start">进入课程 <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="card rounded-lg p-6 flex flex-col card-highlight-amber">
+                <div class="card-badge bg-amber-600">总纲</div>
+                <h2 class="font-serif-sc text-2xl font-bold text-zinc-800 mb-3">第二节 上古天真论</h2>
+                <p class="text-zinc-600 flex-grow mb-6">拆解开篇《上古天真论》，探寻古人年过百岁而动作不衰的长寿奥秘，揭示生命的五个阶段。</p>
+                <a href="02shanggutianzhenlun.html" class="card-link font-semibold text-amber-700 self-start">进入课程 <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="card rounded-lg p-6 flex flex-col card-highlight-amber">
+                <div class="card-badge bg-amber-600">心法</div>
+                <h2 class="font-serif-sc text-2xl font-bold text-zinc-800 mb-3">第三节 十六字真言</h2>
+                <p class="text-zinc-600 flex-grow mb-6">深入解读“恬淡虚无，真气从之，精神内守，病安从来”十六字心法，掌握不生病的底层逻辑。</p>
+                <a href="03-16zizhenyan.html" class="card-link font-semibold text-amber-700 self-start">进入课程 <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="card rounded-lg p-6 flex flex-col card-highlight-cyan">
+                <div class="card-badge bg-cyan-600">术法</div>
+                <h2 class="font-serif-sc text-2xl font-bold text-zinc-800 mb-3">第四节 子午流注</h2>
+                <p class="text-zinc-600 flex-grow mb-6">学习人体十二时辰的脏腑值班规律。顺应身体的24小时时间表，掌握最高效的养生方法。</p>
+                <a href="04ziwuliuzhu.html" class="card-link font-semibold text-cyan-700 self-start">进入课程 <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="card rounded-lg p-6 flex flex-col card-highlight-red">
+                <div class="card-badge bg-red-600">女七</div>
+                <h2 class="font-serif-sc text-2xl font-bold text-zinc-800 mb-3">第五节 女性生命周期</h2>
+                <p class="text-zinc-600 flex-grow mb-6">揭秘女性以“七”为单位的生命节律，详解从7岁到49岁各阶段的生理特点与养护核心。</p>
+                <a href="05nvqi.html" class="card-link font-semibold text-red-700 self-start">进入课程 <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="card rounded-lg p-6 flex flex-col card-highlight-dark bg-gray-800 text-white">
+                 <div class="card-badge bg-yellow-500 text-gray-900">男八</div>
+                <h2 class="font-serif-sc text-2xl font-bold text-yellow-400 mb-3">第六节 男性生命周期</h2>
+                <p class="text-gray-300 flex-grow mb-6">详解男性以“八”为单位的生命节律，阐述从8岁到64岁各阶段的成长、强盛与衰老过程。</p>
+                <a href="06nanba.html" class="card-link font-semibold text-yellow-400 self-start">进入课程 <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <div class="card rounded-lg p-6 flex flex-col card-highlight-green">
+                <div class="card-badge bg-green-600">望诊</div>
+                <h2 class="font-serif-sc text-2xl font-bold text-zinc-800 mb-3">第七节 舌诊基础</h2>
+                <p class="text-zinc-600 flex-grow mb-6">学习观察舌象，了解“舌尖上的疾病信号”，从舌质、舌苔的变化中发现身体的健康秘密。</p>
+                <a href="07shezhen1.html" class="card-link font-semibold text-green-700 self-start">进入课程 <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+
+            <!-- 新课程可以从这里添加 -->
+
+        </main>
+
+        <footer class="text-center mt-12 md:mt-20 pt-8 border-t border-amber-700/10">
+            <p class="text-zinc-400 text-sm">智慧之旅，未完待续...</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

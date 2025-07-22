@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7舌诊基础01</title>
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+
+        .slide-content h1 {
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(251, 191, 36, 0.02));
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 200px;
+            background-color: rgba(217, 212, 204, 0.3);
+            border: 2px dashed rgba(168, 162, 158, 0.4);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* flex-direction: column; */
+            color: #a8a29e;
+        }
+
+        /* --- 新增与修改的动效样式 --- */
+        #slider-track {
+            /* 将轨道从 flex 布局改为相对定位，用于堆叠幻灯片 */
+            position: relative;
+        }
+
+        .slide {
+            /* 将所有幻灯片绝对定位，堆叠在一起 */
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            /* 默认全部透明 */
+            visibility: hidden;
+            /* 默认全部隐藏，提升性能 */
+            /* 设置过渡动画效果，针对透明度和缩放 */
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            transform: scale(0.98);
+            /* 非当前页略微缩小 */
+        }
+
+        .slide.active-slide {
+            /* 当前显示的幻灯片 */
+            opacity: 1;
+            /* 完全不透明 */
+            visibility: visible;
+            /* 可见 */
+            transform: scale(1);
+            /* 恢复正常大小 */
+            z-index: 10;
+            /* 确保在最上层 */
+        }
+    </style>
+</head>
+
+<body class="bg-stone-100 antialiased overflow-hidden">
+
+    <div id="slider-container" class="relative w-full h-screen overflow-hidden">
+        <div id="slider-track" class="flex h-full">
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center items-center text-center p-8">
+                    <div class="w-20 h-20 mb-8 flex items-center justify-center">
+                        <i class="fa-solid fa-lightbulb text-6xl text-amber-500"></i>
+                    </div>
+                    <h1 class="text-5xl md:text-8xl font-bold text-stone-800 tracking-wider">舌尖上的疾病信号</h1>
+                    <p class="mt-6 text-xl md:text-2xl text-stone-500">第7节 舌诊基础01</p>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-10">望舌的原理</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-start">
+                            <span class="text-6xl md:text-8xl font-bold text-amber-300/80 mr-6">01</span>
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-semibold text-stone-700">脏腑关联</h3>
+                                <p class="mt-2 text-lg text-stone-600">舌与脏腑主要是通过经络的循行联系起来的。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-6xl md:text-8xl font-bold text-amber-300/80 mr-6">02</span>
+                            <div>
+                                <h3 class="text-xl md:text-2xl font-semibold text-stone-700">经络连接</h3>
+                                <p class="mt-2 text-lg text-stone-600">
+                                    五脏六腑都直接或间接地通过经络与舌相连，通过对于舌象的观察，就能诊察出体内对应脏腑及气血异常变化，从而起到诊病、防病的作用。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col md:flex-row items-center justify-center p-8 md:p-12 gap-8">
+                    <div class="w-full md:w-1/2 text-left">
+                        <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">舌的主要功能</h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-center text-lg md:text-xl text-stone-700"><i
+                                    class="fas fa-utensils text-amber-500 w-6 mr-3"></i>辨别滋味，调节声音</li>
+                            <li class="flex items-center text-lg md:text-xl text-stone-700"><i
+                                    class="fas fa-bread-slice text-amber-500 w-6 mr-3"></i>搅拌食物，协助吞咽</li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2 h-full">
+                        <img src="src/she1.png" alt="舌的主要功能"
+                            class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col md:flex-row items-center justify-center p-8 md:p-12 gap-8">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">舌的部位划分</h2>
+                        <ul class="space-y-4 text-lg">
+                            <li><strong class="text-amber-700">舌尖：</strong>习惯上将舌体的前端称为舌尖。</li>
+                            <li><strong class="text-amber-700">舌中：</strong>舌体的中部称为舌中。</li>
+                            <li><strong class="text-amber-700">舌根：</strong>舌体的后部、人字形界沟之前称为舌根。</li>
+                            <li><strong class="text-amber-700">舌边：</strong>舌两边称为舌边。</li>
+                            <li><strong class="text-amber-700">舌正中沟：</strong>舌体的正中有一条纵行纹，称舌正中沟。</li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2 h-full">
+                        <img src="src/shebuwei.png" alt="舌的部位划分"
+                            class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center items-center p-8">
+                    <h1 class="text-5xl md:text-7xl font-bold text-stone-800">舌诊原理</h1>
+                    <p class="mt-4 text-xl md:text-2xl text-stone-600">经络是连接舌与脏腑的桥梁</p>
+                    <div class="mt-8">
+                        <i class="fa-solid fa-network-wired text-9xl text-amber-400/80"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col md:flex-row items-center justify-center p-8 md:p-12 gap-8">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-3xl md:text-4xl font-bold text-amber-600 mb-8">舌与经络的密切联系</h2>
+                        <ul class="space-y-3 text-lg text-stone-700">
+                            <li><strong class="text-amber-600">心经：</strong>沿食道，之别系舌本。</li>
+                            <li><strong class="text-amber-600">肾经：</strong>循喉咙，夹舌本。</li>
+                            <li><strong class="text-amber-600">肝经：</strong>络舌本。</li>
+                            <li><strong class="text-amber-600">脾经：</strong>连舌根、散舌下。</li>
+                            <li><strong class="text-amber-600">肺经：</strong>上达咽喉，与舌根相连。</li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2 h-full">
+                        <img src="src/sheyujingluo.png" alt="舌的主要功能"
+                            class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center items-center p-8 md:p-12">
+                    <h2 class="text-4xl md:text-6xl font-bold text-amber-600 mb-4">舌与脏腑 · 心</h2>
+                    <p class="text-2xl text-stone-600 mb-10">“舌为心之苗”</p>
+                    <div class="w-full grid md:grid-cols-2 gap-8">
+                        <div class="highlight-box p-6 rounded-lg text-center">
+                            <i class="fas fa-heart-pulse text-5xl text-amber-500 mb-4"></i>
+                            <h3 class="font-semibold text-stone-800 text-2xl">反映血脉</h3>
+                            <p class="text-stone-600 mt-2">舌体色泽变化，反映“心主血脉”的功能。</p>
+                        </div>
+                        <div class="highlight-box p-6 rounded-lg text-center">
+                            <i class="fas fa-brain text-5xl text-amber-500 mb-4"></i>
+                            <h3 class="font-semibold text-stone-800 text-2xl">反映心神</h3>
+                            <p class="text-stone-600 mt-2">舌体运动与语言，反映“心主藏神”的功能。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center items-center p-8 md:p-12">
+                    <h2 class="text-4xl md:text-6xl font-bold text-amber-600 mb-4">舌与脏腑 · 脾</h2>
+                    <p class="text-2xl text-stone-600 mb-10">“舌为脾之外候”</p>
+                    <div class="w-full grid md:grid-cols-2 gap-8">
+                        <div class="highlight-box p-6 rounded-lg text-center">
+                            <i class="fas fa-seedling text-5xl text-amber-500 mb-4"></i>
+                            <h3 class="font-semibold text-stone-800 text-2xl">胃气之根</h3>
+                            <p class="text-stone-600 mt-2">舌苔由胃气蒸化谷气上承于舌面而成。</p>
+                        </div>
+                        <div class="highlight-box p-6 rounded-lg text-center">
+                            <i class="fas fa-recycle text-5xl text-amber-500 mb-4"></i>
+                            <h3 class="font-semibold text-stone-800 text-2xl">运化之镜</h3>
+                            <p class="text-stone-600 mt-2">舌象变化反映全身营养、代谢与气血生化状况。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center items-center p-8 md:p-12">
+                    <h2 class="text-4xl md:text-6xl font-bold text-amber-600 mb-4">舌与脏腑 · 肾</h2>
+                    <p class="text-2xl text-stone-600 mb-10">肾藏精，主水液</p>
+                    <div class="w-full grid md:grid-cols-2 gap-8">
+                        <div class="highlight-box p-6 rounded-lg text-center">
+                            <i class="fas fa-tint text-5xl text-amber-500 mb-4"></i>
+                            <h3 class="font-semibold text-stone-800 text-2xl">津液之源</h3>
+                            <p class="text-stone-600 mt-2">舌体的润燥，反映脾肾输布津液的功能。</p>
+                        </div>
+                        <div class="highlight-box p-6 rounded-lg text-center">
+                            <i class="fas fa-balance-scale text-5xl text-amber-500 mb-4"></i>
+                            <h3 class="font-semibold text-stone-800 text-2xl">全身之鉴</h3>
+                            <p class="text-stone-600 mt-2">脏腑虚实、气血盛衰、津液盈亏均可反映于舌象。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8 text-center">观察脏腑 (舌面分区)</h2>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+                        <div class="w-full md:w-1/2">
+                            <svg viewBox="0 0 200 280" class="mx-auto w-64 h-auto">
+                                <path
+                                    d="M100 20 C 40 20, 20 100, 20 160 C 20 240, 80 280, 100 280 C 120 280, 180 240, 180 160 C 180 100, 160 20, 100 20 Z"
+                                    fill="none" stroke="#f59e0b" stroke-width="2" />
+                                <line x1="100" y1="20" x2="100" y2="280" stroke="#fbbf24" stroke-width="1"
+                                    stroke-dasharray="4" />
+                                <path d="M 25 150 C 60 180, 140 180, 175 150" fill="none" stroke="#fbbf24"
+                                    stroke-width="1" stroke-dasharray="4" />
+                                <path d="M 35 90 C 70 110, 130 110, 165 90" fill="none" stroke="#fbbf24"
+                                    stroke-width="1" stroke-dasharray="4" />
+                                <text x="100" y="60" font-size="16" fill="#581c87" text-anchor="middle"
+                                    font-weight="bold">肾/命门 (下焦)</text>
+                                <text x="55" y="140" font-size="16" fill="#166534" text-anchor="middle"
+                                    font-weight="bold">肝胆</text>
+                                <text x="145" y="140" font-size="16" fill="#166534" text-anchor="middle"
+                                    font-weight="bold">肝胆</text>
+                                <text x="100" y="150" font-size="16" fill="#1e3a8a" text-anchor="middle"
+                                    font-weight="bold">脾胃 (中焦)</text>
+                                <text x="100" y="220" font-size="16" fill="#881337" text-anchor="middle"
+                                    font-weight="bold">心/肺 (上焦)</text>
+                            </svg>
+                        </div>
+                        <div class="w-full md:w-1/2 h-full">
+                            <img src="src/shemian.png" alt="舌的主要功能"
+                                class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col md:flex-row items-center justify-center p-8 md:p-12 gap-8">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-2">望舌质 - 颜色</h2>
+                        <p class="text-xl text-stone-600 mb-8">1. 淡红舌 (健康舌)</p>
+                        <div class="highlight-box p-6 rounded-lg text-lg text-stone-700 space-y-4">
+                            <p><strong class="text-amber-700">特征：</strong>舌色淡红明润，舌体柔软灵活，大小适中，舌苔薄白均匀，干湿适中。</p>
+                            <p><strong class="text-amber-700">意义：</strong>代表脏腑机能正常，气血津液充盈。</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 h-full">
+                        <img src="src/danhongshe.png" alt="舌的主要功能"
+                            class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">异常舌色：青与紫</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold text-purple-700 mb-2">紫舌：血行不畅</h3>
+                            <p class="mb-3 text-stone-600 text-sm">多见于体内<strong
+                                    class="text-purple-700">血瘀</strong>。常伴有各处疼痛、麻木、发凉等问题。</p>
+                            <div class="h-48 image-placeholder">
+                                <img src="src/zishe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-cyan-700 mb-2">青舌：气血瘀滞</h3>
+                            <p class="mb-3 text-stone-600 text-sm">多见于<strong class="text-cyan-700">肝病</strong>与<strong
+                                    class="text-cyan-700">寒症</strong>。常伴有头痛头晕、痛经等问题。</p>
+                            <div class="h-48 image-placeholder">
+                                <img src="src/qingshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">望舌形：老与嫩</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold text-stone-800 mb-2">老舌 (实证)</h3>
+                            <p class="mb-3 text-stone-600 text-sm">舌质坚敛苍老，纹理粗糙。代表体内有<strong
+                                    class="text-stone-800">实邪</strong>，但正气尚存。</p>
+                            <div class="h-48 image-placeholder">
+                                <img src="src/laoshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-rose-500 mb-2">嫩舌 (虚证)</h3>
+                            <p class="mb-3 text-stone-600 text-sm">舌质浮胖娇嫩，纹理细腻。代表<strong
+                                    class="text-rose-500">气血不足</strong>或<strong class="text-rose-500">阳虚水停</strong>。</p>
+                            <div class="h-48 image-placeholder">
+                                <img src="src/nenshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col md:flex-row items-center justify-center p-8 md:p-12 gap-8">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">望舌形：瘦薄舌</h2>
+                        <p class="text-xl text-stone-700 mb-4">核心病机：<strong class="text-red-700">气血阴液不足</strong>，舌失濡养。
+                        </p>
+                        <ul class="text-left text-lg text-stone-600 list-disc list-inside space-y-2">
+                            <li><strong class="text-amber-700">淡白瘦薄：</strong>属于气血两虚证。</li>
+                            <li><strong class="text-amber-700">红绛干燥瘦薄：</strong>属于阴虚火旺证。</li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2 h-full">
+                        <div class="image-placeholder">
+                            <img src="src/shouboshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">望舌形：胖大与齿痕</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-700 mb-2">胖大舌</h3>
+                            <p class="mb-3 text-stone-600 text-sm">因津液输布障碍，水湿痰饮停滞于体内所致。</p>
+                            <div class="h-48 image-placeholder flex items-center justify-center gap-4">
+                                <img src="src/pangdashe1.png" alt="舌的主要功能" class="w-1/2 h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/pangdashe2.png" alt="舌的主要功能" class="w-1/2 h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-blue-700 mb-2">齿痕舌</h3>
+                            <p class="mb-3 text-stone-600 text-sm">舌体胖大受牙齿挤压所致，多属于脾虚、湿停证。</p>
+                            <div class="h-48 image-placeholder">
+                                <img src="src/chihenshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col md:flex-row items-center justify-center p-8 md:p-12 gap-8">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">望舌形：裂纹舌</h2>
+                        <p class="text-lg text-stone-700 mb-4">病理性裂纹多由精血或脾气亏虚导致。</p>
+                        <ul class="text-left text-lg text-stone-600 list-disc list-inside space-y-2">
+                            <li><strong class="text-amber-700">精血亏虚 (全舌裂):</strong> 可见腰膝酸软、健忘、脱发。</li>
+                            <li><strong class="text-amber-700">脾气亏虚 (舌中裂):</strong> 可见饭后易困、精力不足。</li>
+                        </ul>
+                    </div>
+                    <div class="w-full md:w-1/2 h-full">
+                        <div class="image-placeholder flex items-center justify-center">
+                            <img src="src/liewenshe1.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            <img src="src/liewenshe2.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8 text-center">望舌态 (动态观察)</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                        <div class="highlight-box p-4 rounded-lg">
+                            <div class="text-3xl text-amber-500 mb-2"><i class="fas fa-ice-cream"></i></div>
+                            <h3 class="font-semibold text-stone-700">强硬舌</h3>
+                            <p class="text-xs text-stone-500 mt-1">舌体板硬不灵。主实热、风痰。</p>
+                        </div>
+                        <div class="highlight-box p-4 rounded-lg">
+                            <div class="text-3xl text-amber-500 mb-2"><i class="fas fa-feather-alt"></i></div>
+                            <h3 class="font-semibold text-stone-700">痿软舌</h3>
+                            <p class="text-xs text-stone-500 mt-1">舌体软弱无力。主气血阴亏。</p>
+                        </div>
+                        <div class="highlight-box p-4 rounded-lg bg-red-100/50">
+                            <div class="text-3xl text-red-500 mb-2"><i class="fas fa-wind"></i></div>
+                            <h3 class="font-semibold text-red-700">颤动舌</h3>
+                            <p class="text-xs text-red-500 mt-1">舌体不自主抖动。为动风之兆。</p>
+                        </div>
+                        <div class="highlight-box p-4 rounded-lg bg-red-100/50">
+                            <div class="text-3xl text-red-500 mb-2"><i class="fas fa-directions"></i></div>
+                            <h3 class="font-semibold text-red-700">歪斜舌</h3>
+                            <p class="text-xs text-red-500 mt-1">伸舌偏向一侧。中风或中风先兆。</p>
+                        </div>
+                        <div class="highlight-box p-4 rounded-lg">
+                            <div class="text-3xl text-amber-500 mb-2"><i class="fas fa-tongue"></i></div>
+                            <h3 class="font-semibold text-stone-700">吐弄舌</h3>
+                            <p class="text-xs text-stone-500 mt-1">舌伸口外不缩。提示心脾有热。</p>
+                        </div>
+                        <div class="highlight-box p-4 rounded-lg">
+                            <div class="text-3xl text-amber-500 mb-2"><i class="fas fa-compress-arrows-alt"></i></div>
+                            <h3 class="font-semibold text-stone-700">短缩舌</h3>
+                            <p class="text-xs text-stone-500 mt-1">舌体卷缩不伸。病情危重征象。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-full max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">四、望舌苔</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-semibold text-stone-700">1. 薄白苔</h3>
+                            <p class="text-stone-500 text-sm">正常人或表证、寒证。</p>
+                            <div class="h-28 image-placeholder">
+                                <img src="src/bobaitai.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-semibold text-yellow-600">2. 黄苔</h3>
+                            <p class="text-stone-500 text-sm">热症的典型舌象，黄腻为湿热。</p>
+                            <div class="h-28 image-placeholder">
+                                <img src="src/huangtai.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-semibold text-gray-700">3. 剥落苔</h3>
+                            <p class="text-stone-500 text-sm">阴血亏虚的表现。</p>
+                            <div class="h-28 image-placeholder flex items-center justify-center">
+                                <img src="src/boluotai.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/boluotai2.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h3 class="text-xl font-semibold text-black">4. 黑苔</h3>
+                            <p class="text-stone-500 text-sm">体内炎症或息肉日久不愈，需警惕。</p>
+                            <div class="h-28 image-placeholder flex items-center justify-center">
+                                <img src="src/heitai1.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/heitai2.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col md:flex-row items-center justify-center p-8 md:p-12 gap-8">
+                    <div class="w-full md:w-1/2">
+                        <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-8">舌下脉络</h2>
+                        <p class="text-lg text-stone-600">反映体内<strong class="text-purple-700">血液运行</strong>状况，是观察<strong
+                                class="text-purple-700">血瘀</strong>的重要指标。</p>
+                        <p class="mt-4 text-base text-stone-500">
+                            舌下脉络青紫、粗大、迂曲，提示血瘀严重，可能出现腰膝疼痛、肢体麻木、女性子宫肌瘤、男性前列腺炎，尤其注意心脑方面疾病。</p>
+                    </div>
+                    <div class="w-full md:w-1/2 h-full">
+                        <div class="image-placeholder">
+                            <img src="src/shexiamailuo.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-12">舌诊的正确方法</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div class="highlight-box p-6 rounded-lg">
+                            <div class="flex items-center mb-4">
+                                <span class="text-5xl font-bold text-amber-400 mr-4">1</span>
+                                <h3 class="text-2xl font-semibold text-stone-700">姿态与环境</h3>
+                            </div>
+                            <p class="text-lg text-stone-600">自然光下，舌体放松平展，充分暴露。</p>
+                        </div>
+                        <div class="highlight-box p-6 rounded-lg">
+                            <div class="flex items-center mb-4">
+                                <span class="text-5xl font-bold text-amber-400 mr-4">2</span>
+                                <h3 class="text-2xl font-semibold text-stone-700">观察顺序</h3>
+                            </div>
+                            <p class="text-lg text-stone-600">先舌质(血分)，后舌苔(气分)。依次为：舌尖 → 舌中/舌边 → 舌根 → 舌下。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center p-8 md:p-12">
+                    <div class="text-center">
+                        <i class="fas fa-paint-brush text-6xl text-amber-500 mb-6"></i>
+                        <h2 class="text-3xl md:text-5xl font-bold text-amber-600 mb-4">注意辨别染苔</h2>
+                        <p class="text-lg text-stone-600 max-w-3xl mx-auto">诊察前需排除食物或药物对舌苔颜色的影响，以免造成误判。</p>
+                    </div>
+                    <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                        <div class="p-4 rounded-lg border border-stone-200">
+                            <h3 class="text-lg font-bold text-stone-700">白苔</h3>
+                            <p class="text-sm">牛奶/豆浆</p>
+                        </div>
+                        <div class="p-4 rounded-lg border border-stone-200">
+                            <h3 class="text-lg font-bold text-yellow-600">黄苔</h3>
+                            <p class="text-sm">橘子/咖喱</p>
+                        </div>
+                        <div class="p-4 rounded-lg border border-stone-200">
+                            <h3 class="text-lg font-bold text-black">黑苔</h3>
+                            <p class="text-sm">巧克力/乌梅</p>
+                        </div>
+                        <div class="p-4 rounded-lg border border-stone-200">
+                            <h3 class="text-lg font-bold text-red-600">红苔</h3>
+                            <p class="text-sm">刚吃完饭</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide w-full flex-shrink-0 h-full flex items-center justify-center p-4">
+                <div
+                    class="slide-content w-full h-5/6 max-w-6xl bg-white/50 border border-stone-200 rounded-2xl flex flex-col justify-center items-center text-center p-8">
+                    <div class="w-20 h-20 mb-8 flex items-center justify-center">
+                        <i class="fas fa-book-open text-6xl text-amber-500"></i>
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-bold text-stone-800">温故而知新</h2>
+                    <p class="mt-8 text-xl md:text-2xl text-stone-600 max-w-3xl leading-relaxed">
+                        通过观察<strong class="highlight-text">舌质</strong>（颜色、形态、舌态）与<strong
+                            class="highlight-text">舌苔</strong>，结合<strong
+                            class="highlight-text">舌下脉络</strong>，我们可以系统地了解脏腑气血的盛衰与病邪的性质。
+                    </p>
+                    <p class="mt-6 text-xl md:text-2xl text-stone-500">舌诊是中医望诊的重要部分，是窥探身体内在世界的明镜</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button id="prev-btn"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-amber-500 transition-colors duration-300 z-10">
+            <i class="fas fa-chevron-circle-left text-5xl"></i>
+        </button>
+        <button id="next-btn"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-amber-500 transition-colors duration-300 z-10">
+            <i class="fas fa-chevron-circle-right text-5xl"></i>
+        </button>
+
+        <div id="pagination"
+            class="absolute bottom-6 left-1/2 -translate-x-1/2 text-stone-500 text-sm font-medium bg-white/50 px-4 py-2 rounded-full shadow-md">
+            1 / 22
+        </div>
+
+        <div id="author" class="absolute bottom-6 left-4 md:left-36 text-sm text-zinc-400 font-mono z-50">
+            幸福闲者读书会
+        </div>
+
+        <div id="author" class="absolute bottom-6 right-4 md:right-36 text-sm text-zinc-400 font-mono z-50">
+            马艺甄老师
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const track = document.getElementById('slider-track');
+            const slides = Array.from(track.children);
+            const nextButton = document.getElementById('next-btn');
+            const prevButton = document.getElementById('prev-btn');
+            const pagination = document.getElementById('pagination');
+            const slideCount = slides.length;
+            let currentIndex = 0;
+
+            // 初始化：为第一页添加 active-slide 类
+            if (slides.length > 0) {
+                slides[currentIndex].classList.add('active-slide');
+            }
+
+            const goToSlide = (index) => {
+                if (index === currentIndex) return;
+
+                // 移除旧的 active-slide 类
+                slides[currentIndex].classList.remove('active-slide');
+
+                // 更新索引
+                currentIndex = index;
+
+                // 为新的当前页添加 active-slide 类，触发CSS动效
+                slides[currentIndex].classList.add('active-slide');
+
+                updatePagination();
+            };
+
+            const updatePagination = () => {
+                pagination.textContent = `${currentIndex + 1} / ${slideCount}`;
+            };
+
+            nextButton.addEventListener('click', () => {
+                // 循环逻辑：(当前页 + 1) 取模总页数
+                goToSlide((currentIndex + 1) % slideCount);
+            });
+
+            prevButton.addEventListener('click', () => {
+                // 循环逻辑：(当前页 - 1 + 总页数) 取模总页数，防止负数
+                goToSlide((currentIndex - 1 + slideCount) % slideCount);
+            });
+
+            // Swipe functionality for mobile
+            let touchstartX = 0;
+            let touchendX = 0;
+            const sliderContainer = document.getElementById('slider-container');
+
+            sliderContainer.addEventListener('touchstart', e => {
+                touchstartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            sliderContainer.addEventListener('touchend', e => {
+                touchendX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                // Swipe left (next slide)
+                if (touchendX < touchstartX && Math.abs(touchstartX - touchendX) > 50) {
+                    goToSlide((currentIndex + 1) % slideCount);
+                }
+                // Swipe right (previous slide)
+                if (touchendX > touchstartX && Math.abs(touchstartX - touchendX) > 50) {
+                    goToSlide((currentIndex - 1 + slideCount) % slideCount);
+                }
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight') {
+                    goToSlide((currentIndex + 1) % slideCount);
+                } else if (e.key === 'ArrowLeft') {
+                    goToSlide((currentIndex - 1 + slideCount) % slideCount);
+                }
+            });
+
+            updatePagination(); // 初始化页码
+        });
+    </script>
+</body>
+
+</html>

@@ -647,42 +647,80 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // --- 原有元素获取 ---
             const slider = document.getElementById('slider');
             const slides = document.querySelectorAll('.slide');
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             const pageCounter = document.getElementById('page-counter');
+            const presentationContainer = document.getElementById('presentation-container'); // 获取最外层容器
 
+            // --- 原有状态变量 ---
             let currentSlide = 0;
             const totalSlides = slides.length;
 
+            // --- (新增) 触控滑动所需变量 ---
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            /**
+             * 核心功能函数：跳转到指定页面
+             * 这个函数无需改动，它已经包含了循环逻辑
+             */
             function goToSlide(slideIndex) {
-                // Looping logic
+                // 循环逻辑: (索引 + 总数) % 总数，确保索引在 [0, totalSlides - 1] 范围内
                 currentSlide = (slideIndex + totalSlides) % totalSlides;
 
                 slider.style.transform = `translateX(-${currentSlide * 100 / totalSlides}%)`;
                 pageCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
             }
 
-            // Button event listeners
-            nextBtn.addEventListener('click', () => {
-                goToSlide(currentSlide + 1);
-            });
+            /**
+             * (新增) 处理滑动操作的函数
+             */
+            function handleSwipe() {
+                const swipeThreshold = 50; // 设置一个滑动阈值，防止误触
+                const deltaX = touchEndX - touchStartX;
 
-            prevBtn.addEventListener('click', () => {
-                goToSlide(currentSlide - 1);
-            });
+                if (Math.abs(deltaX) < swipeThreshold) {
+                    return; // 滑动距离太短，不视为一次有效滑动
+                }
 
-            // Keyboard navigation
-            document.addEventListener('keydown', (event) => {
-                if (event.key === 'ArrowRight') {
+                if (deltaX > 0) {
+                    // 手指从左向右滑，切换到上一页
+                    goToSlide(currentSlide - 1);
+                } else {
+                    // 手指从右向左滑，切换到下一页
                     goToSlide(currentSlide + 1);
-                } else if (event.key === 'ArrowLeft') {
+                }
+            }
+
+            // --- 原有事件监听（按钮和键盘） ---
+            nextBtn.addEventListener('click', () => goToSlide(currentSlide + 1));
+            prevBtn.addEventListener('click', () => goToSlide(currentSlide - 1));
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                    goToSlide(currentSlide + 1);
+                } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
                     goToSlide(currentSlide - 1);
                 }
             });
 
-            // Initial setup
+            // --- (新增) 触控滑动手势的事件监听 ---
+            presentationContainer.addEventListener('touchstart', (event) => {
+                // 记录滑动开始时的X坐标
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            presentationContainer.addEventListener('touchend', (event) => {
+                // 记录滑动结束时的X坐标
+                touchEndX = event.changedTouches[0].screenX;
+                handleSwipe(); // 处理滑动
+            }, { passive: true });
+
+
+            // --- 初始化页面 ---
             goToSlide(0);
         });
     </script>

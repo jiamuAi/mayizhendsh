@@ -29,7 +29,7 @@
         .image-placeholder {
             width: 100%;
             height: 100%;
-            min-height: 200px;
+            min-height: 150px;
             background-color: rgba(217, 212, 204, 0.3);
             border: 2px dashed rgba(168, 162, 158, 0.4);
             border-radius: 0.75rem;
@@ -38,6 +38,13 @@
             justify-content: center;
             /* flex-direction: column; */
             color: #a8a29e;
+        }
+
+        .slide-content {
+            /* 核心改动：当内容垂直超出时，自动显示滚动条 */
+            overflow-y: auto;
+            /* 在移动设备上提供更流畅的滚动体验 */
+            -webkit-overflow-scrolling: touch;
         }
 
         /* --- 新增与修改的动效样式 --- */
@@ -310,7 +317,8 @@
                             <p class="mb-3 text-stone-600 text-sm">多见于体内<strong
                                     class="text-purple-700">血瘀</strong>。常伴有各处疼痛、麻木、发凉等问题。</p>
                             <div class="h-48 image-placeholder">
-                                <img src="src/zishe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/zishe.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                         <div>
@@ -318,7 +326,8 @@
                             <p class="mb-3 text-stone-600 text-sm">多见于<strong class="text-cyan-700">肝病</strong>与<strong
                                     class="text-cyan-700">寒症</strong>。常伴有头痛头晕、痛经等问题。</p>
                             <div class="h-48 image-placeholder">
-                                <img src="src/qingshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/qingshe.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                     </div>
@@ -335,7 +344,8 @@
                             <p class="mb-3 text-stone-600 text-sm">舌质坚敛苍老，纹理粗糙。代表体内有<strong
                                     class="text-stone-800">实邪</strong>，但正气尚存。</p>
                             <div class="h-48 image-placeholder">
-                                <img src="src/laoshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/laoshe.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                         <div>
@@ -343,7 +353,8 @@
                             <p class="mb-3 text-stone-600 text-sm">舌质浮胖娇嫩，纹理细腻。代表<strong
                                     class="text-rose-500">气血不足</strong>或<strong class="text-rose-500">阳虚水停</strong>。</p>
                             <div class="h-48 image-placeholder">
-                                <img src="src/nenshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/nenshe.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                     </div>
@@ -364,7 +375,8 @@
                     </div>
                     <div class="w-full md:w-1/2 h-full">
                         <div class="image-placeholder">
-                            <img src="src/shouboshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            <img src="src/shouboshe.png" alt="舌的主要功能"
+                                class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                         </div>
                     </div>
                 </div>
@@ -379,15 +391,18 @@
                             <h3 class="text-xl font-semibold text-blue-700 mb-2">胖大舌</h3>
                             <p class="mb-3 text-stone-600 text-sm">因津液输布障碍，水湿痰饮停滞于体内所致。</p>
                             <div class="h-48 image-placeholder flex items-center justify-center gap-4">
-                                <img src="src/pangdashe1.png" alt="舌的主要功能" class="w-1/2 h-full object-contain rounded-lg bg-stone-200/50 p-2">
-                                <img src="src/pangdashe2.png" alt="舌的主要功能" class="w-1/2 h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/pangdashe1.png" alt="舌的主要功能"
+                                    class="w-1/2 h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/pangdashe2.png" alt="舌的主要功能"
+                                    class="w-1/2 h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                         <div>
                             <h3 class="text-xl font-semibold text-blue-700 mb-2">齿痕舌</h3>
                             <p class="mb-3 text-stone-600 text-sm">舌体胖大受牙齿挤压所致，多属于脾虚、湿停证。</p>
                             <div class="h-48 image-placeholder">
-                                <img src="src/chihenshe.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/chihenshe.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                     </div>
@@ -407,8 +422,10 @@
                     </div>
                     <div class="w-full md:w-1/2 h-full">
                         <div class="image-placeholder flex items-center justify-center">
-                            <img src="src/liewenshe1.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
-                            <img src="src/liewenshe2.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            <img src="src/liewenshe1.png" alt="舌的主要功能"
+                                class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            <img src="src/liewenshe2.png" alt="舌的主要功能"
+                                class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                         </div>
                     </div>
                 </div>
@@ -462,30 +479,36 @@
                             <h3 class="text-xl font-semibold text-stone-700">1. 薄白苔</h3>
                             <p class="text-stone-500 text-sm">正常人或表证、寒证。</p>
                             <div class="h-28 image-placeholder">
-                                <img src="src/bobaitai.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/bobaitai.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                         <div class="space-y-2">
                             <h3 class="text-xl font-semibold text-yellow-600">2. 黄苔</h3>
                             <p class="text-stone-500 text-sm">热症的典型舌象，黄腻为湿热。</p>
                             <div class="h-28 image-placeholder">
-                                <img src="src/huangtai.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/huangtai.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                         <div class="space-y-2">
                             <h3 class="text-xl font-semibold text-gray-700">3. 剥落苔</h3>
                             <p class="text-stone-500 text-sm">阴血亏虚的表现。</p>
                             <div class="h-28 image-placeholder flex items-center justify-center">
-                                <img src="src/boluotai.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
-                                <img src="src/boluotai2.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/boluotai.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/boluotai2.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                         <div class="space-y-2">
                             <h3 class="text-xl font-semibold text-black">4. 黑苔</h3>
                             <p class="text-stone-500 text-sm">体内炎症或息肉日久不愈，需警惕。</p>
                             <div class="h-28 image-placeholder flex items-center justify-center">
-                                <img src="src/heitai1.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
-                                <img src="src/heitai2.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/heitai1.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                                <img src="src/heitai2.png" alt="舌的主要功能"
+                                    class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                             </div>
                         </div>
                     </div>
@@ -504,7 +527,8 @@
                     </div>
                     <div class="w-full md:w-1/2 h-full">
                         <div class="image-placeholder">
-                            <img src="src/shexiamailuo.png" alt="舌的主要功能" class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                            <img src="src/shexiamailuo.png" alt="舌的主要功能"
+                                class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
                         </div>
                     </div>
                 </div>

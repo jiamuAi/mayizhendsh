@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6黄帝内经中的男性生命周期</title>
+
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        /* --- 主题与基础样式 --- */
+        body {
+            background-color: #111827;
+            /* 深邃的藏青/玄黑色 */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            overflow: hidden;
+            /* 防止页面滚动 */
+        }
+
+        #presentation-container {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #slider {
+            display: flex;
+            width: 2500%;
+            /* 25 slides * 100% */
+            height: 100%;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            /* 平滑翻页动效 */
+        }
+
+        .slide {
+            width: 4%;
+            /* 100% / 25 slides */
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6vw 8vw;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* 每一页的边框与内部背景 */
+        .slide-content {
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(245, 158, 11, 0.2);
+            /* 辰砂金边框，略带透明 */
+            background-color: #1f2937;
+            /* 比body略浅的背景色 */
+            border-radius: 1.5rem;
+            padding: 4vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #d1d5db;
+            /* 柔和的灰白色文字 */
+        }
+
+        /* --- 高亮与排版 --- */
+        .highlight-text {
+            background: linear-gradient(135deg, #fBBF24, #F59E0B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .highlight-border {
+            border-color: #F59E0B;
+        }
+
+        .huge-char {
+            font-size: 20vw;
+            line-height: 1;
+            font-weight: 800;
+            font-family: 'KaiTi', 'STKaiti', serif;
+        }
+
+        @media (min-width: 768px) {
+            .huge-char {
+                font-size: 12vw;
+            }
+        }
+
+        /* --- 导航与页码 --- */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #F59E0B;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .nav-arrow:hover {
+            background-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        #prev-btn {
+            left: 2vw;
+        }
+
+        #next-btn {
+            right: 2vw;
+        }
+
+        #page-counter {
+            position: absolute;
+            bottom: 3vh;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            color: #9ca3af;
+            padding: 4px 16px;
+            border-radius: 999px;
+            font-size: 14px;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            z-index: 10;
+        }
+
+        #author-left {
+            position: absolute;
+            bottom: 4vh;
+            left: 8vw;
+        }
+
+        #author-right {
+            position: absolute;
+            bottom: 4vh;
+            right: 8vw;
+        }
+
+        /* 简单的SVG线条图标样式 */
+        .line-art {
+            stroke: #F59E0B;
+            stroke-width: 1.5;
+            fill: none;
+            max-width: 100%;
+            height: auto;
+            transition: all 0.5s ease;
+        }
+
+        .highlight-icon {
+            color: #F59E0B;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="presentation-container">
+        <div id="slider">
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-3xl md:text-4xl font-light text-gray-400 mb-4">第6节 男八生命周期</h2>
+                    <h1 class="text-6xl md:text-8xl font-extrabold highlight-text mb-6">《黄帝内经》：了解男性</h1>
+                    <p class="text-lg md:text-xl text-gray-300">男性的生长、强盛与衰老，遵循着以<span
+                            class="highlight-text font-semibold">“八”</span>为单位的生命周期。</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <h1 class="huge-char highlight-text">八</h1>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">第一阶段：一八(8岁)</h2>
+                        <h3 class="text-2xl md:text-3xl highlight-text mb-6">肾气实，发长齿更</h3>
+                        <ul class="space-y-4 text-lg text-gray-300 list-inside">
+                            <li><i class="fas fa-child text-amber-400 mr-2"></i>肾气开始充实，生发之机显现。</li>
+                            <li><i class="fas fa-child text-amber-400 mr-2"></i>头发浓密，乳牙更换为恒牙。</li>
+                            <li><i class="fas fa-exclamation-circle text-amber-400 mr-2"></i>若8岁后依然尿床，则为肾虚，需重点关注。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">儿童补肾要法 <span
+                            class="text-2xl font-light">(男女通用)</span></h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                        <div class="border border-gray-700 p-6 rounded-lg bg-gray-800/50">
+                            <h3 class="text-2xl highlight-text font-semibold mb-3">方法一：推肾经</h3>
+                            <p class="text-gray-400"><i class="fas fa-hand-point-up mr-2"></i><span
+                                    class="font-semibold">位置：</span>小指掌面正中线。</p>
+                            <p class="text-gray-400"><i class="fas fa-sync-alt mr-2"></i><span
+                                    class="font-semibold">手法：</span>从指尖向指根轻推100次。</p>
+                        </div>
+                        <div class="border border-gray-700 p-6 rounded-lg bg-gray-800/50">
+                            <h3 class="text-2xl highlight-text font-semibold mb-3">方法二：捏脊</h3>
+                            <p class="text-gray-400"><i class="fas fa-arrows-alt-v mr-2"></i><span
+                                    class="font-semibold">位置：</span>从尾椎骨沿脊柱向上。</p>
+                            <p class="text-gray-400"><i class="fas fa-hand-paper mr-2"></i><span
+                                    class="font-semibold">手法：</span>三捏一提，睡前数遍，可提升阳气，增强体质</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <svg viewBox="0 0 100 100" class="w-48 h-48 md:w-64 md:h-64">
+                            <path
+                                d="M65,95 C40,95 30,80 30,60 L30,45 C30,30 35,20 50,20 C65,20 70,30 70,45 L70,60 C70,80 60,95 35,95"
+                                fill="#4a5568" />
+                            <path
+                                d="M30,60 L20,60 C15,60 10,55 10,50 L10,35 C10,20 20,10 35,10 C50,10 60,20 60,35 L60,50 C60,55 55,60 50,60 L40,60"
+                                fill="#374151" />
+                            <circle cx="20" cy="65" r="5" class="line-art"
+                                style="fill: #F59E0B; stroke: none; filter: drop-shadow(0 0 10px #F59E0B);">
+                                <animate attributeName="r" values="5;7;5" dur="1.5s" repeatCount="indefinite" />
+                            </circle>
+                            <text x="20" y="80" font-size="8" fill="#F59E0B" text-anchor="middle">胆小点</text>
+                        </svg>
+                    </div>
+                    <div class="flex-1 text-left max-w-md">
+                        <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-4">实用技巧：“胆小点”</h2>
+                        <p class="text-lg text-gray-300 mb-4">适用场景：孩子胆小、易受惊吓。</p>
+                        <p class="text-lg text-gray-300 mb-4">定位：小指的指根处。</p>
+                        <p class="text-lg text-gray-300">操作：用左手手指对此处进行适中按压，可安神定志。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">先天之指：<span class="highlight-text">从小指看先天肾气</span>
+                    </h2>
+                    <div class="flex flex-col md:flex-row items-center gap-8 max-w-4xl">
+                        <div class="flex-1">
+                            <svg viewBox="0 0 150 100" class="w-64 h-auto">
+                                <path
+                                    d="M 10 90 C 10 70, 20 70, 20 50 L 20 20 C 20 10, 25 5, 30 5 C 35 5, 40 10, 40 20 L 40 50 C 40 70, 50 70, 50 90 Z"
+                                    fill="#4a5568" />
+                                <path
+                                    d="M 55 90 C 55 70, 65 70, 65 40 L 65 15 C 65 5, 70 0, 75 0 C 80 0, 85 5, 85 15 L 85 40 C 85 70, 95 70, 95 90 Z"
+                                    fill="#374151" />
+                                <path
+                                    d="M 100 90 C 100 75, 110 75, 110 50 L 110 30 C 110 20, 115 15, 120 15 C 125 15, 130 20, 130 30 L 130 50 C 130 75, 140 75, 140 90 Z"
+                                    fill="#4a5568" />
+                                <line x1="65" y1="20" x2="85" y2="20" class="line-art" stroke-dasharray="2 2" />
+                                <text x="90" y="22" font-size="8" fill="#F59E0B">三关</text>
+                            </svg>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <p class="text-lg text-gray-300 mb-4">观察小指长度是否超过无名指最上方的指节横线（<span
+                                    class="font-semibold highlight-text">过三关</span>）。</p>
+                            <p class="text-lg text-gray-300">寓意先天肾气充足，生命力强，是古人对生理状态的洞察。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content flex-col md:flex-row-reverse gap-8 items-center">
+                    <div class="flex-1">
+                        <h1 class="text-[15vw] md:text-[10vw] font-extrabold highlight-text leading-none">16</h1>
+                    </div>
+                    <div class="flex-1 text-right">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">第二阶段：二八(16岁)</h2>
+                        <h3 class="text-2xl md:text-3xl highlight-text mb-6">肾气盛，天癸至</h3>
+                        <ul class="space-y-3 text-lg text-gray-300 list-inside text-right">
+                            <li>出现遗精，具备生育能力 <i class="fas fa-venus-mars highlight-icon ml-2"></i></li>
+                            <li>此为“弱冠之年”，身体仍在发育 <i class="fas fa-user-graduate highlight-icon ml-2"></i></li>
+                            <li>过早性活动会损伤长远健康 <i class="fas fa-heart-broken highlight-icon ml-2"></i></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <i class="fas fa-shield-alt text-6xl text-amber-500 mb-6"></i>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">16岁的关键提醒</h2>
+                    <h3 class="text-3xl md:text-4xl font-semibold highlight-text mb-8">辨识“无欲则刚”</h3>
+                    <div class="text-lg max-w-3xl text-gray-300 space-y-3">
+                        <p>晨勃是自然生理现象，应正确引导，不可视为玩乐。</p>
+                        <p>手淫（手淫）消耗的是宝贵的<span class="font-semibold">肾精</span>，非简单蛋白质，长期会致形同枯槁。</p>
+                        <p>应通过培养健康爱好转移注意力。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">第三、四阶段：<span class="highlight-text">男性的生理巅峰</span>
+                    </h2>
+                    <div class="flex flex-col md:flex-row gap-8 w-full max-w-5xl">
+                        <div class="flex-1 p-6 border border-gray-700 rounded-xl">
+                            <p class="text-5xl font-bold highlight-text mb-3">24<span
+                                    class="text-2xl text-gray-400">岁</span></p>
+                            <h3 class="text-2xl font-semibold mb-2">肾气平均，筋骨强劲</h3>
+                            <p class="text-gray-400">身体发育均衡，肩膀变宽，是最帅气的年华。</p>
+                        </div>
+                        <div class="flex-1 p-6 border-2 highlight-border rounded-xl shadow-lg shadow-amber-500/10">
+                            <p class="text-5xl font-bold highlight-text mb-3">32<span
+                                    class="text-2xl text-gray-400">岁</span></p>
+                            <h3 class="text-2xl font-semibold mb-2">筋骨隆盛，肌肉满壮</h3>
+                            <p class="text-gray-400">精神、肌肉、骨骼达至巅峰，是婚育理想期。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">巅峰期的养护核心：<span class="highlight-text">守住阳气</span>
+                    </h2>
+                    <div class="flex flex-col md:flex-row gap-8 text-2xl max-w-4xl text-left">
+                        <div class="flex-1">
+                            <p class="mb-4"><i class="fas fa-snowflake text-blue-400 mr-3"></i><span
+                                    class="font-bold">大忌一：寒凉</span><br><span
+                                    class="text-lg text-gray-400">寒气易侵袭后背膀胱经，导致背痛、鼻炎。</span></p>
+                        </div>
+                        <div class="flex-1">
+                            <p class="mb-4"><i class="fas fa-moon text-indigo-400 mr-3"></i><span
+                                    class="font-bold">大忌二：熬夜</span><br><span
+                                    class="text-lg text-gray-400">熬夜直接消耗阳气与肾气。</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <h1 class="text-[15vw] md:text-[10vw] font-extrabold highlight-text leading-none opacity-50">40
+                        </h1>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">第五阶段：五八(40岁)</h2>
+                        <h3 class="text-2xl md:text-3xl highlight-text mb-6">肾气衰，发堕齿槁</h3>
+                        <p class="text-lg text-gray-300">男性衰老的首个重要节点，肾气开始衰退。外在表现为脱发（发堕）和牙齿松动（齿槁）。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content flex-col md:flex-row-reverse gap-8 items-center">
+                    <div class="flex-1">
+                        <h1 class="text-[15vw] md:text-[10vw] font-extrabold highlight-text leading-none opacity-40">48
+                        </h1>
+                    </div>
+                    <div class="flex-1 text-right">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">第六阶段：六八(48岁)</h2>
+                        <h3 class="text-2xl md:text-3xl highlight-text mb-6">阳气皆衰于上</h3>
+                        <p class="text-lg text-gray-300">全身阳气在上部衰败，表现为面部皱纹、两鬓斑白、视力老花。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <h1 class="text-[15vw] md:text-[10vw] font-extrabold highlight-text leading-none opacity-30">56
+                        </h1>
+                    </div>
+                    <div class="flex-1 text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">第七阶段：七八(56岁)</h2>
+                        <h3 class="text-2xl md:text-3xl highlight-text mb-6">肝气衰，筋不能动</h3>
+                        <p class="text-lg text-gray-300">郁结直伤于肝，身体柔韧性下降，勃起功能显著衰退。这是身体的自保机制，不可强行透支。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content flex-col md:flex-row-reverse gap-8 items-center">
+                    <div class="flex-1">
+                        <h1 class="text-[15vw] md:text-[10vw] font-extrabold highlight-text leading-none opacity-20">64
+                        </h1>
+                    </div>
+                    <div class="flex-1 text-right">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4">第八阶段：八八(64岁)</h2>
+                        <h3 class="text-2xl md:text-3xl highlight-text mb-6">天癸竭，形体皆极</h3>
+                        <p class="text-lg text-gray-300">男性更年期。天癸枯竭，肾功能全面衰竭，丧失生育力，弯腰驼背，五脏皆衰。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">男女晚年趋势对比</h2>
+                    <div class="flex flex-col md:flex-row gap-12 w-full max-w-4xl">
+                        <div class="flex-1 flex flex-col items-center">
+                            <svg viewBox="0 0 100 100" class="w-24 h-24 mb-4">
+                                <polygon points="10,10 90,10 50,90" class="line-art"
+                                    style="fill: rgba(245, 158, 11, 0.1);" />
+                            </svg>
+                            <h3 class="text-2xl font-semibold highlight-text">男性：单向衰败</h3>
+                            <p class="text-gray-400">如漏斗，元气外泄，无法回春。</p>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center">
+                            <svg viewBox="0 0 100 100" class="w-24 h-24 mb-4">
+                                <polygon points="10,10 90,10 50,50" class="line-art"
+                                    style="fill: rgba(245, 158, 11, 0.1);" />
+                                <polygon points="50,50 10,90 90,90" class="line-art"
+                                    style="fill: rgba(245, 158, 11, 0.1);" />
+                            </svg>
+                            <h3 class="text-2xl font-semibold highlight-text">女性：可有第二春</h3>
+                            <p class="text-gray-400">如沙漏，保养得当可迎生机。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">男性养生：<span class="highlight-text">三大核心禁忌</span></h2>
+                    <div class="space-y-6 max-w-2xl w-full">
+                        <div class="p-4 border border-gray-700 rounded-lg text-xl flex items-center gap-4"><i
+                                class="fas fa-utensils text-2xl text-amber-500"></i><span><span
+                                    class="font-bold">饮食不节：</span>戒寒凉、暴食、宵夜。</span></div>
+                        <div class="p-4 border border-gray-700 rounded-lg text-xl flex items-center gap-4"><i
+                                class="fas fa-brain text-2xl text-amber-500"></i><span><span
+                                    class="font-bold">压力内耗：</span>直伤肝肾，需学会疏解。</span></div>
+                        <div class="p-4 border border-gray-700 rounded-lg text-xl flex items-center gap-4"><i
+                                class="fas fa-bed text-2xl text-amber-500"></i><span><span
+                                    class="font-bold">根本消耗：</span>戒熬夜、戒房事过度。</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">养护方法(一)：<span class="highlight-text">养阳气，疏肝胆</span>
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+                        <div class="text-center">
+                            <i class="fas fa-sun text-6xl text-amber-400 mb-4"></i>
+                            <h3 class="text-2xl font-semibold">养阳气</h3>
+                            <p class="text-gray-400">多晒太阳，心情开朗</p>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-shoe-prints text-6xl text-amber-400 mb-4 transform -scale-x-100"></i>
+                            <h3 class="text-2xl font-semibold">疏肝胆</h3>
+                            <p class="text-gray-400">敲打大腿外侧(胆经)与小腿内侧(肝经)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">养护方法(二)：<span class="highlight-text">固肾气，护腰背</span>
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl text-center">
+                        <div class="p-4 bg-gray-800/50 rounded-lg">
+                            <h3 class="text-xl font-semibold text-amber-400">关键区域：八髎穴</h3>
+                            <p class="text-gray-400">常搓热、按揉、艾灸</p>
+                        </div>
+                        <div class="p-4 bg-gray-800/50 rounded-lg">
+                            <h3 class="text-xl font-semibold text-amber-400">关键穴位：肾俞/命门</h3>
+                            <p class="text-gray-400">手搓热后捂，或拳背搓揉</p>
+                        </div>
+                        <div class="p-4 bg-gray-800/50 rounded-lg">
+                            <h3 class="text-xl font-semibold text-amber-400">核心经络：膀胱经</h3>
+                            <p class="text-gray-400">模仿动物爬行，锻炼后背</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content flex-col md:flex-row gap-8 items-center">
+                    <div class="flex-1">
+                        <svg viewBox="0 0 100 100" class="w-48 h-48 md:w-64 md:h-64">
+                            <circle cx="50" cy="30" r="15" fill="#374151" stroke="#F59E0B" stroke-width="1.5" />
+                            <path d="M 50 45 Q 50 60, 60 70 L 40 70 Q 50 60, 50 45 Z" fill="#374151" stroke="#F59E0B"
+                                stroke-width="1.5" />
+                            <path d="M 30 90 L 20 60 L 80 60 L 70 90" fill="#4a5568" />
+                            <path d="M 20 60 L 0 50" stroke="#F59E0B" stroke-width="1.5" />
+                            <path d="M 80 60 L 100 50" stroke="#F59E0B" stroke-width="1.5" />
+                            <path d="M 50 30 A 20 20 0 0 1 70 20" stroke="#F59E0B" stroke-width="1.5"
+                                stroke-dasharray="3 3" fill="none" />
+                            <text x="75" y="20" font-size="8" fill="#F59E0B">后仰</text>
+                        </svg>
+                    </div>
+                    <div class="flex-1 text-left max-w-md">
+                        <h2 class="text-3xl md:text-4xl font-bold highlight-text mb-4">养护方法(三)：保养颈椎</h2>
+                        <p class="text-lg text-gray-300 mb-4">双手身后成"八"字伸直，头部尽力后仰，保持10秒，重复数组。</p>
+                        <p class="text-lg text-red-500 font-bold"><i class="fas fa-ban mr-2"></i>绝对禁止随意转动脖子发出“咔咔”声。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <i class="fas fa-fire text-6xl text-amber-400 mb-6"></i>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">养护方法(四)：<span class="highlight-text">温通腹部</span>
+                    </h2>
+                    <p class="text-lg text-gray-300 max-w-2xl">腹部的<span class="font-semibold">“关元穴”</span>、<span
+                            class="font-semibold">“气海穴”</span>及<span
+                            class="font-semibold">腹股沟</span>是全身气血生化的基础。睡前按揉拍打，上午艾灸，保持腹部温暖。</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">关于抽烟的<span class="highlight-text">TCM解读</span></h2>
+                    <div class="flex flex-col md:flex-row gap-8 max-w-4xl">
+                        <div class="flex-1 text-right border-r-2 border-amber-500/30 pr-8">
+                            <h3 class="text-2xl font-semibold mb-3">为何上瘾？</h3>
+                            <p class="text-gray-400">男性肝气郁结，烟草的辛香发散之性能暂时“疏肝解郁”，带来愉悦感。</p>
+                        </div>
+                        <div class="flex-1 text-left">
+                            <h3 class="text-2xl font-semibold mb-3">本质 & 替代</h3>
+                            <p class="text-gray-400">本质是“以毒攻毒”，最终伤肺。可用烤馒头片、生姜等辛香食物替代。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 highlight-text">男性养生方法 · 汇总</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left max-w-6xl w-full">
+                        <div class="p-6 bg-gray-800/50 rounded-xl">
+                            <h3 class="text-2xl font-bold text-amber-400 mb-3"><i class="fas fa-ban mr-2"></i>戒律篇</h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                                <li>戒寒凉、暴食、宵夜</li>
+                                <li>戒熬夜、房事过度</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 bg-gray-800/50 rounded-xl">
+                            <h3 class="text-2xl font-bold text-amber-400 mb-3"><i class="fas fa-running mr-2"></i>主动篇
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                                <li>晒太阳、敲胆经</li>
+                                <li>按揉八髎、肾俞、关元</li>
+                            </ul>
+                        </div>
+                        <div class="p-6 bg-gray-800/50 rounded-xl">
+                            <h3 class="text-2xl font-bold text-amber-400 mb-3"><i class="fas fa-smile-beam mr-2"></i>心态篇
+                            </h3>
+                            <ul class="list-disc list-inside text-gray-300 space-y-1">
+                                <li>保持开心，生发阳气</li>
+                                <li>学会释放压力，懂得放下</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <i class="fas fa-hands-helping text-6xl text-amber-400 mb-6"></i>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">实用技巧概念：<span class="highlight-text">丁丁保健操</span>
+                    </h2>
+                    <p class="text-lg text-gray-300 max-w-3xl">
+                        通过对生殖器周围穴位的特定按摩，疏通气血，可有效维持性功能，延缓衰老。是伴侣间的良性互动，也是从生理层面解决健康问题的方法。</p>
+                    <p class="text-sm mt-4 text-gray-500">(进阶话题，点到为止)</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8">核心思维：<span class="highlight-text">精子思维 vs
+                            卵子思维</span></h2>
+                    <div class="flex flex-col md:flex-row gap-8 max-w-4xl w-full">
+                        <div class="flex-1 text-center border border-gray-700 p-6 rounded-lg">
+                            <h3 class="text-2xl font-semibold mb-3">男性 · 精子思维</h3>
+                            <p class="text-gray-400">数量庞大，生物本能趋向于“广泛播种”。</p>
+                        </div>
+                        <div class="flex-1 text-center border border-gray-700 p-6 rounded-lg">
+                            <h3 class="text-2xl font-semibold mb-3">女性 · 卵子思维</h3>
+                            <p class="text-gray-400">稀有珍贵，生物本能趋向于“从一而终”。</p>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-gray-400 max-w-3xl">理解底层差异，有助于更理性看待两性行为模式。长久关系建立在超越本能的<span
+                            class="highlight-text font-semibold">相互价值交换</span>之上。</p>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 highlight-text">人生的智慧</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center max-w-6xl w-full">
+                        <div class="p-6">
+                            <i class="fas fa-recycle text-4xl text-amber-400 mb-3"></i>
+                            <h3 class="text-2xl font-semibold">顺天道</h3>
+                            <p class="text-gray-400">遵循自然规律，该动则动，该歇则歇。</p>
+                        </div>
+                        <div class="p-6">
+                            <i class="fas fa-heart-pulse text-4xl text-amber-400 mb-3"></i>
+                            <h3 class="text-2xl font-semibold">惜自身</h3>
+                            <p class="text-gray-400">年轻时的保养，决定年老时的生命质量。</p>
+                        </div>
+                        <div class="p-6">
+                            <i class="fas fa-user-friends text-4xl text-amber-400 mb-3"></i>
+                            <h3 class="text-2xl font-semibold">懂伴侣</h3>
+                            <p class="text-gray-400">了解两性差异，在家庭中相互照应。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <div class="slide-content">
+                    <h2 class="text-3xl md:text-4xl font-light text-gray-400 mb-6">养好身体，才能拥有从容的老年</h2>
+                    <h1 class="text-5xl md:text-7xl font-extrabold highlight-text mb-12">无论是“精神小老头”，还是“优雅老太太”</h1>
+                    <p class="text-4xl font-semibold text-gray-200">Q & A</p>
+                    <p class="mt-4 text-2xl text-gray-300">感谢聆听！</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button id="prev-btn" class="nav-arrow"><i class="fas fa-arrow-left"></i></button>
+        <button id="next-btn" class="nav-arrow"><i class="fas fa-arrow-right"></i></button>
+
+        <div id="page-counter">1 / 25</div>
+
+        <div id="author-left" class=" text-sm text-zinc-400 font-mono z-50">
+            幸福闲者读书会
+        </div>
+
+        <div id="author-right" class=" text-sm text-zinc-400 font-mono z-50">
+            马艺甄老师
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slider = document.getElementById('slider');
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const pageCounter = document.getElementById('page-counter');
+
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function goToSlide(slideIndex) {
+                // Looping logic
+                currentSlide = (slideIndex + totalSlides) % totalSlides;
+
+                slider.style.transform = `translateX(-${currentSlide * 100 / totalSlides}%)`;
+                pageCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+            }
+
+            // Button event listeners
+            nextBtn.addEventListener('click', () => {
+                goToSlide(currentSlide + 1);
+            });
+
+            prevBtn.addEventListener('click', () => {
+                goToSlide(currentSlide - 1);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'ArrowRight') {
+                    goToSlide(currentSlide + 1);
+                } else if (event.key === 'ArrowLeft') {
+                    goToSlide(currentSlide - 1);
+                }
+            });
+
+            // Initial setup
+            goToSlide(0);
+        });
+    </script>
+
+</body>
+
+</html>

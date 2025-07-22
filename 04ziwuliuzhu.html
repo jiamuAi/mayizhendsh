@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子午流注养生法 - 青玉流光版</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-cyan': {
+                            100: '#e0f7fa',
+                            200: '#b2ebf2',
+                            300: '#80deea',
+                            400: '#4dd0e1',
+                            500: '#26c6da',
+                            600: '#00bcd4', // 主高亮色
+                            700: '#00acc1',
+                            800: '#0097a7',
+                            900: '#00838f',
+                        },
+                        'brand-bg': '#fdfcf9', // 质感米白背景
+                        'brand-text': '#3a3a3a', // 淡墨正文
+                    },
+                    fontFamily: {
+                        'sans': ['"Noto Sans SC"', 'sans-serif'],
+                    },
+                    fontSize: {
+                        '10xl': '10rem',
+                        '12xl': '12rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* A simple fade-in transition for slides */
+        .slide {
+            display: none;
+            animation: fadeIn 0.7s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-brand-bg font-sans text-brand-text flex items-center justify-center min-h-screen p-4">
+
+    <div class="slideshow-container relative w-full max-w-5xl h-[70vh] max-h-[700px] bg-white/70 backdrop-blur-xl border border-gray-200/50 rounded-2xl shadow-2xl shadow-gray-300/30 flex flex-col">
+
+        <div class="flex-grow relative overflow-hidden">
+            
+            <div class="slide active absolute inset-0 p-12 flex-col items-center justify-center text-center">
+                <div class="absolute top-10 left-10 text-brand-cyan-500/30 text-5xl opacity-50">
+                    <i class="fa-solid fa-leaf"></i>
+                </div>
+                <h1 class="text-7xl md:text-8xl font-bold bg-gradient-to-r from-brand-cyan-600 to-brand-cyan-800 text-transparent bg-clip-text mb-4">子午流注养生法</h1>
+                <p class="text-xl md:text-2xl text-gray-500 tracking-wider">读懂身体里的24小时时间表</p>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col">
+                <h3 class="text-4xl font-bold mb-8 flex items-center"><i class="fa-solid fa-lightbulb text-brand-cyan-500 mr-4"></i>讲座缘起</h3>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-white/60 p-6 rounded-xl border border-gray-200/80">
+                        <div class="text-6xl font-bold text-red-400/70">夏</div>
+                        <h4 class="text-lg font-semibold mt-2 mb-1">夏耗阳气</h4>
+                        <p class="text-sm text-gray-600">夏季是阳气耗散最快的季节，此时更应“存阳气”。</p>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-xl border border-gray-200/80">
+                        <div class="text-6xl font-bold text-blue-400/70">溯</div>
+                        <h4 class="text-lg font-semibold mt-2 mb-1">问题溯源</h4>
+                        <p class="text-sm text-gray-600">身体当下的问题，根源往往在上一个季节，甚至上一年。</p>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-xl border border-gray-200/80">
+                        <div class="text-6xl font-bold text-green-400/70">功</div>
+                        <h4 class="text-lg font-semibold mt-2 mb-1">功在未来</h4>
+                        <p class="text-sm text-gray-600">养生在当下，效果在未来，现在养护好，下季才舒服。</p>
+                    </div>
+                </div>
+                <hr class="my-8 border-gray-200/80">
+                <p class="text-lg text-center text-gray-700">本次主旨：知其然，并<strong class="text-brand-cyan-700 font-semibold">知其所以然</strong>。</p>
+            </div>
+            
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col items-center justify-center">
+                <h3 class="text-4xl font-bold text-center mb-10">什么是“子午流注”？</h3>
+                <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full border-2 border-brand-cyan-500/50 flex items-center justify-center mb-4">
+                            <span class="text-5xl font-bold text-brand-cyan-600">12</span>
+                        </div>
+                        <h4 class="text-xl font-semibold">十二时辰</h4>
+                        <p class="text-gray-600">一天24小时，分为12个时辰，每2小时为一个单位。</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full border-2 border-brand-cyan-500/50 flex items-center justify-center mb-4">
+                           <i class="fa-solid fa-hospital-user text-5xl text-brand-cyan-600"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold">脏腑值班</h4>
+                        <p class="text-gray-600">每个时辰都有一对脏或腑“值班”，此时能量最足。</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full border-2 border-brand-cyan-500/50 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-street-view text-5xl text-brand-cyan-600"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold">顺应规律</h4>
+                        <p class="text-gray-600">顺应脏腑的值班规律生活，是最高效的养生之道。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">23:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">子时 <span class="text-2xl font-light text-gray-500">23:00 - 01:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">胆经当令：净化血液</h4>
+                        <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-bed text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">必须进入深睡眠</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">原理:</strong> 人卧血归于肝，胆汁净化血液，为肝脏提供干净血液。</p>
+                        <p><strong class="text-brand-cyan-700">关键:</strong> 23:00-03:00是肝胆排毒黄金4小时。</p>
+                        <p><strong class="text-brand-cyan-700">效果:</strong> 熟睡则次日面色红润，熬夜则晦暗。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                 <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">01:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">丑时 <span class="text-2xl font-light text-gray-500">01:00 - 03:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">肝经当令：藏血与疏泄</h4>
+                        <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-moon text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">延续深度睡眠</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 收藏净化后的精华血液，以备全身使用。</p>
+                        <p><strong class="text-brand-cyan-700">关系:</strong> 肝胆互为夫妻，胆（夫）净化，肝（妻）收藏。</p>
+                        <p><strong class="text-brand-cyan-700">应用:</strong> 肝血滋养眼、手、脚，是生命活动的能量库。</p>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <h3 class="text-4xl font-bold text-center mb-8">肝胆经络疏通法</h3>
+                <div class="grid md:grid-cols-3 gap-6 text-left">
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <h4 class="text-xl font-bold mb-2 flex items-center"><i class="fa-solid fa-person-running text-brand-cyan-600 mr-3"></i>胆经 (大腿外侧)</h4>
+                        <p class="text-sm text-gray-600">特点：“胆经最欠打”，可以经常、用力敲。使用空心拳或经络拍从上至下敲打。</p>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <h4 class="text-xl font-bold mb-2 flex items-center"><i class="fa-solid fa-person-praying text-brand-cyan-600 mr-3"></i>肝经 (大腿内侧)</h4>
+                        <p class="text-sm text-gray-600">按压会非常痛，代表有淤堵。适合经常拍打，疏通肝气。</p>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <h4 class="text-xl font-bold mb-2 flex items-center"><i class="fa-solid fa-hand-holding-medical text-brand-cyan-600 mr-3"></i>腋下 (肝胆经通过处)</h4>
+                        <p class="text-sm text-gray-600">自检有无鼓包、结节。若有提示乳腺及肝胆不通，需经常拍打。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                 <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">03:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">寅时 <span class="text-2xl font-light text-gray-500">03:00 - 05:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">肺经当令：布气与呼吸</h4>
+                        <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-lungs text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">保持安睡状态</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 重新布散全身的气，主呼吸与皮毛。</p>
+                        <p><strong class="text-brand-cyan-700">信号:</strong> 经常此时段醒来或咳嗽，提示肺功能可能偏弱或有淤堵。</p>
+                        <p><strong class="text-brand-cyan-700">呼吸系统:</strong> 除了肺，全身毛孔也是“小肺”，负责开合。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                 <h3 class="text-4xl font-bold text-center mb-8">肺经相关问题 · 自检与疏通</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <h4 class="text-xl font-bold mb-3">自检方法 <i class="fa-solid fa-magnifying-glass text-gray-400 ml-2"></i></h4>
+                        <p class="mb-2"><strong class="text-brand-cyan-700">手掌大鱼际:</strong> 观察有无青筋、发黄、干瘪，提示肺中有寒。</p>
+                        <p><strong class="text-brand-cyan-700">肘关节:</strong> 拍打易出痧，代表心肺火旺或有郁结之气。</p>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <h4 class="text-xl font-bold mb-3">疏通方法 <i class="fa-solid fa-person-walking-arrow-right text-gray-400 ml-2"></i></h4>
+                        <p class="mb-2"><strong class="text-brand-cyan-700">穴位按揉:</strong> 胸口中府穴、云门穴（锁骨下窝处）。</p>
+                        <p><strong class="text-brand-cyan-700">拍打肘窝:</strong> 可宣泄心肺郁气，尤其适合情绪压抑时。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                 <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">05:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">卯时 <span class="text-2xl font-light text-gray-500">05:00 - 07:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">大肠经当令：传导排便</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-paper-plane text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">起床排便，升发阳气</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 将身体的垃圾糟粕排出体外。</p>
+                        <p><strong class="text-brand-cyan-700">关键:</strong> 此时大肠经力量最足，排便最轻松。</p>
+                        <p><strong class="text-brand-cyan-700">注意:</strong> 若忍便不排，毒素会被身体重吸收。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                 <h3 class="text-4xl font-bold text-center mb-8 flex items-center justify-center"><i class="fa-solid fa-comb text-brand-cyan-500/80 mr-4"></i>核心技巧：升阳梳头法 (1)</h3>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <h4 class="text-xl font-bold mb-2">为什么梳头？</h4>
+                        <p class="text-sm mb-2"><strong class="text-brand-cyan-700">诸阳之会:</strong> 头部是所有阳经汇集处，疏通头部是升阳最快的方法。</p>
+                        <p class="text-sm"><strong class="text-brand-cyan-700">头面相应:</strong> 头皮的淤堵会造成面部对应区域的凹陷。</p>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <h4 class="text-xl font-bold mb-2">手法与原则</h4>
+                        <p class="text-sm mb-2"><strong class="text-brand-cyan-700">核心手法:</strong> “寸刮”，用梳子将头皮下的结节一个一个刮开。</p>
+                        <p class="text-sm"><strong class="text-brand-cyan-700">总原则:</strong> 早上 <i class="fa-solid fa-arrow-up mx-1"></i> 从后向前；晚上 <i class="fa-solid fa-arrow-down mx-1"></i> 从前向后。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <h3 class="text-4xl font-bold text-center mb-8">升阳梳头法 (2)：梳理顺序</h3>
+                <div class="space-y-4">
+                    <p class="text-lg p-3 rounded-lg bg-white/60 border flex items-center"><span class="font-bold text-brand-cyan-700 w-40">1. 督脉 (中线)：</span> 升发一身阳气，改善头晕、记忆力。</p>
+                    <p class="text-lg p-3 rounded-lg bg-white/60 border flex items-center"><span class="font-bold text-brand-cyan-700 w-40">2. 膀胱经 (两侧)：</span> 人体最大的排寒湿通道。</p>
+                    <p class="text-lg p-3 rounded-lg bg-white/60 border flex items-center"><span class="font-bold text-brand-cyan-700 w-40">3. 胆经/三焦经：</span> 头部两侧，疏解偏头痛。</p>
+                    <p class="text-lg p-3 rounded-lg bg-white/60 border flex items-center"><span class="font-bold text-brand-cyan-700 w-40">4. 胃经 (前额角)：</span> 若有结节，提示胃寒。</p>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <h3 class="text-4xl font-bold text-center mb-8">从头发看脏腑健康</h3>
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <div class="text-6xl font-bold text-gray-400/70"><i class="fa-solid fa-seedling"></i></div>
+                        <h4 class="text-lg font-semibold mt-2 mb-1">白发 · 肝</h4>
+                        <p class="text-sm text-gray-600">主要与消耗肝血有关。养肝血（早睡）和梳头可逆转。</p>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <div class="text-6xl font-bold text-red-400/70"><i class="fa-solid fa-droplet"></i></div>
+                        <h4 class="text-lg font-semibold mt-2 mb-1">掉发 · 肾</h4>
+                        <p class="text-sm text-gray-600">主要与肾阴虚火旺，无法滋养头皮有关。</p>
+                    </div>
+                    <div class="bg-white/60 p-6 rounded-xl border">
+                        <div class="text-6xl font-bold text-blue-400/70"><i class="fa-solid fa-wind"></i></div>
+                        <h4 class="text-lg font-semibold mt-2 mb-1">出油 · 湿</h4>
+                        <p class="text-sm text-gray-600">梳头后冒大量油，证明头皮湿气很重，坚持可排湿。</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">07:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">辰时 <span class="text-2xl font-light text-gray-500">07:00 - 09:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">胃经当令：受纳腐熟</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-utensils text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">必须吃好早餐</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 初步消化食物，是后天生气血的源头。</p>
+                        <p><strong class="text-brand-cyan-700">推荐:</strong> 小米粥、鸡蛋、少量咸菜（调动肾气）。</p>
+                        <p><strong class="text-brand-cyan-700">自检:</strong> 触摸上腹是否冰凉、饭后是否胀气。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">09:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">巳时 <span class="text-2xl font-light text-gray-500">09:00 - 11:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">脾经当令：运化气血</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-brain text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>状态：<strong class="text-brand-cyan-800">精力最旺盛，思维最清晰</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 将精微气血“分配”和“运输”到全身。</p>
+                        <p><strong class="text-brand-cyan-700">比喻:</strong> 脾是勤劳的“分配官”，是高效工作的黄金时间。</p>
+                        <p><strong class="text-brand-cyan-700">自检:</strong> 观察肌肉是否松弛（脾主肌肉）。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">11:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">午时 <span class="text-2xl font-light text-gray-500">11:00 - 13:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">心经当令：主血脉，藏神</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-heart-pulse text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">睡午觉或闭目养神</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 推动血液运行至全身。</p>
+                        <p><strong class="text-brand-cyan-700">目的:</strong> 让心脏休息，将极盛的阳气向内收敛，避免过度消耗。</p>
+                        <p><strong class="text-brand-cyan-700">时长:</strong> 15-30分钟即可保证下午精力充沛。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">13:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">未时 <span class="text-2xl font-light text-gray-500">13:00 - 15:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">小肠经当令：泌别清浊</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-filter-circle-dollar text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>功能：<strong class="text-brand-cyan-800">二次消化，分离精华</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">心与小肠:</strong> 互为表里，小肠将精华上奉于心。</p>
+                        <p><strong class="text-brand-cyan-700">自检:</strong> 肚脐周围是否发黑冰凉；手掌小鱼际是否干瘪。</p>
+                        <p><strong class="text-brand-cyan-700">养护:</strong> 揉腹，直至腹部发热变软。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">15:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">申时 <span class="text-2xl font-light text-gray-500">15:00 - 17:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">膀胱经当令：排毒泄热</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-water text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">多喝水，促进排毒</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">特点:</strong> 人体最长的经络，最大的排毒通道。</p>
+                        <p><strong class="text-brand-cyan-700">“生脉茶”:</strong> 小口品饮温水，直至尿液变清不黄。</p>
+                        <p><strong class="text-brand-cyan-700">活动:</strong> 适宜室外运动、晒太阳、撞背。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                 <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">17:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">酉时 <span class="text-2xl font-light text-gray-500">17:00 - 19:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">肾经当令：藏精纳气</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-database text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">收藏精华，准备休息</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 收藏一天所得的精华，作为生命根本。</p>
+                        <p><strong class="text-brand-cyan-700">宜:</strong> 减少剧烈运动，保持好心情。</p>
+                        <p><strong class="text-brand-cyan-700">忌:</strong> 过度发散消耗，晚餐过晚过饱。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                 <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">19:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">戌时 <span class="text-2xl font-light text-gray-500">19:00 - 21:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">心包经当令：传递喜悦</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-comments text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">创造安静喜悦的氛围</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 心脏的“护卫”，过滤不良情绪。</p>
+                        <p><strong class="text-brand-cyan-700">宜:</strong> 看书、聊天、散步。</p>
+                        <p><strong class="text-brand-cyan-700">忌:</strong> 剧烈运动、情绪激动、吃得过饱。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col justify-center">
+                 <div class="absolute inset-0 flex items-center justify-center z-0">
+                    <span class="text-12xl font-bold text-gray-200/50 select-none">21:00</span>
+                </div>
+                <div class="relative z-10 grid md:grid-cols-2 gap-8">
+                    <div class="flex flex-col justify-center">
+                        <h3 class="text-5xl font-bold mb-2">亥时 <span class="text-2xl font-light text-gray-500">21:00 - 23:00</span></h3>
+                        <h4 class="text-3xl font-semibold bg-gradient-to-r from-brand-cyan-500 to-brand-cyan-700 text-transparent bg-clip-text mb-6">三焦经当令：通调百脉</h4>
+                         <div class="flex items-center text-xl text-gray-700">
+                           <i class="fa-solid fa-hot-tub-person text-brand-cyan-500 text-3xl mr-4 w-8 text-center"></i>
+                           <span>养生核心：<strong class="text-brand-cyan-800">准备入睡，安静下来</strong></span>
+                        </div>
+                    </div>
+                    <div class="bg-white/60 backdrop-blur-sm border border-gray-200/60 rounded-xl p-6 space-y-3">
+                        <p><strong class="text-brand-cyan-700">功能:</strong> 主持诸气，是气血津液运行的大通道。</p>
+                        <p><strong class="text-brand-cyan-700">宜:</strong> 泡脚、转动脚踝、夫妻生活。</p>
+                        <p><strong class="text-brand-cyan-700">忌:</strong> 剧烈活动、洗头（湿寒易入体）、熬夜看手机。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide absolute inset-0 p-10 md:p-12 flex-col items-center justify-center text-center">
+                <h3 class="text-4xl font-bold mb-8">顺时养生 · 大道至简</h3>
+                <div class="space-y-4 max-w-2xl">
+                    <p class="text-lg p-3 rounded-lg bg-white/60 border"><strong class="text-brand-cyan-700">听懂信号:</strong> 身体的“问题”是警报器，是身体有觉知的表现。</p>
+                    <p class="text-lg p-3 rounded-lg bg-white/60 border"><strong class="text-brand-cyan-700">贵在坚持:</strong> 小方法的效果体现在日复一日的坚持中。</p>
+                    <p class="text-lg p-3 rounded-lg bg-white/60 border"><strong class="text-brand-cyan-700">知行合一:</strong> 该吃吃，该睡睡，该动动，该静静。</p>
+                    <p class="text-lg p-3 rounded-lg bg-white/60 border"><strong class="text-brand-cyan-700">养生是最好的逆生长:</strong> 真正的年轻态，源自内在脏腑的和谐。</p>
+                </div>
+                <hr class="my-8 border-gray-200/80 w-1/2">
+                <!-- <h4 class="text-xl text-gray-600">讲座结束，感谢聆听！</h4> -->
+            </div>
+
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-5 flex justify-between items-center z-20">
+            <div class="text-sm text-gray-500/80">幸福闲者读书会 · 马艺甄老师</div>
+            <div class="slide-counter text-sm font-medium text-gray-600/90"></div>
+            <div class="flex items-center space-x-3">
+                <button class="prev-btn w-10 h-10 rounded-full bg-white/70 backdrop-blur-sm border border-gray-200/80 text-gray-600 hover:bg-brand-cyan-600 hover:text-white transition-colors duration-300 flex items-center justify-center">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="next-btn w-10 h-10 rounded-full bg-white/70 backdrop-blur-sm border border-gray-200/80 text-gray-600 hover:bg-brand-cyan-600 hover:text-white transition-colors duration-300 flex items-center justify-center">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll(".slide");
+        const counter = document.querySelector(".slide-counter");
+        const prevBtn = document.querySelector(".prev-btn");
+        const nextBtn = document.querySelector(".next-btn");
+
+        function showSlide(n) {
+            // Wrap around logic
+            if (n >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (n < 0) {
+                currentSlideIndex = slides.length - 1;
+            } else {
+                currentSlideIndex = n;
+            }
+
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+            });
+
+            slides[currentSlideIndex].classList.add('active');
+            counter.textContent = `${currentSlideIndex + 1} / ${slides.length}`;
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlideIndex + direction);
+        }
+
+        // Event Listeners
+        prevBtn.addEventListener('click', () => changeSlide(-1));
+        nextBtn.addEventListener('click', () => changeSlide(1));
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { // Space bar also goes next
+                changeSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        // Initial setup
+        showSlide(currentSlideIndex);
+    </script>
+</body>
+</html>

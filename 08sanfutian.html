@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08三伏天的天灸</title>
+    <script src="https://cdn.tailwindcss.com/3.4.3"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script>
+        /* 自定义 Tailwind 颜色与字体 */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            '50': '#fffbeb',
+                            '100': '#fef3c7',
+                            '200': '#fde68a',
+                            '300': '#fcd34d',
+                            '400': '#fbbf24',
+                            '500': '#f59e0b', /* 主高亮色: 琥珀金 */
+                            '600': '#d97706',
+                            '700': '#b45309',
+                            '800': '#92400e',
+                            '900': '#78350f',
+                        }
+
+                        ,
+                        textBase: '#38322c',
+                        pageBg: '#f8f5f0',
+                        /* 页面内部背景，淡米色 */
+                        mainBg: '#ffffff'
+                        /* 网页主背景，中性雅灰 */
+                    }
+
+                    ,
+                    fontFamily: {
+                        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+                        sans: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 页面切换动效 */
+        #presentation-wrapper {
+            transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        /* 隐藏滚动条 */
+        html,
+        body {
+            overflow: hidden;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700&family=Source+Serif+4:opsz,wght@8..60,400;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-mainBg font-sans text-textBase">
+
+    <main class="relative w-screen h-screen">
+        <div id="presentation-wrapper" class="flex w-full h-screen overflow-hidden">
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24 flex items-center justify-center">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg">
+                    <div class="max-w-4xl mx-auto px-4">
+                        <h1
+                            class="text-5xl md:text-7xl font-bold font-serif bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-transparent mb-8">
+                            冬病夏治 三伏贴</h1>
+                        <p class="text-xl md:text-2xl text-brand-700/80 tracking-widest">中医疗法 通经活络</p>
+                        <div
+                            class="w-24 h-px bg-gradient-to-r from-transparent via-brand-400 to-transparent mx-auto my-12">
+                        </div>
+                        <p class="text-base text-gray-400 tracking-[0.2em]">第8节 三伏天的天灸</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-4xl mx-auto">
+                        <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-16">目 录</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 text-left">
+                            <div class="border-l-2 border-brand-400 pl-6 py-3">
+                                <h3 class="font-bold text-2xl mb-1 text-brand-800">第一部分: 三伏科普</h3>
+                                <p class="text-gray-500 text-lg">了解“冬病夏治”与“治未病”的智慧</p>
+                            </div>
+                            <div class="border-l-2 border-brand-400 pl-6 py-3">
+                                <h3 class="font-bold text-2xl mb-1 text-brand-800">第二部分: 入伏天灸</h3>
+                                <p class="text-gray-500 text-lg">为何天灸如此火爆？不同体质如何对症施灸？</p>
+                            </div>
+                            <div class="border-l-2 border-brand-400 pl-6 py-3">
+                                <h3 class="font-bold text-2xl mb-1 text-brand-800">第三部分: 三伏食俗</h3>
+                                <p class="text-gray-500 text-lg">顺应时节，吃对食物辅助调理</p>
+                            </div>
+                            <div class="border-l-2 border-brand-400 pl-6 py-3">
+                                <h3 class="font-bold text-2xl mb-1 text-brand-800">第四部分: 三伏养生</h3>
+                                <p class="text-gray-500 text-lg">抓住养阳关键期，安然度夏</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold mb-4">打工人“天灸”奇遇记</h2>
+                        <h1
+                            class="text-5xl md:text-6xl font-bold font-serif bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-transparent mb-12">
+                            三伏天！趁热打“贴”</h1>
+                        <div class="text-left space-y-6 text-xl text-gray-600">
+                            <p><i
+                                    class="fa-solid fa-magnifying-glass text-brand-500 mr-4 w-6 text-center"></i><b>现象观察：</b>每年一到三伏天，各大中医院便人山人海。
+                            </p>
+                            <p><i
+                                    class="fa-solid fa-users text-brand-500 mr-4 w-6 text-center"></i><b>群体行为：</b>许多年轻人、上班族，宁愿排队数小时，也要赶上“头伏第一贴”。
+                            </p>
+                            <p><i
+                                    class="fa-solid fa-circle-question text-brand-500 mr-4 w-6 text-center"></i><b>核心疑问：</b>为何三伏贴有如此大的吸引力？这背后蕴含着怎样的中医智慧？
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-4xl mx-auto text-center">
+                        <p class="text-brand-500 text-xl mb-2 font-serif">第一部分 · 三伏科普</p>
+                        <h2 class="text-5xl md:text-6xl font-serif font-bold mb-12">核心理念：治未病</h2>
+                        <div class="text-left bg-white/50 p-8 rounded-lg border border-brand-200/40 space-y-8">
+                            <div>
+                                <h3 class="font-bold text-2xl text-brand-900 mb-2 flex items-center"><i
+                                        class="fa-solid fa-book-open text-3xl text-brand-500/80 mr-4"></i>理论源头：《黄帝内经》
+                                </h3>
+                                <p class="text-gray-700 text-xl italic pl-12">“是故圣人不治已病治未病，不治已乱治未乱...此之谓也。”</p>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-2xl text-brand-900 mb-2 flex items-center"><i
+                                        class="fa-solid fa-lightbulb text-3xl text-brand-500/80 mr-4"></i>概念解析</h3>
+                                <p class="text-gray-700 text-xl pl-12"><b
+                                        class="text-brand-700">“治”</b>：指治理、管理。核心思想是在疾病发生之前就进行干预，防患于未然。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-4xl mx-auto">
+                        <p class="text-brand-500 text-xl mb-2 font-serif text-center">三伏科普</p>
+                        <h2 class="text-5xl md:text-6xl font-serif font-bold mb-16 text-center">什么是三伏天？</h2>
+                        <ul class="space-y-8 text-lg">
+                            <li class="flex items-start">
+                                <i
+                                    class="fa-solid fa-temperature-high text-4xl text-brand-500 w-16 text-center mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-2xl">时间与气候特征</h3>
+                                    <p class="text-gray-600 mt-1 text-xl">出现在<b>小暑</b>与<b>处暑</b>之间，是一年中气温最高、且潮湿闷热的时期。
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-calendar-days text-4xl text-brand-500 w-16 text-center mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-2xl">三伏的构成</h3>
+                                    <p class="text-gray-600 mt-1 text-xl">分为<b>初伏</b>、<b>中伏</b>、<b>末伏</b>三个阶段。</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-wind text-4xl text-brand-500 w-16 text-center mt-1"></i>
+                                <div>
+                                    <h3 class="font-bold text-2xl">“伏”的含义</h3>
+                                    <p class="text-gray-600 mt-1 text-xl">指“伏邪”，即潜藏在体内的邪气。三伏天对应“<b>暑邪</b>”，属中医“六淫”之一。
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-4xl mx-auto">
+                        <p class="text-brand-500 text-xl mb-2 font-serif text-center">三伏科普</p>
+                        <h2 class="text-5xl md:text-6xl font-serif font-bold text-center mb-12">顺应自然 · 天人相应</h2>
+                        <div class="space-y-6">
+                            <div class="p-6 rounded-lg bg-white/50 border border-gray-200/60">
+                                <h3 class="font-bold text-2xl mb-2 text-brand-800">核心原则：春夏养阳</h3>
+                                <p class="text-gray-600 text-xl">夏季是自然界阳气最旺盛的季节，人体阳气也随之浮于体表。</p>
+                            </div>
+                            <div class="p-6 rounded-lg bg-white/50 border border-gray-200/60">
+                                <h3 class="font-bold text-2xl mb-2 text-brand-800">夏季特点：阳盛于外而虚于内</h3>
+                                <p class="text-gray-600 text-xl">体表阳气充盛易出汗，而体内脏腑阳气相对不足，此时是温补内里、驱散陈年寒邪的<b
+                                        class="text-brand-600">最佳时机</b>。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-5xl mx-auto text-center">
+                        <p class="text-brand-500 text-xl mb-2 font-serif">三伏科普</p>
+                        <h2 class="text-5xl md:text-6xl font-serif font-bold mb-10">生病的步骤</h2>
+                        <div
+                            class="font-bold text-xl md:text-3xl flex flex-wrap justify-center items-center gap-2 md:gap-4 text-gray-500 mb-10">
+                            <span>虚</span><i class="fa-solid fa-arrow-right-long"></i>
+                            <span class="text-brand-900">寒</span><i class="fa-solid fa-arrow-right-long"></i>
+                            <span class="text-brand-800">湿</span><i class="fa-solid fa-arrow-right-long"></i>
+                            <span class="text-brand-700">凝</span><i class="fa-solid fa-arrow-right-long"></i>
+                            <span class="text-brand-600">淤</span><i class="fa-solid fa-arrow-right-long"></i>
+                            <span class="text-red-500">堵</span><i class="fa-solid fa-arrow-right-long"></i>
+                            <span class="text-red-600">瘤</span><i class="fa-solid fa-arrow-right-long"></i>
+                            <span class="text-red-800">癌</span>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left text-lg">
+                            <div class="bg-red-50/80 border border-red-200/50 p-6 rounded-lg">
+                                <h3 class="font-bold text-2xl mb-2 text-red-700">暑邪</h3>
+                                <p>消耗人体气血津液，易导致心烦、发热、口渴。</p>
+                            </div>
+                            <div class="bg-blue-50/80 border border-blue-200/50 p-6 rounded-lg">
+                                <h3 class="font-bold text-2xl mb-2 text-blue-700">湿邪</h3>
+                                <p>黏腻重浊，易致四肢困重、食欲不振、便溏。</p>
+                            </div>
+                        </div>
+                        <p class="mt-8 text-gray-500 text-lg">所有疾病都是从“虚”开始，一步步演化加重，治未病就是要阻断这个进程。</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-5xl mx-auto text-center">
+                        <p class="text-brand-500 text-xl mb-2 font-serif">三伏科普</p>
+                        <h2 class="text-5xl md:text-6xl font-serif font-bold mb-16">抓住2025 黄金养阳期</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="flex flex-col items-center justify-center p-8 bg-white/60 rounded-lg">
+                                <i class="fa-solid fa-stopwatch text-6xl text-brand-500 mb-4"></i>
+                                <p class="text-8xl font-black text-brand-600">30<span class="text-4xl">天</span></p>
+                                <h3 class="text-3xl font-bold mt-2">浓缩版三伏</h3>
+                                <p class="text-gray-600 mt-2 text-lg">10年来首次“短三伏”，精华中的精华。</p>
+                            </div>
+                            <div class="flex flex-col items-center justify-center p-8 bg-white/60 rounded-lg">
+                                <i class="fa-solid fa-calendar-plus text-6xl text-brand-500 mb-4"></i>
+                                <p class="text-6xl font-black text-brand-600">闰六月</p>
+                                <h3 class="text-3xl font-bold mt-2">额外养阳期</h3>
+                                <p class="text-gray-600 mt-2 text-lg">多出一个月的“养阳”黄金时间，机遇难得。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg text-center">
+                    <p class="text-gray-400 mb-4 text-2xl tracking-widest">第二部分</p>
+                    <h2
+                        class="text-6xl md:text-8xl font-serif font-black bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-transparent">
+                        入伏天灸</h2>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-3xl mx-auto">
+                        <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-12">天灸方主要组成</h2>
+                        <div class="space-y-6">
+                            <p class="text-xl"><b class="text-brand-700">核心:</b> 以<b>白芥子</b>为核心，加上干姜等温通药物，组成外用剂型。</p>
+                            <ul class="space-y-4 pl-4 text-xl">
+                                <li><b class="text-2xl">白芥子：</b>辛温，入肺胃经，温中散寒、通络止痛。</li>
+                                <li><b class="text-2xl">伸筋草：</b>苦辛温，入肝脾肾经，祛风除湿，舒筋活络。</li>
+                                <li><b class="text-2xl">干姜：</b>辛热，入脾胃心肺经，温中散寒，回阳通脉。</li>
+                            </ul>
+                            <p class="font-bold text-brand-800 pt-6 border-t border-brand-200/80 mt-8 text-xl"><i
+                                    class="fa-solid fa-wand-magic-sparkles mr-2"></i>配伍原理：诸药合用，共奏温行气血、通经活络之功。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-4xl mx-auto">
+                        <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-12">天灸贴敷通用指南</h2>
+                        <ol class="space-y-5 text-xl text-gray-700">
+                            <li class="flex"><span class="font-bold text-3xl text-brand-500 mr-4">1.</span>
+                                <div><b class="text-textBase">贴前准备:</b> 宜先洗热水澡，清洁穴位皮肤。</div>
+                            </li>
+                            <li class="flex"><span class="font-bold text-3xl text-brand-500 mr-4">2.</span>
+                                <div><b class="text-textBase">贴敷时长:</b> 建议成人一次贴2-4小时，儿童1-2小时。</div>
+                            </li>
+                            <li class="flex"><span class="font-bold text-3xl text-brand-500 mr-4">3.</span>
+                                <div><b class="text-textBase">正常反应:</b> 贴后皮肤出现红晕、灼热、轻微刺痛为正常药物反应。</div>
+                            </li>
+                            <li class="flex"><span class="font-bold text-3xl text-brand-500 mr-4">4.</span>
+                                <div><b class="text-textBase">饮食禁忌:</b> 贴敷期间禁食肥甘厚腻、生冷、辛辣及海鲜、牛羊肉等“发物”。</div>
+                            </li>
+                            <li class="flex"><span class="font-bold text-3xl text-brand-500 mr-4">5.</span>
+                                <div><b class="text-textBase">禁忌人群:</b> 发热者、皮肤有破损、孕妇及2岁以下女童不宜。</div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <i class="fa-solid fa-map-location-dot text-8xl text-brand-400 mb-8"></i>
+                    <h2
+                        class="text-5xl md:text-6xl font-serif font-bold mb-6 bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-transparent">
+                        三伏贴 · 分体质配穴</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl">接下来将针对不同体质，提供对应的天灸配穴方案。请根据自身情况，对症施灸。</p>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">风重体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 阳陵泉</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/fengzhong.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">风热体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 曲池穴 · 经渠穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/fengre.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">湿热体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 阴谷穴 · 复溜穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/shire.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">风寒体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 足三里 · 解溪穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/fenghan.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">燥湿体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 曲灵穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/zaoshi.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">燥性体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 肾俞穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/zaoxing.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">热性体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 大陵穴 · 小海穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/rexing.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">寒性体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 涌泉穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/hanxing.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">湿性体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 商丘穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/shixing.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
+                            class="text-brand-600">寒燥体质</span></h2>
+                    <p class="text-xl text-gray-700 mt-2 tracking-widest">大椎穴 · 肺俞穴 · 中脘穴 · 神阙穴 · 心俞穴 · 阳谷穴</p>
+                    <div
+                        class="w-full max-w-4xl h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300 mt-auto">
+                        <img src="src/hanzao.png" alt="风中" class="w-full h-full object-contain rounded-lg">
+                    </div>
+                </div>
+            </section>
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg text-center">
+                    <p class="text-gray-400 mb-4 text-2xl tracking-widest">第三部分</p>
+                    <h2
+                        class="text-6xl md:text-8xl font-serif font-black bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-transparent">
+                        三伏食俗</h2>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-5xl mx-auto text-center">
+                        <h2 class="text-4xl md:text-5xl font-serif font-bold mb-16">核心推荐食材</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div>
+                                <i class="fa-solid fa-seedling text-6xl text-brand-500 mb-4"></i>
+                                <h3 class="text-3xl font-bold mb-2">薏苡仁</h3>
+                                <p class="text-gray-600 text-lg">利水渗湿，健脾止泻，是祛湿的“黄金搭档”。</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-carrot text-6xl text-brand-500 mb-4"></i>
+                                <h3 class="text-3xl font-bold mb-2">山药</h3>
+                                <p class="text-gray-600 text-lg">补脾养胃，生津益肺，适合脾胃虚弱者。</p>
+                            </div>
+                            <div>
+                                <i class="fa-solid fa-heart-pulse text-6xl text-brand-500 mb-4"></i>
+                                <h3 class="text-3xl font-bold mb-2">赤小豆</h3>
+                                <p class="text-gray-600 text-lg">利水消肿，解毒排脓，与薏米搭配效果更佳。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div class="text-left space-y-6">
+                            <h2 class="text-4xl md:text-5xl font-serif font-bold mb-8">莲子雪耳冬瓜盅</h2>
+                            <p class="text-xl"><b class="text-brand-800">功效：</b> 清热解暑、生津润燥、滋阴润肺。</p>
+                            <p class="text-xl"><b class="text-brand-800">适宜体质：</b> 热性、燥性、湿热、风热体质。</p>
+                            <p class="text-xl text-red-600"><b class="text-red-700">注意：</b> 寒性、寒燥体质者不宜多食。</p>
+                        </div>
+                        <div
+                            class="h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+                            <img src="src/lianzixueerdonggua.png" alt="风中"
+                                class="w-full h-full object-contain rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div class="text-left space-y-6">
+                            <h2 class="text-4xl md:text-5xl font-serif font-bold mb-8">五指毛桃排骨汤</h2>
+                            <p class="text-xl"><b class="text-brand-800">功效：</b> 健脾化湿，行气利湿，舒筋活络。</p>
+                            <p class="text-xl"><b class="text-brand-800">适宜体质：</b> 湿性、风寒、湿热、寒燥、寒性体质。</p>
+                            <p class="text-xl"><b class="text-brand-800">加减法：</b> 湿热/风热体质可加绿豆、荷叶；寒性/寒燥体质可加红豆、生姜。</p>
+                        </div>
+                        <div
+                            class="h-64 md:h-96 bg-white/60 rounded-lg flex items-center justify-center border-2 border-dashed border-gray-300">
+                            <img src="src/wuzhimaotaopaigu.png" alt="风中"
+                                class="w-full h-full object-contain rounded-lg">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg text-center">
+                    <p class="text-gray-400 mb-4 text-2xl tracking-widest">第四部分</p>
+                    <h2
+                        class="text-6xl md:text-8xl font-serif font-black bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-transparent">
+                        三伏养生</h2>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-5xl mx-auto">
+                        <h2 class="text-4xl md:text-5xl font-serif font-bold text-center mb-16">三伏养生核心要点</h2>
+                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 text-xl md:text-2xl text-center">
+                            <div class="p-4 bg-white/60 rounded-lg flex flex-col items-center justify-center h-32"><i
+                                    class="fas fa-utensils text-4xl mb-2 text-brand-500"></i>健脾化湿</div>
+                            <div class="p-4 bg-white/60 rounded-lg flex flex-col items-center justify-center h-32"><i
+                                    class="fas fa-bed text-4xl mb-2 text-brand-500"></i>调整起居</div>
+                            <div class="p-4 bg-white/60 rounded-lg flex flex-col items-center justify-center h-32"><i
+                                    class="fas fa-temperature-arrow-down text-4xl mb-2 text-brand-500"></i>防暑降温</div>
+                            <div class="p-4 bg-white/60 rounded-lg flex flex-col items-center justify-center h-32"><i
+                                    class="fas fa-peace text-4xl mb-2 text-brand-500"></i>调摄情志</div>
+                            <div class="p-4 bg-white/60 rounded-lg flex flex-col items-center justify-center h-32"><i
+                                    class="fas fa-person-running text-4xl mb-2 text-brand-500"></i>适度运动</div>
+                            <div class="p-4 bg-white/60 rounded-lg flex flex-col items-center justify-center h-32"><i
+                                    class="fas fa-mortar-pestle text-4xl mb-2 text-brand-500"></i>艾灸药贴</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
+                    <div class="w-full max-w-6xl mx-auto text-center">
+                        <h2 class="text-4xl md:text-5xl font-serif font-bold mb-12">三伏天<span
+                                class="text-8xl md:text-9xl font-black bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-transparent align-middle mx-2">9</span>大禁忌
+                        </h2>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 text-lg md:text-xl">
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌不开窗通风
+                            </div>
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌冷风对着吹
+                            </div>
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌中午不休息
+                            </div>
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌大口喝冰水
+                            </div>
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌只吃水果
+                            </div>
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌情绪激动
+                            </div>
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌冷饮不离手
+                            </div>
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌直接冲冷水澡
+                            </div>
+                            <div
+                                class="p-4 bg-red-50/80 text-red-800 rounded-lg border border-red-200/50 font-semibold">
+                                <i class="fas fa-times-circle mr-2"></i>忌整天不出汗
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page w-screen h-full flex-shrink-0 p-4 md:py-16 md:px-24">
+                <div
+                    class="w-full h-full flex flex-col justify-center items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg">
+                    <div class="max-w-4xl mx-auto">
+                        <h1
+                            class="text-6xl md:text-8xl font-bold font-serif bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-transparent">
+                            感谢聆听</h1>
+                        <div
+                            class="w-24 h-px bg-gradient-to-r from-transparent via-brand-400 to-transparent mx-auto my-12">
+                        </div>
+                        <p class="text-2xl text-gray-500">愿您顺时养阳，安康一夏。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <button id="prev-btn"
+            class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-500 transition-colors z-20 p-2 rounded-full hover:bg-white/50">
+            <i class="fas fa-chevron-left fa-2x w-8 h-8"></i>
+        </button>
+        <button id="next-btn"
+            class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-gray-400 hover:text-brand-500 transition-colors z-20 p-2 rounded-full hover:bg-white/50">
+            <i class="fas fa-chevron-right fa-2x w-8 h-8"></i>
+        </button>
+
+        <div id="page-indicator"
+            class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 text-sm text-gray-500 bg-white/60 px-4 py-1.5 rounded-full backdrop-blur-sm shadow-md z-20">
+        </div>
+
+        <div id="author" class="absolute bottom-6 left-4 md:left-24 text-sm text-zinc-400 font-mono z-50">
+            幸福闲者读书会
+        </div>
+
+        <div id="author" class="absolute bottom-6 right-4 md:right-24 text-sm text-zinc-400 font-mono z-50">
+            马艺甄老师
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.getElementById('presentation-wrapper');
+            let pages = document.querySelectorAll('.page');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const pageIndicator = document.getElementById('page-indicator');
+
+            const realTotalPages = pages.length;
+            if (realTotalPages <= 1) return;
+
+            // 1. 克隆首尾页面以实现无缝循环
+            const firstClone = pages[0].cloneNode(true);
+            const lastClone = pages[realTotalPages - 1].cloneNode(true);
+
+            wrapper.appendChild(firstClone);
+            wrapper.insertBefore(lastClone, pages[0]);
+
+            // 2. 重新获取所有页面元素
+            pages = document.querySelectorAll('.page');
+            const totalSlidesInDom = pages.length;
+
+            let currentPage = 1; // 初始页面设置为真实的第一个页面
+            const transitionDuration = 400; // 动画时长
+            let isAnimating = false; // 动画状态标志
+            let pendingDirection = 0; // 待处理的滑动方向指令队列
+
+            // 动态设置容器和页面宽度
+            wrapper.style.width = `${totalSlidesInDom * 100}%`;
+            pages.forEach(page => {
+                page.style.width = `${100 / totalSlidesInDom}%`;
+            });
+
+            // 修复后的页码显示函数
+            function updatePageIndicator() {
+                const pageNumToShow = (currentPage - 1 + realTotalPages) % realTotalPages + 1;
+                pageIndicator.textContent = `${pageNumToShow} / ${realTotalPages}`;
+            }
+
+            // 设置容器位置
+            function setTransform(animate = true) {
+                wrapper.style.transition = animate ? `transform ${transitionDuration}ms cubic-bezier(0.4, 0, 0.2, 1)` : 'none';
+                wrapper.style.transform = `translateX(-${currentPage * (100 / totalSlidesInDom)}%)`;
+            }
+
+            // 页面切换的核心函数 (采用指令队列，替代动画锁)
+            function navigate(direction) {
+                if (isAnimating) {
+                    // 如果正在动画，则将指令暂存，等待执行
+                    pendingDirection = direction;
+                    return;
+                }
+                isAnimating = true;
+
+                currentPage += direction;
+                setTransform(true);
+                updatePageIndicator();
+            }
+
+            // 监听动画结束事件
+            wrapper.addEventListener('transitionend', () => {
+                // 1. 处理无缝循环的“跳跃”
+                if (currentPage === 0) {
+                    wrapper.style.transition = 'none';
+                    currentPage = realTotalPages;
+                    setTransform(false);
+                } else if (currentPage === totalSlidesInDom - 1) {
+                    wrapper.style.transition = 'none';
+                    currentPage = 1;
+                    setTransform(false);
+                }
+
+                isAnimating = false; // 解除动画状态
+
+                // 2. 检查并执行队列中的下一个指令
+                if (pendingDirection !== 0) {
+                    const dir = pendingDirection;
+                    pendingDirection = 0; // 重置队列
+                    // 使用微小的延迟来确保浏览器完成渲染，并开始下一次导航
+                    setTimeout(() => navigate(dir), 16);
+                }
+            });
+
+            // 绑定事件
+            nextBtn.addEventListener('click', () => navigate(1));
+            prevBtn.addEventListener('click', () => navigate(-1));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+                    e.preventDefault();
+                    navigate(1);
+                } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                    e.preventDefault();
+                    navigate(-1);
+                }
+            });
+
+            let touchStartX = 0;
+            const swipeContainer = document.querySelector('main');
+
+            swipeContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            swipeContainer.addEventListener('touchend', (e) => {
+                let touchEndX = e.changedTouches[0].screenX;
+                const swipeThreshold = 50;
+                if (touchStartX - touchEndX > swipeThreshold) {
+                    navigate(1);
+                } else if (touchEndX - touchStartX > swipeThreshold) {
+                    navigate(-1);
+                }
+            }, { passive: true });
+
+            // 初始化
+            function init() {
+                setTransform(false);
+                updatePageIndicator();
+            }
+
+            init();
+        });
+    </script>
+</body>
+
+</html>

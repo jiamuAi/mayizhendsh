@@ -61,10 +61,9 @@
             display: none;
         }
 
-        .slide-content {
-            /* 核心改动：当内容垂直超出时，自动显示滚动条 */
+        .page>.w-full.h-full {
             overflow-y: auto;
-            /* 在移动设备上提供更流畅的滚动体验 */
+            justify-content: flex-center;
             -webkit-overflow-scrolling: touch;
         }
     </style>
@@ -80,7 +79,8 @@
     <main class="relative w-screen h-screen">
         <div id="presentation-wrapper" class="flex w-full h-screen overflow-hidden">
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24 flex items-center justify-center">
+            <section
+                class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24 flex items-center justify-center">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg">
                     <div class="max-w-4xl mx-auto px-4">
@@ -96,7 +96,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-4xl mx-auto">
@@ -123,7 +123,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="max-w-4xl mx-auto">
@@ -146,7 +146,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-4xl mx-auto text-center">
@@ -170,7 +170,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-4xl mx-auto">
@@ -206,7 +206,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-4xl mx-auto">
@@ -227,7 +227,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-5xl mx-auto text-center">
@@ -259,7 +259,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-5xl mx-auto text-center">
@@ -283,7 +283,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg text-center">
                     <p class="text-gray-400 mb-4 text-2xl tracking-widest">第二部分</p>
@@ -293,7 +293,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-3xl mx-auto">
@@ -312,7 +312,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-4xl mx-auto">
@@ -338,7 +338,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <i class="fa-solid fa-map-location-dot text-8xl text-brand-400 mb-8"></i>
@@ -349,7 +349,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -362,7 +362,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -375,7 +375,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -388,7 +388,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -401,7 +401,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -414,7 +414,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -427,7 +427,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -440,7 +440,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -453,7 +453,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -466,7 +466,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-start items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <h2 class="text-4xl md:text-5xl font-serif font-bold mb-4">配穴：<span
@@ -478,7 +478,7 @@
                     </div>
                 </div>
             </section>
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg text-center">
                     <p class="text-gray-400 mb-4 text-2xl tracking-widest">第三部分</p>
@@ -488,7 +488,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-5xl mx-auto text-center">
@@ -514,7 +514,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -533,7 +533,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -552,7 +552,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg text-center">
                     <p class="text-gray-400 mb-4 text-2xl tracking-widest">第四部分</p>
@@ -562,7 +562,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-5xl mx-auto">
@@ -585,7 +585,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg p-8">
                     <div class="w-full max-w-6xl mx-auto text-center">
@@ -634,7 +634,7 @@
                 </div>
             </section>
 
-            <section class="page w-screen h-full flex-shrink-0 pt-4 pb-8 md:py-16 md:px-24">
+            <section class="page w-screen h-full flex-shrink-0 p-4 pb-8 md:py-16 md:px-24">
                 <div
                     class="w-full h-full flex flex-col justify-center items-center text-center bg-pageBg border border-stone-300/60 rounded-lg shadow-lg">
                     <div class="max-w-4xl mx-auto">
@@ -660,14 +660,14 @@
         </button>
 
         <div id="page-indicator"
-            class="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 text-sm text-gray-500 bg-white/60 px-4 py-1.5 rounded-full backdrop-blur-sm shadow-md z-20">
+            class="absolute bottom-2 md:bottom-6 left-1/2 -translate-x-1/2 text-sm text-gray-500 bg-white/60 px-4 py-1.5 rounded-full backdrop-blur-sm shadow-md z-20">
         </div>
 
-        <div id="author" class="absolute bottom-6 left-4 md:left-24 text-sm text-zinc-400 font-mono z-50">
+        <div id="author" class="absolute bottom-2 md:bottom-6 left-4 md:left-24 text-sm text-zinc-400 font-mono z-50">
             幸福闲者读书会
         </div>
 
-        <div id="author" class="absolute bottom-6 right-4 md:right-24 text-sm text-zinc-400 font-mono z-50">
+        <div id="author" class="absolute bottom-2 md:bottom-6 right-4 md:right-24 text-sm text-zinc-400 font-mono z-50">
             马艺甄老师
         </div>
     </main>

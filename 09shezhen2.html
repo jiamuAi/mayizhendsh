@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09小儿舌诊</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #FFFBF5;
+            /* Warm off-white background */
+            color: #4A4A4A;
+            /* Softer dark gray text */
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+            transform: translateX(100%);
+            pointer-events: none;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+
+        .slide-content {
+            background-color: rgba(255, 255, 255, 0.7);
+            /* Semi-transparent white for texture */
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            /* Light coral border */
+            border-radius: 1.5rem;
+            padding: 3rem 4rem;
+            width: 90%;
+            max-width: 1200px;
+            height: 80vh;
+            max-height: 800px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.5);
+            color: #FF6B6B;
+            border-radius: 50%;
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .nav-arrow:hover {
+            background-color: #FF6B6B;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        #prev-btn {
+            left: 2rem;
+        }
+
+        #next-btn {
+            right: 2rem;
+        }
+
+        #page-indicator {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            font-size: 0.875rem;
+            color: #FF6B6B;
+            font-weight: 500;
+            z-index: 10;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+        }
+
+        .highlight {
+            color: #FF6B6B;
+        }
+
+        .highlight-bg {
+            background: linear-gradient(120deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 107, 107, 0) 100%);
+        }
+
+        .super-text {
+            font-size: 10rem;
+            font-weight: 700;
+            line-height: 1;
+            background: -webkit-linear-gradient(45deg, #FF6B6B, #FF8E53);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .slide-content {
+                padding: 2rem 1.5rem;
+                width: 95%;
+                height: 85vh;
+            }
+
+            .super-text {
+                font-size: 5rem;
+            }
+
+            .nav-arrow {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+
+            #prev-btn {
+                left: 0.5rem;
+            }
+
+            #next-btn {
+                right: 0.5rem;
+            }
+
+            .slide-content h1 {
+                font-size: 1.75rem !important;
+            }
+
+            .slide-content h2 {
+                font-size: 1.25rem !important;
+            }
+
+            .slide-content p,
+            .slide-content li {
+                font-size: 0.9rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="slide-container" class="slide-container">
+        <!-- Page 1: 封面页 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="text-center">
+                    <h1 class="text-6xl md:text-8xl font-bold highlight tracking-wider">小儿舌诊</h1>
+                    <p class="mt-12 text-lg md:text-2xl text-gray-500">第9节 舌诊2</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: 引子 (优化布局) -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="w-full max-w-4xl mx-auto">
+                    <h1 class="text-3xl md:text-4xl font-bold highlight mb-12 text-center">引子：讲师的中医之路</h1>
+                    <div class="relative pl-8 border-l-2 border-dashed border-coral-300 space-y-10">
+                        <div class="relative">
+                            <div
+                                class="absolute -left-12 top-0 h-10 w-10 bg-coral-100 rounded-full flex items-center justify-center">
+                                <i class="fas highlight fa-seedling text-2xl text-coral-500"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-gray-700">缘起</h2>
+                            <p class="mt-2 text-gray-600">女儿不到三月大时，反复发烧，被西医诊断为“喘息性支气管炎”。</p>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="absolute -left-12 top-0 h-10 w-10 bg-coral-100 rounded-full flex items-center justify-center">
+                                <i class="fas highlight fa-exclamation-circle text-2xl text-coral-500"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-gray-700">困境</h2>
+                            <p class="mt-2 text-gray-600">依赖美林等退烧药，大汗淋漓后体温暂降，但很快又反复。意识到西药只是在“耗”孩子能量。</p>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="absolute -left-12 top-0 h-10 w-10 bg-coral-100 rounded-full flex items-center justify-center">
+                                <i class="fas highlight fa-sun text-2xl text-coral-500"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-gray-700">转折</h2>
+                            <p class="mt-2 text-gray-600">顶住家人压力，用中药和物理方法调理40度高烧。过程虽煎熬，但终助孩子摆脱困境。</p>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="absolute -left-12 top-0 h-10 w-10 bg-coral-100 rounded-full flex items-center justify-center">
+                                <i class="fas highlight fa-book-open text-2xl text-coral-500"></i>
+                            </div>
+                            <h2 class="text-xl font-bold text-gray-700">感悟</h2>
+                            <p class="mt-2 text-gray-600">孩子的发烧，是身体免疫力在与病邪做斗争。理解中医的智慧，才能真正帮助孩子。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 3: 核心概念 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div class="text-center">
+                        <h2 class="text-2xl md:text-3xl font-bold mb-4">核心概念</h2>
+                        <h1 class="text-4xl md:text-5xl font-bold highlight">你真的懂“上火”吗？</h1>
+                        <p class="mt-6 text-gray-600 text-base md:text-lg">灭火前，必须先分清是“实火”还是“虚火”。<br><strong
+                                class="highlight">实则泻之，虚则补之。</strong></p>
+                    </div>
+                    <div class="flex flex-col space-y-8">
+                        <div class="p-6 rounded-lg highlight-bg">
+                            <h3 class="text-3xl md:text-4xl font-bold highlight">实火</h3>
+                            <p class="mt-2 text-gray-600">源于“<strong class="text-2xl">不通</strong>”，是身体里多了不该有的东西（瘀堵、痰湿）。
+                            </p>
+                        </div>
+                        <div class="p-6 rounded-lg highlight-bg">
+                            <h3 class="text-3xl md:text-4xl font-bold highlight">虚火</h3>
+                            <p class="mt-2 text-gray-600">源于“<strong class="text-2xl">不够</strong>”，是身体里少了该有的滋养（阴液、津液）。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 4: 实火探源（一） -->
+        <section class="slide">
+            <div class="slide-content">
+                <h1 class="text-3xl md:text-4xl font-bold highlight mb-6">实火探源 (一)：瘀堵不通</h1>
+                <p class="text-lg text-gray-600 mb-8">气血运行不畅，堵在身体里形成的“火”。</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-4 border-b-2 border-coral-200 pb-2">舌象特征</h2>
+                        <ul class="space-y-3 list-disc list-inside">
+                            <li>舌质 <strong class="highlight">暗紫</strong></li>
+                            <li>舌面有 <strong class="highlight">瘀斑、瘀点</strong></li>
+                            <li>舌下 <strong class="highlight">青筋</strong> 粗大明显</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold mb-4 border-b-2 border-coral-200 pb-2">常见表现</h2>
+                        <ul class="space-y-3 list-disc list-inside">
+                            <li>女性月经有 <strong class="highlight">血块</strong>，<strong class="highlight">痛经</strong></li>
+                            <li>经期前后易 <strong class="highlight">长痘</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 p-4 bg-rose-50 rounded-lg">
+                    <h2 class="text-xl font-semibold mb-2 text-rose-700">疏通思路</h2>
+                    <p><i class="fas fa-fan text-rose-500 mr-2"></i><strong>玫瑰花茶</strong>：疏肝理气，活血化瘀。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 5: 实火探源（二） -->
+        <section class="slide">
+            <div class="slide-content">
+                <h1 class="text-3xl md:text-4xl font-bold highlight mb-6">实火探源 (二)：痰湿内阻</h1>
+                <p class="text-lg text-gray-600 mb-8">体内水湿运化失常，凝聚成痰，阻碍气机形成的“火”。</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-xl font-semibold mb-4 border-b-2 border-coral-200 pb-2">舌象特征</h2>
+                        <ul class="space-y-3 list-disc list-inside">
+                            <li>舌苔 <strong class="highlight">厚腻</strong> (白腻或黄腻)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-semibold mb-4 border-b-2 border-coral-200 pb-2">常见表现</h2>
+                        <ul class="space-y-3 list-disc list-inside">
+                            <li>身体困重</li>
+                            <li>大便粘腻不成形 (粘马桶)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-8 p-4 bg-orange-50 rounded-lg">
+                    <h2 class="text-xl font-semibold mb-2 text-orange-700">化湿思路</h2>
+                    <p><i class="fas fa-leaf text-orange-500 mr-2"></i><strong>陈皮、茯苓、炒薏米</strong>：理气、健脾、祛湿。</p>
+                    <p><i class="fas fa-seedling text-orange-500 mr-2"></i><strong>赤小豆水</strong>：兼顾化湿与活血。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 6: 虚火探源 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-3 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold highlight mb-6">虚火探源：阴液不足</h1>
+                        <p class="text-lg text-gray-600 mb-4">身体里的“水”少了，无法制约“火”，导致虚火上炎。</p>
+                        <div class="p-4 bg-gray-100 rounded-lg mb-6">
+                            <p><strong class="highlight">生动比喻：</strong>就像一根蜡烛，蜡油(阴液)快烧完了，火苗(虚火)就会蹿得特别高，看似很旺，实则即将熄灭。</p>
+                        </div>
+                        <h2 class="text-xl font-semibold mb-4">舌象特征</h2>
+                        <ul class="space-y-2 list-disc list-inside">
+                            <li>舌质 <strong class="highlight">红绛</strong>，甚至无苔 (光舌)</li>
+                            <li>舌面 <strong class="highlight">干燥、有裂纹</strong></li>
+                        </ul>
+                    </div>
+                    <div class="w-full flex justify-center items-center gap-8">
+                        <!-- Candle Analogy -->
+                        <div class="text-center">
+                            <svg class="w-24 h-40" viewBox="0 0 80 140">
+                                <defs>
+                                    <linearGradient id="fireGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:rgb(255,220,0);stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:rgb(255,107,0);stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <rect x="30" y="40" width="20" height="100" fill="#EAE0D1" rx="5" />
+                                <path d="M40 40 Q 35 20 40 0 Q 45 20 40 40 Z" fill="url(#fireGradient)" />
+                                <line x1="40" y1="40" x2="40" y2="20" stroke="black" stroke-width="1" />
+                            </svg>
+                            <p class="mt-2 font-semibold">正常</p>
+                        </div>
+                        <div class="text-center">
+                            <svg class="w-24 h-40" viewBox="0 0 80 140">
+                                <rect x="35" y="100" width="10" height="40" fill="#EAE0D1" rx="3" />
+                                <path d="M40 100 Q 20 50 40 0 Q 60 50 40 100 Z" fill="url(#fireGradient)"
+                                    opacity="0.8" />
+                                <line x1="40" y1="100" x2="40" y2="80" stroke="black" stroke-width="1" />
+                            </svg>
+                            <p class="mt-2 font-semibold highlight">阴虚火旺</p>
+                        </div>
+                    </div>
+                    <div class="p-4 bg-sky-50 rounded-lg">
+                        <h2 class="text-2xl font-semibold mb-4 text-sky-700">滋阴思路</h2>
+                        <ul class="space-y-3 text-lg">
+                            <li class="flex items-start"><i class="fas fa-seedling text-sky-500 mr-3 mt-1"></i>
+                                <div><strong>胃阴虚 (胃热):</strong> 石斛</div>
+                            </li>
+                            <li class="flex items-start"><i class="fas fa-leaf text-sky-500 mr-3 mt-1"></i>
+                                <div><strong>肺阴虚 (肺燥):</strong> 麦冬、百合</div>
+                            </li>
+                            <li class="flex items-start"><i class="fas fa-tint text-sky-500 mr-3 mt-1"></i>
+                                <div><strong>肝肾阴虚 (熬夜多见):</strong> 桑葚</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="slide-content">
+
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8"><strong
+                        class="highlight">五脏之火：</strong>不同脏腑的阴虚表现</h2>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
+                    <div class="p-4 rounded-lg highlight-bg border border-orange-500/20">
+                        <h3 class="font-bold text-xl highlight">胃火</h3>
+                        <p class="mt-2 text-gray-600">易饿不想食、便干</p>
+                    </div>
+                    <div class="p-4 rounded-lg border border-gray-300">
+                        <h3 class="font-bold text-xl text-gray-700">肺火</h3>
+                        <p class="mt-2 text-gray-600">干咳无痰、燥热</p>
+                    </div>
+                    <div class="p-4 rounded-lg border border-gray-300">
+                        <h3 class="font-bold text-xl text-gray-700">肝火</h3>
+                        <p class="mt-2 text-gray-600">眼干涩、视力模糊</p>
+                    </div>
+                    <div class="p-4 rounded-lg border border-gray-300">
+                        <h3 class="font-bold text-xl text-gray-700">肾火</h3>
+                        <p class="mt-2 text-gray-600">腰疼、月经提前量少</p>
+                    </div>
+                </div>
+                <p class="mt-8 text-center text-gray-500">现代人因熬夜等习惯，<span class="font-semibold">肝肾阴虚</span>非常普遍。</p>
+
+            </div>
+        </section>
+
+        <!-- Page 7: 舌诊定义 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="text-4xl font-bold highlight mb-8">舌诊</h1>
+                    <ul class="space-y-6 text-xl text-left">
+                        <li><strong class="highlight-bg px-2 py-1 rounded">全息疗法之一：</strong>舌头可以直接观察到人体内部气血的运行现状。</li>
+                        <li><strong class="highlight-bg px-2 py-1 rounded">舌质：</strong>是指舌下面的肌肉组织。</li>
+                        <li><strong class="highlight-bg px-2 py-1 rounded">舌苔：</strong>是散布在舌质上的一层苔垢。</li>
+                        <li class="mt-4 pt-4 border-t border-dashed border-coral-200"><strong
+                                class="text-gray-700">《辨舌指南》：</strong>舌质可辨脏腑虚实，舌苔可查六淫之浅深。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 9: 舌体位置 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-3 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-3xl md:text-4xl font-bold highlight mb-6">舌体位置说明</h1>
+                        <h2 class="text-2xl font-semibold mb-6">上中下三焦情况</h2>
+                        <ul class="space-y-4 text-xl">
+                            <li><span class="text-blue-500">舌质淡白</span> 为寒，<span class="text-red-500">红绛</span> 为热</li>
+                            <li><span class="text-blue-500">舌苔白</span> 为寒，<span class="text-yellow-500">黄</span> 为热</li>
+                            <li><span class="text-gray-600">舌苔厚腻</span> 为湿重</li>
+                            <li><span class="text-gray-600">舌苔少</span> 为胃阴不足</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <svg viewBox="0 0 200 300" class="w-full max-w-xs h-auto">
+                            <path
+                                d="M 100,280 C 40,220 20,150 20,80 Q 20,20 100,20 Q 180,20 180,80 C 180,150 160,220 100,280 Z"
+                                fill="rgba(255,107,107,0.1)" stroke="#FF6B6B" stroke-width="2" />
+                            <path d="M 25,80 Q 100,100 175,80" fill="none" stroke="#FF6B6B" stroke-width="1"
+                                stroke-dasharray="3,3" />
+                            <path d="M 40,180 Q 100,190 160,180" fill="none" stroke="#FF6B6B" stroke-width="1"
+                                stroke-dasharray="3,3" />
+                            <path d="M 100,20 V 280" fill="none" stroke="#FF6B6B" stroke-width="1"
+                                stroke-dasharray="3,3" />
+                            <text x="100" y="55" font-size="14" text-anchor="middle" fill="#333">舌根 (肾)</text>
+                            <text x="100" y="145" font-size="14" text-anchor="middle" fill="#333">舌中 (脾胃)</text>
+                            <text x="100" y="240" font-size="14" text-anchor="middle" fill="#333">舌尖 (心肺)</text>
+                            <text x="40" y="125" font-size="14" text-anchor="middle" fill="#333"
+                                transform="rotate(-15 50 115)">舌边</text>
+                            <text x="40" y="155" font-size="14" text-anchor="middle" fill="#333"
+                                transform="rotate(-15 45 125)">(肝胆)</text>
+                            <text x="160" y="125" font-size="14" text-anchor="middle" fill="#333"
+                                transform="rotate(15 150 115)">舌边</text>
+                            <text x="160" y="155" font-size="14" text-anchor="middle" fill="#333"
+                                transform="rotate(15 155 125)">(肝胆)</text>
+                        </svg>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-shetiweizhi.png" alt="舌的主要功能"
+                            class="w-full h-full object-contain rounded-lg bg-stone-200/50 p-2">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 10: 正常舌头 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-zhengchanshe.png" alt="正常舌头" class="rounded-lg shadow-md">
+                    </div>
+                    <div class="text-center">
+                        <h1 class="text-4xl font-bold highlight">正常舌头</h1>
+                        <p class="mt-4 text-2xl text-gray-600">淡红的舌体和舌色</p>
+                        <p class="mt-2 text-2xl text-gray-600">薄白苔</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ... (Pages 12 to 21 remain the same as the previous version) ... -->
+
+        <!-- Page 12: 腻苔 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">腻苔</h1>
+                        <ul class="space-y-3 text-xl list-disc list-inside">
+                            <li>舌质红</li>
+                            <li>有些许小红点草莓舌</li>
+                            <li>这些是郁热的表现</li>
+                            <li>舌根部黄厚腻</li>
+                            <li class="font-bold text-2xl highlight mt-4">提示有热、湿、痰</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-nitai.png" alt="腻苔" class="rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 13: 白厚苔 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">白厚苔</h1>
+                        <ul class="space-y-3 text-xl list-disc list-inside">
+                            <li>整个白苔是满布的，也覆盖了舌边。</li>
+                            <li class="font-bold text-2xl highlight mt-4">舌苔较正常要白厚一些考虑有寒。</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-baihuahounitai.png" alt="白厚苔" class="rounded-lg shadow-md max-h-[70vh]">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 14: 胖大舌 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">胖大舌</h1>
+                        <ul class="space-y-3 text-xl list-disc list-inside">
+                            <li>舌胖是 <strong class="highlight">脾虚</strong></li>
+                            <li>舌苔白厚腻提示有 <strong class="highlight">湿</strong></li>
+                            <li class="font-bold text-2xl highlight mt-4">脾虚湿盛</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-pangdashe.png" alt="胖大舌" class="rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 15: 草莓舌 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">草莓舌</h1>
+                        <ul class="space-y-3 text-xl list-disc list-inside">
+                            <li>舌苔尖红如草莓状</li>
+                            <li>前三分之一有红色小斑点</li>
+                            <li class="font-bold text-2xl highlight mt-4">上焦热盛，心肺火盛</li>
+                            <li class="font-bold text-2xl highlight">中焦白厚苔，脾虚湿困</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-caomeishe.png" alt="草莓舌" class="rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 16: 厚腻苔 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">厚腻苔</h1>
+                        <ul class="space-y-3 text-xl list-disc list-inside">
+                            <li>舌尖红，舌苔后三分之二黄厚苔堆积</li>
+                            <li class="font-bold text-2xl highlight mt-4">黄厚就是湿热</li>
+                            <li>伴大便粘腻或便秘，口臭，手脚心热</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-hounitai.png" alt="厚腻苔" class="rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 17: 厚腻苔（严重） -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">厚腻苔</h1>
+                        <ul class="space-y-3 text-xl list-disc list-inside">
+                            <li>舌苔白厚腻满布舌体</li>
+                            <li class="font-bold text-2xl highlight mt-4">提示湿热积滞严重</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-hounitai-2.png" alt="严重厚腻苔" class="rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 18: 白厚滑腻苔 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">白厚滑腻苔</h1>
+                        <ul class="space-y-3 text-xl list-disc list-inside">
+                            <li>在白厚的舌苔上面覆盖了一层水</li>
+                            <li class="font-bold text-2xl highlight mt-4">提示寒、湿</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-baihuahounitai.png" alt="白厚滑腻苔" class="rounded-lg shadow-md max-h-[70vh]">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 19: 地图舌 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">地图舌 (花剥苔)</h1>
+                        <ul class="space-y-3 text-xl list-disc list-inside">
+                            <li>胃气阴受损，津液亏损</li>
+                            <li class="font-bold text-2xl highlight mt-4">滋阴清胃热，健脾胃</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-ditushe.png" alt="地图舌" class="rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 20: 光舌 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="grid md:grid-cols-2 gap-8 items-center h-full">
+                    <div>
+                        <h1 class="text-4xl font-bold highlight mb-6">光舌</h1>
+                        <ul class="space-y-3 text-lg list-disc list-inside">
+                            <li>舌体通红、无苔</li>
+                            <li class="font-bold text-xl highlight">阴虚火旺，津液耗伤</li>
+                            <li><strong>症状：</strong>五心烦热，夜寐多梦，口干或饮而不解渴，潮热盗汗，小便黄，大便干</li>
+                        </ul>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <img src="src/9-guangshe.png" alt="光舌"
+                            class="w-full max-w-xl mx-auto rounded-lg shadow-md max-h-[70vh] object-contain">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Page 21: 口腔溃疡 -->
+        <section class="slide">
+            <div class="slide-content">
+                <div class="text-center">
+                    <h1 class="text-4xl font-bold highlight mb-8">口腔溃疡 (心、胃火旺)</h1>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <img src="src/9-kouqiangkuiyang-1.png" alt="口腔溃疡1" class="w-full rounded-lg shadow-md">
+                        <img src="src/9-kouqiangkuiyang-2.png" alt="口腔溃疡2" class="w-full rounded-lg shadow-md">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 22: 舌诊的注意事项 (优化布局) -->
+        <section class="slide">
+            <div class="slide-content">
+                <h1 class="text-4xl md:text-5xl font-bold highlight text-center">舌诊的注意事项</h1>
+                <p class="text-center text-gray-500 mt-4 mb-8">正确的观察方法是准确判断的第一步</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div
+                        class="p-6 bg-white/80 rounded-xl shadow-lg border border-stone-200/80 transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-xl font-bold text-gray-700 mb-2">诊舌方法</h2>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-600">
+                            <li><strong class="highlight">顺序：</strong>先看舌尖【心肺】，再看舌中【脾胃】，舌侧【肝胆】，最后看舌根【肾脏】。</li>
+                            <li><strong class="highlight">内容：</strong>先看舌质，再看舌苔。</li>
+                            <li><strong class="highlight">时长：</strong>避免伸舌过久导致色泽变化。</li>
+                            <li><strong class="highlight">复诊：</strong>如不确定，休息3-5分钟后重看。</li>
+                        </ol>
+                    </div>
+                    <div
+                        class="p-6 bg-white/80 rounded-xl shadow-lg border border-stone-200/80 transform hover:scale-105 transition-transform duration-300">
+                        <h2 class="text-xl font-bold text-gray-700 mb-4">辅助判断</h2>
+                        <ul class="list-none space-y-4 text-gray-600">
+                            <li><i class="fas fa-magic text-coral-400 mr-2"></i><strong
+                                    class="highlight">刮舌验苔：</strong>刮不掉为实邪，易刮掉为虚证。</li>
+                            <li><i class="fas fa-lightbulb text-coral-400 mr-2"></i><strong
+                                    class="highlight">光线：</strong>选择白光充足柔和的自然光。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 8: 成人与孩子舌象的区别 (优化布局) -->
+        <section class="slide">
+            <div class="slide-content">
+                <h1 class="text-3xl md:text-4xl font-bold highlight mb-10 text-center">成人和孩子舌象的区别</h1>
+                <div class="grid md:grid-cols-2 gap-8 text-center">
+                    <div class="p-6 bg-blue-50 rounded-xl">
+                        <i class="fas fa-child text-5xl text-blue-400 mb-4"></i>
+                        <h2 class="text-2xl font-bold text-blue-600 mb-4">小儿 · 稚阴稚阳</h2>
+                        <ul class="text-left space-y-2 text-gray-600">
+                            <li><i class="fas fa-check-circle text-blue-400 mr-2"></i>形气未充，生机勃勃</li>
+                            <li><i class="fas fa-check-circle text-blue-400 mr-2"></i>舌鲜活娇嫩</li>
+                            <li><i class="fas fa-check-circle text-blue-400 mr-2"></i>患病变化迅速，易虚易实</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-orange-50 rounded-xl">
+                        <i class="fas fa-user-clock text-5xl text-orange-400 mb-4"></i>
+                        <h2 class="text-2xl font-bold text-orange-600 mb-4">老年人 · 气血偏虚</h2>
+                        <ul class="text-left space-y-2 text-gray-600">
+                            <li><i class="fas fa-check-circle text-orange-400 mr-2"></i>肾亏脾弱</li>
+                            <li><i class="fas fa-check-circle text-orange-400 mr-2"></i>舌多裂纹</li>
+                            <li><i class="fas fa-check-circle text-orange-400 mr-2"></i>或少苔无苔</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 11: 常舌象，季节不同 -->
+        <section class="slide">
+            <div class="slide-content">
+                <h1 class="text-3xl md:text-4xl font-bold highlight mb-8">常舌象，季节不同舌象则不同</h1>
+                <ul class="space-y-6 text-lg">
+                    <li><strong class="text-xl highlight">1、夏季暑湿盛时</strong>，舌苔多厚，或呈淡黄色；<strong
+                            class="highlight">秋季燥</strong>，舌苔多薄而干；</li>
+                    <li><strong class="text-xl highlight">2、冬季严寒</strong>，舌常湿润。</li>
+                    <li><strong class="text-xl highlight">3、晨起舌苔多厚</strong>，白天进食后则舌苔变薄；<strong
+                            class="highlight">刚刚起床</strong>，舌色可见暗滞，活动之后，会变得红活。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Page 23: 饮食与药物的影响 (优化布局) -->
+        <section class="slide">
+            <div class="slide-content">
+                <h1 class="text-3xl md:text-4xl font-bold highlight mb-8 text-center">饮食与药物的影响</h1>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-rose-50 rounded-xl text-center">
+                        <i class="fas fa-palette text-4xl text-rose-400 mb-4"></i>
+                        <h2 class="text-2xl font-bold text-rose-600 mb-2">染苔</h2>
+                        <p class="text-gray-600">牛奶、咖啡、橘子等食物或黄连等药物会使舌苔染色，需注意鉴别。</p>
+                    </div>
+                    <div class="p-6 bg-teal-50 rounded-xl text-center">
+                        <i class="fas fa-utensils text-4xl text-teal-400 mb-4"></i>
+                        <h2 class="text-2xl font-bold text-teal-600 mb-2">习惯</h2>
+                        <p class="text-gray-600">刮舌习惯会使厚苔变薄；过冷过热的饮食会暂时改变舌色。</p>
+                    </div>
+                    <div class="p-6 bg-indigo-50 rounded-xl text-center">
+                        <i class="fas fa-pills text-4xl text-indigo-400 mb-4"></i>
+                        <h2 class="text-2xl font-bold text-indigo-600 mb-2">其他</h2>
+                        <p class="text-gray-600">长期用药（如抗生素）、张口呼吸等也会使舌象发生改变。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="slide">
+            <div class="slide-content flex flex-col items-center justify-center text-center rounded-2xl">
+                <!-- <div class="slide flex-shrink-0 w-full h-full p-8 md:p-12 "> -->
+                <h2 class="text-3xl md:text-4xl font-bold highlight mb-8">总结：如何正确观察舌苔</h2>
+                <div class="space-y-6 max-w-2xl">
+                    <div class="flex items-center gap-4 text-left">
+                        <i class="fa-solid fa-clock text-3xl w-12 text-center highlight"></i>
+                        <div><strong class="text-xl">观察时机：</strong> 早上起床，活动后气血上来时最准。</div>
+                    </div>
+                    <div class="flex items-center gap-4 text-left">
+                        <i class="fa-solid fa-eye-slash text-3xl w-12 text-center highlight"></i>
+                        <div><strong class="text-xl">避开干扰：</strong> 避免在刚吃喝有颜色的食物后观察。</div>
+                    </div>
+                    <div class="flex items-center gap-4 text-left">
+                        <i class="fa-solid fa-magnifying-glass-chart text-3xl w-12 text-center highlight"></i>
+                        <div><strong class="text-xl">观察顺序：</strong> 先看舌神，再看舌质，最后看舌苔。</div>
+                    </div>
+                </div>
+                <div class="mt-12 p-4 rounded-lg highlight-bg border border-orange-500/20">
+                    <p class="text-xl font-semibold text-gray-800">核心：对自己身体有觉知，不人云亦云。</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div id="prev-btn" class="nav-arrow"><i class="fas fa-chevron-left"></i></div>
+    <div id="next-btn" class="nav-arrow"><i class="fas fa-chevron-right"></i></div>
+
+    <!-- Page Indicator -->
+    <div id="page-indicator">1 / 23</div>
+
+    <div id="author" class="absolute bottom-6 left-4 md:left-32 text-sm text-zinc-400 font-mono z-50">
+        幸福闲者读书会
+    </div>
+
+    <div id="author" class="absolute bottom-6 right-4 md:right-32 text-sm text-zinc-400 font-mono z-50">
+        马艺甄老师
+    </div>
+
+    <script>
+        // DOM Elements
+        const slideContainer = document.getElementById('slide-container');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const pageIndicator = document.getElementById('page-indicator');
+
+        let currentSlide = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        // Show the specified slide
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active', 'prev');
+                if (i === index) {
+                    slide.classList.add('active');
+                } else if (i < index) {
+                    slide.classList.add('prev');
+                }
+            });
+            pageIndicator.textContent = `${index + 1} / ${slides.length}`;
+            updateNavButtons();
+        }
+
+        // Update navigation button visibility
+        function updateNavButtons() {
+            prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
+            nextBtn.style.display = currentSlide === slides.length - 1 ? 'none' : 'flex';
+        }
+
+        // Go to the next slide
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Go to the previous slide
+        function prevSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        // Handle touch swipe gesture
+        function handleSwipe() {
+            // Swipe left
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            // Swipe right
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+
+        // Event Listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        slideContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        slideContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+
+</body>
+
+</html>

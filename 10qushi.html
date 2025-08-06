@@ -59,6 +59,10 @@
             align-items: center;
             padding: 4rem;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            overflow-y: auto;
+            /* 在移动设备上提供更流畅的滚动体验 */
+            -webkit-overflow-scrolling: touch;
+            /* justify-content: flex-center; */
         }
 
         .slide.active {
@@ -482,13 +486,11 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div
                         class="aspect-square bg-slate-100 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center">
-                        <img src="src/10tianshu.PNG" alt="天枢穴位置图"
-                            class="w-full h-full object-cover rounded-lg">
+                        <img src="src/10tianshu.PNG" alt="天枢穴位置图" class="w-full h-full object-cover rounded-lg">
                     </div>
                     <div
                         class="aspect-square bg-slate-100 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center">
-                        <img src="src/10-daimai.PNG" alt="带脉位置图"
-                            class="w-full h-full object-cover rounded-lg">
+                        <img src="src/10-daimai.PNG" alt="带脉位置图" class="w-full h-full object-cover rounded-lg">
                     </div>
                 </div>
             </div>

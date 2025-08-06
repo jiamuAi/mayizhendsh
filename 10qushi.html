@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 如何祛湿</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for Icons via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Google Fonts: Noto Sans SC for elegant Chinese typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Custom Styles */
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f0f4f8;
+            /* 整体网页的淡雅背景色 */
+            overflow: hidden;
+            /* 防止在动画期间出现滚动条 */
+        }
+
+        .slide-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            perspective: 1000px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            /* 边框内部的背景色 */
+            border: 1px solid #e2e8f0;
+            /* 页面的精致边框 */
+            border-radius: 1rem;
+            opacity: 0;
+            transform: translateX(100%) scale(0.8);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        .slide.exit-left {
+            transform: translateX(-100%) scale(0.8);
+            opacity: 0;
+        }
+
+        .slide.exit-right {
+            transform: translateX(100%) scale(0.8);
+            opacity: 0;
+        }
+
+        /* 高亮色和渐变 */
+        .highlight-teal {
+            color: #14B8A6;
+            /* 主高亮色：青色 */
+        }
+
+        .bg-highlight-teal-gradient {
+            background: linear-gradient(45deg, rgba(20, 184, 166, 0.1), rgba(20, 184, 166, 0.01));
+        }
+
+        /* 超大字体和视觉元素 */
+        .giant-text {
+            font-size: 12rem;
+            font-weight: 700;
+            position: absolute;
+            z-index: -1;
+            opacity: 0.05;
+            color: #14B8A6;
+            user-select: none;
+        }
+
+        @media (max-width: 768px) {
+            .giant-text {
+                font-size: 6rem;
+            }
+
+            .slide {
+                padding: 2rem;
+            }
+        }
+
+        /* 导航箭头样式 */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            color: #334155;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-arrow:hover {
+            background-color: #14B8A6;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* 关键词高亮样式 */
+        .keyword-highlight {
+            background-color: rgba(20, 184, 166, 0.1);
+            padding: 0.1em 0.3em;
+            border-radius: 0.25em;
+            font-weight: 700;
+            color: #0F766E;
+        }
+    </style>
+</head>
+
+<body class="w-screen h-screen p-4 md:py-16 md:px-28 flex items-center justify-center">
+
+    <div class="slide-container w-full h-full mx-auto">
+        <!-- Slide 1: 封面页 -->
+        <div id="slide-1" class="slide active">
+            <div class="text-center w-full">
+                <h2 class="text-2xl md:text-3xl text-slate-500 font-light mb-4">第10节 如何祛湿</h2>
+                <h1 class="text-5xl md:text-7xl font-bold text-slate-800">祛湿与减脂的<span class="highlight-teal">智慧</span>
+                </h1>
+                <div class="w-24 h-1 bg-teal-500 mx-auto mt-8 mb-12 rounded-full"></div>
+                <p class="text-slate-400">从根源调理，告别寒湿与虚胖</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: 寒湿——万病之源 -->
+        <div id="slide-2" class="slide">
+            <div class="giant-text">寒</div>
+            <div class="w-full text-left md:text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-2">寒湿——万病之源</h2>
+                <p class="text-slate-500 mb-12">一切问题的起点，往往源自一个“寒”字。</p>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="p-6 rounded-lg bg-highlight-teal-gradient">
+                        <i class="fas fa-wind text-4xl highlight-teal mb-4"></i>
+                        <h3 class="text-xl font-semibold text-slate-700">寒则凝</h3>
+                        <p class="text-slate-500 mt-2">寒气导致气血凝滞，如同河流遇冷结冰。</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-highlight-teal-gradient">
+                        <i class="fas fa-cubes text-4xl highlight-teal mb-4"></i>
+                        <h3 class="text-xl font-semibold text-slate-700">凝则瘀</h3>
+                        <p class="text-slate-500 mt-2">凝滞不通，形成瘀堵，阻碍身体正常循环。</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-highlight-teal-gradient">
+                        <i class="fas fa-cloud-rain text-4xl highlight-teal mb-4"></i>
+                        <h3 class="text-xl font-semibold text-slate-700">瘀则聚湿</h3>
+                        <p class="text-slate-500 mt-2">当寒气积累到一定程度，身体便会内生“湿气”。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: 为何“一湿难除”？ -->
+        <div id="slide-3" class="slide">
+            <div class="giant-text" style="font-size: 15rem;">湿</div>
+            <div class="w-full max-w-4xl text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">为何“一湿难除”？</h2>
+                <p class="text-xl text-slate-500 mb-12">“千寒易去，一湿难除”</p>
+                <div
+                    class="flex flex-col md:flex-row items-center gap-8 p-8 border border-teal-200/50 rounded-lg bg-highlight-teal-gradient">
+                    <div class="flex-shrink-0">
+                        <svg class="w-32 h-32 highlight-teal" viewBox="0 0 100 100" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M49.9999 87.5C49.9999 87.5 77.0833 66.6667 77.0833 47.9167C77.0833 29.1667 65.1041 12.5 49.9999 12.5C34.8958 12.5 22.9166 29.1667 22.9166 47.9167C22.9166 66.6667 49.9999 87.5 49.9999 87.5Z"
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M50 52.0833C52.3012 52.0833 54.1667 50.2178 54.1667 47.9167C54.1667 45.6155 52.3012 43.75 50 43.75C47.6988 43.75 45.8333 45.6155 45.8333 47.9167C45.8333 50.2178 47.6988 52.0833 50 52.0833Z"
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                            <path
+                                d="M41.6667 41.6667C43.9679 41.6667 45.8334 39.8012 45.8334 37.5C45.8334 35.1988 43.9679 33.3333 41.6667 33.3333C39.3655 33.3333 37.5 35.1988 37.5 37.5C37.5 39.8012 39.3655 41.6667 41.6667 41.6667Z"
+                                stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-2xl font-semibold text-slate-700 mb-4">一个形象的比喻：煮熟的面条</h3>
+                        <p class="text-slate-600">湿气，就像水和面粉已经糊化在一起，与我们的肌肉组织融为一体，难以分离。因此，祛湿是一个需要长期坚持的“终身事业”。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: 寒湿的深远影响 -->
+        <div id="slide-4" class="slide">
+            <div class="w-full grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">寒湿的<span
+                            class="highlight-teal">深远影响</span></h2>
+                    <p class="text-slate-500 text-lg mb-8">它不仅影响当代，甚至会“遗传”给下一代。</p>
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-female text-2xl highlight-teal mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-700">对女性：子宫寒凉</h4>
+                                <p class="text-slate-500">若怀孕前不祛除寒湿，生下的女儿易宫寒，男孩易有疝气。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <i class="fas fa-shield-alt text-2xl highlight-teal mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-slate-700">核心观点：防湿先防寒</h4>
+                                <p class="text-slate-500">孕前调理身体至关重要，从源头阻断寒湿的侵袭。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center">
+                    <svg class="w-64 h-64 text-teal-500/20" viewBox="0 0 200 200" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M185.3,109.3c-5.3,21.3-19.3,39.3-39.3,49.3c-20,10-44.7,12-65.3,6.7s-36.7-18-46-36.7s-12-42-8.7-62.7s14-38.7,32-50s40.7-14.7,60-10.7s36,15.3,46,33.3S190.7,88,185.3,109.3z" />
+                    </svg>
+                    <i class="fas fa-baby text-6xl text-teal-500 absolute"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: 湿气藏在哪里？ -->
+        <div id="slide-5" class="slide">
+            <div class="w-full text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">湿气最爱藏在哪里？</h2>
+                <p class="text-slate-500 mb-12">如同“垃圾”，最易堆积在身体的“角落”与“缝隙”中。</p>
+                <div class="flex justify-center items-center gap-8 flex-wrap">
+                    <div class="text-center p-3 rounded-full border border-slate-200 bg-slate-50">主要关节</div>
+                    <div class="text-center p-3 rounded-full border border-slate-200 bg-slate-50">下肢关节</div>
+                    <div class="text-center p-3 rounded-full border border-slate-200 bg-slate-50">皮下组织</div>
+                    <div class="text-center p-3 rounded-full border border-slate-200 bg-slate-50">腹部中焦</div>
+                </div>
+                <div class="mt-8 p-6 bg-teal-500/10 rounded-lg text-teal-800 flex items-center gap-4 justify-center">
+                    <i class="fas fa-exclamation-circle text-2xl"></i>
+                    <p><strong>生活提示：</strong>做家务时戴手套，不仅是保护皮肤，更是防止寒湿从手部关节侵入。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: 如何判断自己湿气重？ -->
+        <div id="slide-6" class="slide">
+            <div class="w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12 text-center">如何判断自己<span
+                        class="highlight-teal">湿气重</span>？</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div
+                        class="p-6 rounded-lg text-center border border-slate-200 hover:shadow-lg hover:border-teal-200 transition-all">
+                        <i class="fas fa-weight-hanging text-4xl text-slate-400 mb-4"></i>
+                        <h3 class="font-semibold text-slate-700">身体沉重</h3>
+                        <p class="text-slate-500 text-sm">不清爽，腹部堵塞</p>
+                    </div>
+                    <div
+                        class="p-6 rounded-lg text-center border border-slate-200 hover:shadow-lg hover:border-teal-200 transition-all">
+                        <i class="fas fa-tint text-4xl text-slate-400 mb-4"></i>
+                        <h3 class="font-semibold text-slate-700">脸发油</h3>
+                        <p class="text-slate-500 text-sm">脸上和头发易出油</p>
+                    </div>
+                    <div
+                        class="p-6 rounded-lg text-center border border-slate-200 hover:shadow-lg hover:border-teal-200 transition-all">
+                        <i class="fas fa-tooth text-4xl text-slate-400 mb-4"></i>
+                        <h3 class="font-semibold text-slate-700">舌有齿痕</h3>
+                        <p class="text-slate-500 text-sm">舌两边有明显齿痕</p>
+                    </div>
+                    <div
+                        class="p-6 rounded-lg text-center border border-slate-200 hover:shadow-lg hover:border-teal-200 transition-all">
+                        <i class="fas fa-poo text-4xl text-slate-400 mb-4"></i>
+                        <h3 class="font-semibold text-slate-700">大便不成形</h3>
+                        <p class="text-slate-500 text-sm">粘马桶，不易冲净</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: 祛湿方法（一）：综合调理 -->
+        <div id="slide-7" class="slide">
+            <div class="w-full text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12">祛湿方法 (一): <span
+                        class="highlight-teal">综合调理</span></h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 rounded-lg bg-highlight-teal-gradient">
+                        <h3 class="font-bold text-xl text-slate-700 mb-4">饮食祛湿</h3>
+                        <p class="text-slate-600">常喝红豆薏米粥 (寒体需炒薏米)，巧用玉米须煮水。</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-highlight-teal-gradient">
+                        <h3 class="font-bold text-xl text-slate-700 mb-4">生活习惯</h3>
+                        <p class="text-slate-600">保证睡眠，愉悦心情，避免思虑过度伤脾。</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-red-500/10">
+                        <h3 class="font-bold text-xl text-red-700 mb-4">核心原则</h3>
+                        <p class="text-red-600">防寒于未然，少吃生冷瓜果，避免身体直接受寒。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: 祛湿方法（二）：动手操作 -->
+        <div id="slide-8" class="slide">
+            <div class="w-full grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">祛湿方法 (二): <span
+                            class="highlight-teal">动手操作</span></h2>
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-2xl font-semibold text-slate-700 mb-2">拍八虚</h3>
+                            <p class="text-slate-500">用空心掌柔和拍打双肘窝、双腋窝、双腹股沟、双腘窝，至发热即可，不必强求出痧。</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-slate-700 mb-2">转关节</h3>
+                            <p class="text-slate-500">睡前向内外转动手腕和脚踝，可激活气血，帮助睡眠和排湿。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center items-center">
+                    <svg class="w-full max-w-sm" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="100" cy="100" r="80" stroke="#E2E8F0" stroke-width="2" />
+                        <circle cx="100" cy="20" r="8" class="fill-teal-400" />
+                        <circle cx="170.7" cy="50" r="8" class="fill-teal-400" />
+                        <circle cx="170.7" cy="150" r="8" class="fill-teal-400" />
+                        <circle cx="100" cy="180" r="8" class="fill-teal-400" />
+                        <circle cx="29.3" cy="150" r="8" class="fill-teal-400" />
+                        <circle cx="29.3" cy="50" r="8" class="fill-teal-400" />
+                        <circle cx="50" cy="170.7" r="8" class="fill-teal-400" />
+                        <circle cx="150" cy="170.7" r="8" class="fill-teal-400" />
+                        <text x="100" y="105" text-anchor="middle" class="text-xl font-bold fill-slate-700">八虚</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: 专题：为何减肥总失败？解密“湿胖” -->
+        <div id="slide-9" class="slide">
+            <div class="giant-text" style="font-size: 15rem;">胖</div>
+            <div class="w-full max-w-4xl text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">专题：为何减肥总失败？</h2>
+                <p class="text-2xl text-slate-500 mb-12">解密 <span class="text-4xl font-bold highlight-teal">“湿胖”</span>
+                </p>
+                <div class="grid md:grid-cols-3 gap-6 text-slate-700">
+                    <div class="p-4 rounded-lg border border-slate-200">气胖</div>
+                    <div class="p-4 rounded-lg border border-slate-200">食胖</div>
+                    <div class="p-4 rounded-lg border border-teal-400 bg-teal-500/10 text-teal-800 font-bold">虚胖 (湿胖)
+                    </div>
+                </div>
+                <p class="mt-8 text-lg text-slate-600">如果你是“湿胖”，单纯节食、减脂肪效果甚微。必须 <span
+                        class="font-bold highlight-teal">先祛湿，再减脂</span>。</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: 从体质看“湿胖”根源 -->
+        <div id="slide-10" class="slide">
+            <div class="w-full text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">从体质看“<span
+                        class="highlight-teal">湿胖</span>”根源</h2>
+                <p class="text-slate-500 mb-12">为什么有的人“喝水都胖”？为什么“管不住嘴、迈不开腿”？</p>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <div class="p-6 rounded-lg bg-highlight-teal-gradient">
+                        <h3 class="font-semibold text-xl text-slate-700 mb-2">管不住嘴</h3>
+                        <p class="text-slate-600">胃火过旺 或 脾寒需要热量</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-highlight-teal-gradient">
+                        <h3 class="font-semibold text-xl text-slate-700 mb-2">迈不开腿</h3>
+                        <p class="text-slate-600">气虚、阳虚，身体能量不足</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-highlight-teal-gradient">
+                        <h3 class="font-semibold text-xl text-slate-700 mb-2">代谢慢</h3>
+                        <p class="text-slate-600">心阳不足、肾气不足、脾虚运化无力</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 11: 案例分析 1 -->
+        <div id="slide-11" class="slide">
+            <div class="w-full grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-teal-500 text-white px-4 py-2 rounded-full text-lg font-bold mb-4">案例分析
+                        1</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">多脏腑<span
+                            class="highlight-teal">虚弱型</span></h2>
+                    <p class="text-slate-600 text-lg">典型的“喝水都胖”。身体处理能量的引擎全面动力不足，极易堆积脂肪。</p>
+                </div>
+                <div>
+                    <canvas id="chart1"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: 案例分析 2 -->
+        <div id="slide-12" class="slide">
+            <div class="w-full grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-teal-500 text-white px-4 py-2 rounded-full text-lg font-bold mb-4">案例分析
+                        2</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">肝弱<span
+                            class="highlight-teal">脾能吃型</span></h2>
+                    <p class="text-slate-600 text-lg">能吃，但运化不掉。胃口很好，但脾胃实际的运化能力差，吃进去的都变成了负担。</p>
+                </div>
+                <div>
+                    <canvas id="chart2"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: 案例分析 3 -->
+        <div id="slide-13" class="slide">
+            <div class="w-full grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-orange-500 text-white px-4 py-2 rounded-full text-lg font-bold mb-4">
+                        案例分析 3</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">心强<span
+                            class="text-orange-500">胃热型</span></h2>
+                    <p class="text-slate-600 text-lg">典型的“管不住嘴”。胃口像火一样旺，但处理食物的脾和肾却很虚弱，形成巨大反差。</p>
+                </div>
+                <div>
+                    <canvas id="chart3"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: 案例分析 4 -->
+        <div id="slide-14" class="slide">
+            <div class="w-full grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-block bg-teal-500 text-white px-4 py-2 rounded-full text-lg font-bold mb-4">案例分析
+                        4</div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">气虚<span
+                            class="highlight-teal">不爱动型</span></h2>
+                    <p class="text-slate-600 text-lg">典型的“迈不开腿”。强迫其运动减肥是错误的，会更加消耗本已不足的气。应先补气，再谈运动。</p>
+                </div>
+                <div>
+                    <canvas id="chart4"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: 核心穴位 -->
+        <div id="slide-15" class="slide">
+            <div class="w-full grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">减肥与祛湿的<span
+                            class="highlight-teal">核心穴位</span></h2>
+                    <div class="space-y-4">
+                        <p><strong class="text-slate-700">天枢穴:</strong> 肚脐旁开两指，调节肠腑，减肥大穴。</p>
+                        <p><strong class="text-slate-700">带脉:</strong> 侧腹部，沿腰带一圈，常揉可瘦腰。</p>
+                    </div>
+                    <div class="mt-8 p-4 bg-teal-500/10 rounded-lg">
+                        <h4 class="font-bold text-teal-800 mb-2">揉腹方法</h4>
+                        <p class="text-teal-700 text-sm">以肚脐为中心顺逆时针揉动至发热，再从上往下推，从两侧带脉沿腹股沟向下搓揉。</p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div
+                        class="aspect-square bg-slate-100 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center">
+                        <img src="src/10tianshu.PNG" alt="天枢穴位置图"
+                            class="w-full h-full object-cover rounded-lg">
+                    </div>
+                    <div
+                        class="aspect-square bg-slate-100 rounded-lg border-2 border-dashed border-slate-300 flex items-center justify-center">
+                        <img src="src/10-daimai.PNG" alt="带脉位置图"
+                            class="w-full h-full object-cover rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: 养生小习惯 -->
+        <div id="slide-16" class="slide">
+            <div class="w-full">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-12 text-center">融入生活的<span
+                        class="highlight-teal">养生小习惯</span></h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="p-6 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-xl text-slate-700 mb-4">清晨 (床上完成)</h3>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600">
+                            <li><strong class="keyword-highlight">转眼球：</strong>固定额头，上下左右及转圈，明目。</li>
+                            <li><strong class="keyword-highlight">揉腹：</strong>唤醒脏腑，促进排便。</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-lg border border-slate-200">
+                        <h3 class="font-bold text-xl text-slate-700 mb-4">睡前</h3>
+                        <ul class="list-disc list-inside space-y-2 text-slate-600">
+                            <li><strong class="keyword-highlight">按太冲：</strong>足背大脚趾二脚趾缝间，疏肝解郁。</li>
+                            <li><strong class="keyword-highlight">转脚踝/做脚操：</strong>安神助眠，促进循环。</li>
+                            <li><strong class="keyword-highlight">常梳头：</strong>用指腹或梳子梳理头皮，活血通络。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 17: 总结与问答 -->
+        <div id="slide-17" class="slide">
+            <div class="text-center">
+                <i class="fas fa-quote-left text-3xl highlight-teal mb-6"></i>
+                <p class="text-2xl md:text-4xl font-light text-slate-600 leading-relaxed">真正的养生，是读懂自己的身体</p>
+                <p class="text-2xl md:text-4xl font-light text-slate-600 leading-relaxed"><br>并将智慧的方法，化为<span
+                        class="font-semibold highlight-teal">每日的习惯</p>
+                <div class="w-20 h-1 bg-teal-500 mx-auto mt-12 mb-8 rounded-full"></div>
+                <h2 class="text-6xl font-bold text-slate-800">Q & A</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Arrows -->
+    <div id="prev" class="nav-arrow left-4 md:left-12">
+        <i class="fas fa-chevron-left"></i>
+    </div>
+    <div id="next" class="nav-arrow right-4 md:right-12">
+        <i class="fas fa-chevron-right"></i>
+    </div>
+
+    <!-- Page Counter -->
+    <div id="page-counter"
+        class="absolute bottom-4 left-1/2 -translate-x-1/2 text-slate-400 bg-white/70 backdrop-blur-sm px-3 py-1 rounded-full text-sm z-20">
+        1 / 17
+    </div>
+
+    <div id="author" class="absolute bottom-6 left-4 md:left-28 text-sm text-zinc-400 font-mono z-50">
+        幸福闲者读书会
+    </div>
+
+    <div id="author" class="absolute bottom-6 right-4 md:right-28 text-sm text-zinc-400 font-mono z-50">
+        马艺甄老师
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prev');
+            const nextBtn = document.getElementById('next');
+            const pageCounter = document.getElementById('page-counter');
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            function updateSlide(newIndex, direction) {
+                const oldIndex = currentSlide;
+
+                if (newIndex < 0 || newIndex >= totalSlides) {
+                    return;
+                }
+
+                // Set exit animation class on the old slide
+                if (direction === 'next') {
+                    slides[oldIndex].classList.add('exit-left');
+                } else {
+                    slides[oldIndex].classList.add('exit-right');
+                }
+
+                // Remove active class after animation
+                setTimeout(() => {
+                    slides[oldIndex].classList.remove('active', 'exit-left', 'exit-right');
+                }, 600);
+
+                // Set active class on the new slide
+                slides[newIndex].classList.add('active');
+                currentSlide = newIndex;
+
+                // Update counter
+                pageCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+            }
+
+            nextBtn.addEventListener('click', () => {
+                updateSlide(currentSlide + 1, 'next');
+            });
+
+            prevBtn.addEventListener('click', () => {
+                updateSlide(currentSlide - 1, 'prev');
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    updateSlide(currentSlide + 1, 'next');
+                } else if (e.key === 'ArrowLeft') {
+                    updateSlide(currentSlide - 1, 'prev');
+                }
+            });
+
+            // Chart rendering
+            const chartOptions = {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: "'Noto Sans SC', sans-serif"
+                            }
+                        }
+                    },
+                },
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true,
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 5,
+                        pointLabels: {
+                            font: {
+                                size: 14,
+                                family: "'Noto Sans SC', sans-serif"
+                            }
+                        },
+                        ticks: {
+                            backdropColor: 'rgba(255, 255, 255, 0.75)',
+                            stepSize: 1
+                        }
+                    }
+                }
+            };
+
+            const chartBaseData = {
+                labels: ['肝 (疏泄)', '心 (代谢)', '脾 (运化)', '肺 (气力)', '肾 (动力)', '虚火'],
+                datasets: [{
+                    label: '体质状态',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#14B8A6',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#14B8A6'
+                }]
+            };
+
+            // Deep copy function for chart data
+            function deepCopy(obj) {
+                return JSON.parse(JSON.stringify(obj));
+            }
+
+            // Chart 1: 多脏腑虚弱型
+            const chart1Data = deepCopy(chartBaseData);
+            chart1Data.datasets[0].data = [3, 0, 0.5, 0.5, 0, 1]; // 脾心肾弱
+            chart1Data.datasets[0].backgroundColor = 'rgba(20, 184, 166, 0.2)';
+            chart1Data.datasets[0].borderColor = 'rgba(20, 184, 166, 1)';
+            new Chart(document.getElementById('chart1'), { type: 'radar', data: chart1Data, options: chartOptions });
+
+            // Chart 2: 肝弱脾能吃型
+            const chart2Data = deepCopy(chartBaseData);
+            chart2Data.datasets[0].data = [0, 0, 2.5, 1, 1, 0.5]; // 肝心弱，脾强
+            chart2Data.datasets[0].backgroundColor = 'rgba(20, 184, 166, 0.2)';
+            chart2Data.datasets[0].borderColor = 'rgba(20, 184, 166, 1)';
+            new Chart(document.getElementById('chart2'), { type: 'radar', data: chart2Data, options: chartOptions });
+
+            // Chart 3: 心强胃热型
+            const chart3Data = deepCopy(chartBaseData);
+            chart3Data.datasets[0].data = [0, 3.5, 0, 1, 0, 0.5]; // 心强，脾肾弱
+            chart3Data.datasets[0].backgroundColor = 'rgba(249, 115, 22, 0.2)'; // Use secondary color
+            chart3Data.datasets[0].borderColor = 'rgba(249, 115, 22, 1)';
+            chart3Data.datasets[0].pointBackgroundColor = '#f97316';
+            chart3Data.datasets[0].pointHoverBorderColor = '#f97316';
+            new Chart(document.getElementById('chart3'), { type: 'radar', data: chart3Data, options: chartOptions });
+
+            // Chart 4: 气虚不爱动型
+            const chart4Data = deepCopy(chartBaseData);
+            chart4Data.datasets[0].data = [2.5, 0, 0, 0, 1, 1.5]; // 肺脾心弱
+            chart4Data.datasets[0].backgroundColor = 'rgba(20, 184, 166, 0.2)';
+            chart4Data.datasets[0].borderColor = 'rgba(20, 184, 166, 1)';
+            new Chart(document.getElementById('chart4'), { type: 'radar', data: chart4Data, options: chartOptions });
+        });
+    </script>
+</body>
+
+</html>
